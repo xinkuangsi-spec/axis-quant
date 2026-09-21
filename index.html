@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AXIS QUANT — 量化交易纪元史与算法实战平台 | Chronicles of Quantitative Trading</title>
+  <meta name="description" content="半个世纪量化金融发展编年史、经典趋势突破与多因子量化实战教程，内置实时交互式策略回测引擎与全球多语言支持。">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 1. FIXED HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand-block">
+        <a href="#top" class="brand-wordmark">AXIS<span>//</span>QUANT</a>
+        <span class="brand-tagline" data-i18n="brand_subtitle">量化交易纪元与算法教学</span>
+      </div>
+
+      <div class="header-clock" id="global-clock-display">
+        NYC 09:30:00 &middot; LON 14:30:00 &middot; TYO 22:30:00
+      </div>
+
+      <div class="header-right">
+        <nav class="site-nav-menu" id="site-nav-menu">
+          <ul class="nav-links">
+            <li><a href="#timeline" class="nav-link" data-i18n="nav_timeline">纪元史</a></li>
+            <li><a href="#tutorial" class="nav-link" data-i18n="nav_tutorial">策略教学</a></li>
+            <li><a href="#tutorial" class="nav-link" data-i18n="nav_backtest">实时回测</a></li>
+            <li><a href="#monetization" class="nav-link" data-i18n="nav_pricing">商业方案</a></li>
+            <li><a href="#faq" class="nav-link" data-i18n="nav_faq">常见问题</a></li>
+          </ul>
+        </nav>
+
+        <!-- Multi-language Switcher -->
+        <div class="lang-switcher" aria-label="Language Selector">
+          <button class="lang-btn active" data-lang="zh" title="简体中文">中</button>
+          <button class="lang-btn" data-lang="en" title="English">EN</button>
+          <button class="lang-btn" data-lang="ja" title="日本語">日</button>
+          <button class="lang-btn" data-lang="de" title="Deutsch">DE</button>
+        </div>
+
+        <button class="btn-header-pro btn-select-pro" data-i18n="nav_pro_btn">进入终端</button>
+        <button class="mobile-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. HERO SECTION -->
+  <section class="hero-section" id="top">
+    <!-- Interactive Canvas Background (react-bits DotField adaptation) -->
+    <canvas id="hero-dotfield" class="hero-canvas-bg"></canvas>
+
+    <div class="container hero-content">
+      <div class="hero-left reveal-on-scroll">
+        <span class="mono-tag hero-index" data-i18n="hero_tag">(01) // 纪元编年史与算法阿尔法</span>
+        <div class="hero-status-pill">
+          <span class="pulse-dot"></span>
+          <span data-i18n="hero_badge_active">运行状态: 实时套利雷达活跃</span>
+        </div>
+        <h1 class="hero-title" data-i18n="hero_title">从宽客先驱到人工智能，解码半个世纪的算法进化</h1>
+        <p class="hero-lead" data-i18n="hero_lead">
+          量化交易不是点石成金的黑魔法，而是把市场的不确定性用数学概率、统计优势与纳秒级计算精确度量。从 1970 年代布莱克-斯科尔斯公式，到大奖章基金的隐马尔可夫模型，再到如今大模型智能体自主挖掘 Alpha——探索量化金融的真谛。
+        </p>
+        <div class="hero-actions">
+          <a href="#timeline" class="btn-primary" data-i18n="hero_cta_explore">探索量化编年史</a>
+          <a href="#tutorial" class="btn-outline" data-i18n="hero_cta_tutorial">上手策略实战</a>
+        </div>
+      </div>
+
+      <!-- Lifted Ticker Card -->
+      <div class="hero-right reveal-on-scroll">
+        <div class="hero-ticker-card">
+          <div class="card-top-bar">
+            <span class="card-title" data-i18n="card_ticker_title">核心策略指标监控</span>
+            <span class="card-signal-badge" data-i18n="card_ticker_signal">动量买入信号 · 触发</span>
+          </div>
+
+          <!-- Dynamic SVG Sparkline -->
+          <svg class="sparkline-svg" viewBox="0 0 280 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 45 L30 42 L60 48 L90 32 L120 38 L150 22 L180 26 L210 12 L240 16 L280 4" stroke="#1F44FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M0 45 L30 42 L60 48 L90 32 L120 38 L150 22 L180 26 L210 12 L240 16 L280 4 L280 60 L0 60 Z" fill="url(#sparklineGrad)" opacity="0.15"/>
+            <defs>
+              <linearGradient id="sparklineGrad" x1="0" y1="0" x2="0" y2="60" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#1F44FF"/>
+                <stop offset="1" stop-color="#1F44FF" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <div class="card-metrics-grid">
+            <div class="metric-item">
+              <span class="metric-label" data-i18n="card_ticker_label1">夏普比率 (Sharpe)</span>
+              <span class="metric-val cobalt">2.84</span>
+            </div>
+            <div class="metric-item">
+              <div class="metric-label" data-i18n="card_ticker_label2">历史最大回撤</div>
+              <span class="metric-val">4.12%</span>
+            </div>
+            <div class="metric-item">
+              <div class="metric-label" data-i18n="card_ticker_label3">年化超额 Alpha</div>
+              <span class="metric-val cobalt">+34.6%</span>
+            </div>
+          </div>
+
+          <a href="#tutorial" class="card-cta-link" data-i18n="card_ticker_cta">查看模型回测明细 →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colossal Wordmark -->
+    <div class="container">
+      <div class="hero-colossal-wordmark">QUANTITATIVE</div>
+    </div>
+  </section>
+
+  <!-- 3. MARQUEE TICKER STRIP -->
+  <div class="marquee-strip">
+    <div class="marquee-content" data-i18n="marquee_text">
+      SPX 5,842.10 ▲ +0.68% · BTC/USDT $96,420 ▲ +2.45% · RENAISSANCE_MEDALLION CAGR 66.1% ▲ · SHARPE_BENCHMARK 2.84 · FAMA_FRENCH_5F ACTIVE · ORDER_LATENCY 0.82μs · VOLATILITY_INDEX 13.42 ▼ -1.18% · STAT_ARB_SPREAD 1.84σ · DEEPSEEK_FIN_ALPHA ONLINE &nbsp;&nbsp;&nbsp;&nbsp; SPX 5,842.10 ▲ +0.68% · BTC/USDT $96,420 ▲ +2.45% · RENAISSANCE_MEDALLION CAGR 66.1% ▲ · SHARPE_BENCHMARK 2.84 · FAMA_FRENCH_5F ACTIVE · ORDER_LATENCY 0.82μs · VOLATILITY_INDEX 13.42 ▼ -1.18% · STAT_ARB_SPREAD 1.84σ · DEEPSEEK_FIN_ALPHA ONLINE
+    </div>
+  </div>
+
+  <!-- 4. FIVE GREAT EPOCHS TIMELINE -->
+  <section class="section-wrapper" id="timeline">
+    <div class="container">
+      <div class="section-header-block reveal-on-scroll">
+        <span class="mono-tag section-tag" data-i18n="timeline_tag">(02) // 五大历史纪元</span>
+        <h2 class="section-title" data-i18n="timeline_title">量化交易发展脉络：半个世纪的宽客征途</h2>
+        <p class="section-subtitle" data-i18n="timeline_subtitle">
+          五大关键时代，梳理从学术象牙塔的随机漫步理论到华尔街超算中心与人工智能的跨越
+        </p>
+      </div>
+
+      <div class="timeline-grid">
+        <!-- Epoch 1 -->
+        <article class="timeline-card reveal-on-scroll">
+          <div>
+            <span class="epoch-badge" data-i18n="epoch1_badge">1970 — 1985 · 理论奠基</span>
+            <h3 class="epoch-title" data-i18n="epoch1_title">期权定价与现代金融工程萌芽</h3>
+            <p class="epoch-desc" data-i18n="epoch1_desc">
+              在 70 年代前，华尔街全凭直觉和看图做盘。1973 年 Fischer Black、Myron Scholes 和 Robert Merton 提出 B-S 期权定价模型，给衍生品敲定了客观数学定价法。同期的 Ed Thorp（数学家，21点算牌之父）创立了首家电脑量化对冲基金 Princeton Newport Partners，首次用计算机寻找可转债套利机会。
+            </p>
+          </div>
+          <ul class="epoch-keys">
+            <li data-i18n="epoch1_key1">B-S 期权定价公式诞生</li>
+            <li data-i18n="epoch1_key2">可转债折价套利理论</li>
+            <li data-i18n="epoch1_key3">首批宽客进入对冲基金界</li>
+          </ul>
+        </article>
+
+        <!-- Epoch 2 -->
+        <article class="timeline-card featured reveal-on-scroll">
+          <div>
+            <span class="epoch-badge" data-i18n="epoch2_badge">1985 — 2000 · 宽客崛起</span>
+            <h3 class="epoch-title" data-i18n="epoch2_title">大奖章基金与统计套利的黄金时代</h3>
+            <p class="epoch-desc" data-i18n="epoch2_desc">
+              冷战密码学家 Jim Simons 创立 Renaissance Technologies（文艺复兴科技），招募天体物理学家与数学家，摒弃任何基本面直觉，完全依靠纯数据驱动与隐马尔可夫模型捕捉市场非理性微动。大奖章基金创下连续 30 年费前年化收益超 66% 的神话。然而 1998 年 LTCM（长期资本管理）因黑天鹅流动性枯竭轰然倒闭，给行业敲响了风险控制的警钟。
+            </p>
+          </div>
+          <ul class="epoch-keys">
+            <li data-i18n="epoch2_key1">隐马尔可夫与统计套利模型</li>
+            <li data-i18n="epoch2_key2">文艺复兴科技大奖章基金传奇</li>
+            <li data-i18n="epoch2_key3">LTCM 危机与风险敞口深刻教训</li>
+          </ul>
+        </article>
+
+        <!-- Epoch 3 -->
+        <article class="timeline-card reveal-on-scroll">
+          <div>
+            <span class="epoch-badge" data-i18n="epoch3_badge">2000 — 2015 · 电子革命</span>
+            <h3 class="epoch-title" data-i18n="epoch3_title">微波网络、暗池与超高频交易 (HFT)</h3>
+            <p class="epoch-desc" data-i18n="epoch3_desc">
+              随着交易所全面电子化，速度从“秒”被压缩到“纳秒”。对冲基金为了比对手快几个微秒，斥资数亿美元铺设芝加哥到纽约的激光微波直连塔，使用 FPGA 硬件重写网卡逻辑。Citadel、Virtu Financial、Jump Trading 成为新时代的市场流动性提供者，同时也诱发了 2010 年惊心动魄的“美股闪崩”（Flash Crash）。
+            </p>
+          </div>
+          <ul class="epoch-keys">
+            <li data-i18n="epoch3_key1">订单簿微观结构与纳秒撮合</li>
+            <li data-i18n="epoch3_key2">FPGA 硬件加速与微波通信网络</li>
+            <li data-i18n="epoch3_key3">流动性做市 (Market Making) 与暗池</li>
+          </ul>
+        </article>
+
+        <!-- Epoch 4 -->
+        <article class="timeline-card reveal-on-scroll">
+          <div>
+            <span class="epoch-badge" data-i18n="epoch4_badge">2015 — 2022 · 因子工场</span>
+            <h3 class="epoch-title" data-i18n="epoch4_title">多因子模型与另类数据爆发</h3>
+            <p class="epoch-desc" data-i18n="epoch4_desc">
+              量化机构从比拼速度走向比拼信息维度。以 Fama-French 五因子（市值、账面市值比、盈利能力、投资模式、动量）为基础的多因子选股成为主流框架；WorldQuant 建立起拥有成千上万个Alpha因子的因子库。与此同时，卫星图（监控零售商停车场汽车数量）、信用卡脱敏消费流水、供应链物流数据等另类数据被大规模引入策略。
+            </p>
+          </div>
+          <ul class="epoch-keys">
+            <li data-i18n="epoch4_key1">多因子正交化与风险模型 (Barra)</li>
+            <li data-i18n="epoch4_key2">卫星与信用卡另类数据挖掘</li>
+            <li data-i18n="epoch4_key3">加密货币全天候量化套利兴起</li>
+          </ul>
+        </article>
+
+        <!-- Epoch 5 -->
+        <article class="timeline-card featured reveal-on-scroll">
+          <div>
+            <span class="epoch-badge" data-i18n="epoch5_badge">2023 — 至今 · 智能体前沿</span>
+            <h3 class="epoch-title" data-i18n="epoch5_title">大语言模型与多智能体自主决策</h3>
+            <p class="epoch-desc" data-i18n="epoch5_desc">
+              生成式人工智能与大语言模型突破了非结构化文本的壁垒。如今的量化系统不仅使用深度强化学习（RL）优化执行滑点，更通过多个专家智能体（Agent）协同工作：一个智能体实时解析全球央行纪要与供应链新闻，另一个智能体动态构建策略因子，第三个智能体执行风控压力测试。人类宽客正转变为智能体系统的架构师与裁判员。
+            </p>
+          </div>
+          <ul class="epoch-keys">
+            <li data-i18n="epoch5_key1">LLM 财报与非结构化文本情感量化</li>
+            <li data-i18n="epoch5_key2">强化学习连续动作执行与滑点控制</li>
+            <li data-i18n="epoch5_key3">多智能体自主 Alpha 发现与风控协作</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. TUTORIAL & INTERACTIVE SIMULATOR -->
+  <section class="section-wrapper dark" id="tutorial">
+    <div class="container">
+      <div class="section-header-block reveal-on-scroll">
+        <span class="mono-tag section-tag" data-i18n="tut_tag">(03) // 算法实战教学</span>
+        <h2 class="section-title" data-i18n="tut_title">零基础量化实战：双均线突破与回测模拟器</h2>
+        <p class="section-subtitle" data-i18n="tut_desc">
+          理解量化交易最经典、最直观的趋势跟踪策略——双均线（Dual SMA Cross）。在下方实时调节参数，观察策略在真实波动数据下的表现。
+        </p>
+      </div>
+
+      <div class="tutorial-layout">
+        <!-- Tutorial Guide Left -->
+        <div class="tutorial-steps-card reveal-on-scroll">
+          <div class="tut-step-block">
+            <h3 class="tut-step-title" data-i18n="tut_step1_title">1. 策略数学逻辑</h3>
+            <p class="tut-step-body" data-i18n="tut_step1_body">
+              设定一条快速移动平均线（SMA Fast）与一条慢速移动平均线（SMA Slow）。当快线自下而上穿过慢线时，形成「黄金交叉（Golden Cross）」，发出做多信号；当快线自上而下跌破慢线时，形成「死亡交叉（Death Cross）」，平仓或发出做空信号。
+            </p>
+          </div>
+
+          <div class="tut-step-block">
+            <h3 class="tut-step-title" data-i18n="tut_step2_title">2. 关键评估指标定义</h3>
+            <p class="tut-step-body" data-i18n="tut_step2_body">
+              • 夏普比率 (Sharpe Ratio): (策略年化收益率 - 无风险利率) / 策略收益率年化波动率。衡量承担每单位风险所获取的超额回报，>1.5 为优秀，>2.5 为顶级宽客水准。
+              • 最大回撤 (MDD): 资产净值曲线从峰值跌落至谷底的最大跌幅百分比，是衡量爆仓风险的核心红线。
+            </p>
+          </div>
+
+          <div class="tut-step-block">
+            <h3 class="tut-step-title" data-i18n="tut_step3_title">3. 交互式回测控制台</h3>
+            <p class="tut-step-body">
+              拖动右侧滑块修改均线周期与止损阈值，回测引擎会在浏览器端即时重算所有买卖点与资产收益曲线！
+            </p>
+          </div>
+        </div>
+
+        <!-- Backtester Panel Right -->
+        <div class="simulator-panel reveal-on-scroll">
+          <!-- Parameter Sliders -->
+          <div class="sim-controls-grid">
+            <div class="control-field">
+              <div class="control-label-row">
+                <span class="control-label" data-i18n="sim_fast_label">快速均线周期 (天)</span>
+                <span class="control-val" id="sim-fast-val">8</span>
+              </div>
+              <input type="range" min="3" max="25" value="8" class="control-slider" id="sim-fast">
+            </div>
+
+            <div class="control-field">
+              <div class="control-label-row">
+                <span class="control-label" data-i18n="sim_slow_label">慢速均线周期 (天)</span>
+                <span class="control-val" id="sim-slow-val">24</span>
+              </div>
+              <input type="range" min="15" max="60" value="24" class="control-slider" id="sim-slow">
+            </div>
+
+            <div class="control-field">
+              <div class="control-label-row">
+                <span class="control-label" data-i18n="sim_stoploss_label">硬止损线 (%)</span>
+                <span class="control-val" id="sim-stoploss-val">5%</span>
+              </div>
+              <input type="range" min="1" max="15" value="5" class="control-slider" id="sim-stoploss">
+            </div>
+
+            <div class="control-field" style="justify-content: flex-end;">
+              <button class="btn-primary" id="sim-run-btn" style="width: 100%; padding: 8px 0;" data-i18n="sim_btn_run">重新计算回测</button>
+            </div>
+          </div>
+
+          <!-- Real-time Backtest Metrics Output -->
+          <div class="sim-metrics-row">
+            <div class="sim-metric-box">
+              <span class="sim-m-lbl" data-i18n="sim_res_return">策略累计回报</span>
+              <span class="sim-m-val" id="res-return">+0.00%</span>
+            </div>
+            <div class="sim-metric-box">
+              <span class="sim-m-lbl" data-i18n="sim_res_benchmark">基准买入持有</span>
+              <span class="sim-m-val" id="res-benchmark">+0.00%</span>
+            </div>
+            <div class="sim-metric-box">
+              <span class="sim-m-lbl" data-i18n="sim_res_sharpe">年化夏普比率</span>
+              <span class="sim-m-val" id="res-sharpe">0.00</span>
+            </div>
+            <div class="sim-metric-box">
+              <span class="sim-m-lbl" data-i18n="sim_res_mdd">最大回撤率</span>
+              <span class="sim-m-val" id="res-mdd">0.00%</span>
+            </div>
+            <div class="sim-metric-box">
+              <span class="sim-m-lbl" data-i18n="sim_res_trades">总交易笔数</span>
+              <span class="sim-m-val" id="res-trades">0</span>
+            </div>
+            <div class="sim-metric-box">
+              <span class="sim-m-lbl" data-i18n="sim_res_winrate">胜率百分比</span>
+              <span class="sim-m-val" id="res-winrate">0.0%</span>
+            </div>
+          </div>
+
+          <!-- Canvas Interactive Chart -->
+          <div class="sim-chart-container">
+            <canvas id="sim-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Strategy Python Code Playground -->
+      <div class="code-playground-box reveal-on-scroll">
+        <div class="code-header">
+          <span class="code-title" data-i18n="code_title">工业级 Python 策略代码范例 (Backtrader & Pandas)</span>
+          <button class="btn-code-copy" id="code-copy-btn" data-i18n="code_copy_btn">复制源码</button>
+        </div>
+        <pre class="code-content"><code id="strategy-python-code">import backtrader as bt
+import pandas as pd
+import numpy as np
+
+class DualSMACrossoverStrategy(bt.Strategy):
+    """
+    工业级双均线交叉趋势动量策略
+    包含动态止损、滑点规避与资产头寸自适应控制
+    """
+    params = (
+        ('fast_period', 8),
+        ('slow_period', 24),
+        ('stop_loss_pct', 0.05),
+    )
+
+    def __init__(self):
+        # 1. 初始化快速与慢速移动平均线指标
+        self.fast_sma = bt.indicators.SimpleMovingAverage(
+            self.data.close, period=self.params.fast_period
+        )
+        self.slow_sma = bt.indicators.SimpleMovingAverage(
+            self.data.close, period=self.params.slow_period
+        )
+        # 2. 构造交叉信号指示器: 1 为金叉买入, -1 为死叉卖出
+        self.crossover = bt.indicators.CrossOver(self.fast_sma, self.slow_sma)
+        self.order = None
+        self.entry_price = None
+
+    def next(self):
+        if self.order:
+            return  # 避免挂单竞争
+
+        # 硬止损逻辑检查
+        if self.position and self.entry_price:
+            current_loss = (self.entry_price - self.data.close[0]) / self.entry_price
+            if current_loss >= self.params.stop_loss_pct:
+                self.log(f'触发止损平仓: 现价 {self.data.close[0]:.2f}, 亏损 {current_loss*100:.2f}%')
+                self.order = self.close()
+                return
+
+        # 金叉买入入场
+        if not self.position:
+            if self.crossover > 0:
+                self.log(f'黄金交叉产生: 买入现价 {self.data.close[0]:.2f}')
+                self.entry_price = self.data.close[0]
+                self.order = self.buy()
+        # 死叉卖出离场
+        elif self.crossover < 0:
+            self.log(f'死亡交叉产生: 卖出平仓 {self.data.close[0]:.2f}')
+            self.order = self.close()
+
+    def log(self, txt):
+        dt = self.datas[0].datetime.date(0)
+        print(f'[{dt.isoformat()}] {txt}')
+</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. MONETIZATION & COMMERCIAL REVENUE ENGINE -->
+  <section class="section-wrapper" id="monetization">
+    <div class="container">
+      <div class="section-header-block reveal-on-scroll">
+        <span class="mono-tag section-tag" data-i18n="monetize_tag">(04) // 商业变现与收益引擎</span>
+        <h2 class="section-title" data-i18n="monetize_title">量化网站如何产生稳定收益？四大变现支柱</h2>
+        <p class="section-subtitle" data-i18n="monetize_desc">
+          本网站搭载完整的商业变现架构：涵盖 SaaS 订阅终端、源码与私塾课程销售、顶级量化经纪商返佣、以及机构顾问咨询通道。
+        </p>
+      </div>
+
+      <!-- Billing Toggle Switcher -->
+      <div class="billing-toggle-wrapper reveal-on-scroll">
+        <div class="billing-toggle-pill">
+          <button class="active" id="billing-monthly-btn" data-i18n="billing_monthly">按月订阅</button>
+          <button id="billing-yearly-btn" data-i18n="billing_yearly">按年订阅 (立省 30%)</button>
+        </div>
+      </div>
+
+      <!-- 3-Tier Pricing Grid -->
+      <div class="pricing-grid">
+        <!-- Tier 1: Free Starter -->
+        <div class="pricing-card reveal-on-scroll">
+          <div class="plan-header">
+            <h3 class="plan-name" data-i18n="plan1_name">STARTER // 入门公开版</h3>
+            <div class="plan-price-row">
+              <span class="plan-price" data-i18n="plan1_price">$0</span>
+              <span class="plan-period" data-i18n="plan1_period">永久免费</span>
+            </div>
+          </div>
+          <ul class="plan-feature-list">
+            <li data-i18n="plan1_feature1">✓ 完整五大量化纪元编年史阅读</li>
+            <li data-i18n="plan1_feature2">✓ 基础双均线交互式回测模拟器</li>
+            <li data-i18n="plan1_feature3">✓ 经典策略 Python 模板代码复制</li>
+            <li data-i18n="plan1_feature4">✕ 实时量化信号与多因子扫描器</li>
+            <li data-i18n="plan1_feature5">✕ 算法源码库与回测引擎框架下载</li>
+          </ul>
+          <button class="btn-plan" disabled data-i18n="plan1_cta">当前正在使用</button>
+        </div>
+
+        <!-- Tier 2: Alpha Pro Terminal (Featured) -->
+        <div class="pricing-card featured reveal-on-scroll">
+          <span class="plan-badge-top" data-i18n="plan2_badge">最受欢迎 · 极速回本</span>
+          <div class="plan-header">
+            <h3 class="plan-name" data-i18n="plan2_name">ALPHA PRO // 专业宽客终端</h3>
+            <div class="plan-price-row">
+              <span class="plan-price" id="plan2-price-display" data-i18n="plan2_price_mo">$39</span>
+              <span class="plan-period" id="plan2-period-display" data-i18n="plan2_period_mo">/ 月</span>
+            </div>
+          </div>
+          <ul class="plan-feature-list">
+            <li data-i18n="plan2_feature1">✓ 包含 Starter 全部特权</li>
+            <li data-i18n="plan2_feature2">✓ 全球多资产实时动量与套利信号雷达</li>
+            <li data-i18n="plan2_feature3">✓ TradingView / Webhook 毫秒级自动化推送</li>
+            <li data-i18n="plan2_feature4">✓ 每日量化研报与多因子选股池清单</li>
+            <li data-i18n="plan2_feature5">✓ Discord 内部量化策略研讨社群专属席位</li>
+          </ul>
+          <button class="btn-plan btn-select-pro" data-i18n="plan2_cta">即刻开通 Pro 终端</button>
+        </div>
+
+        <!-- Tier 3: Institutional Algo Repo -->
+        <div class="pricing-card reveal-on-scroll">
+          <div class="plan-header">
+            <h3 class="plan-name" data-i18n="plan3_name">INSTITUTIONAL // 源码私塾与机构委任</h3>
+            <div class="plan-price-row">
+              <span class="plan-price" data-i18n="plan3_price">$499</span>
+              <span class="plan-period" data-i18n="plan3_period">一次性买断</span>
+            </div>
+          </div>
+          <ul class="plan-feature-list">
+            <li data-i18n="plan3_feature1">✓ 50+ 套实盘级 Python/C++ 策略全开源代码库</li>
+            <li data-i18n="plan3_feature2">✓ 高性能事件驱动回测引擎核心源码 (无未来函数)</li>
+            <li data-i18n="plan3_feature3">✓ 10 年跨资产高频 Tick 级精洗历史数据集</li>
+            <li data-i18n="plan3_feature4">✓ 资深宽客团队 2 小时 1 对 1 策略构建与调优诊断</li>
+            <li data-i18n="plan3_feature5">✓ 商业使用授权证书与专属技术支持群</li>
+          </ul>
+          <button class="btn-plan btn-select-repo" data-i18n="plan3_cta">获取完整源码与私塾</button>
+        </div>
+      </div>
+
+      <!-- Pillar 2: Broker Affiliate Matrix -->
+      <div class="affiliate-section-card reveal-on-scroll">
+        <h3 class="card-title" style="font-size: 1.15rem; margin-bottom: 8px;" data-i18n="affiliate_title">支柱二：经纪商与基础设施返佣生态</h3>
+        <p style="font-size: 0.9rem;" data-i18n="affiliate_desc">
+          通过本站专属渠道接入全球头部量化交易通道，尊享顶级费率减免，同时为本站带来持续返佣现金流：
+        </p>
+
+        <div class="affiliate-grid">
+          <!-- IBKR -->
+          <div class="aff-item-card">
+            <div>
+              <h4 class="aff-item-name" data-i18n="aff_ib_name">Interactive Brokers (盈透证券)</h4>
+              <p class="aff-item-desc" data-i18n="aff_ib_desc">全球专业机构算法 API 首选通道，享低佣金与 TWS 接口支持</p>
+            </div>
+            <a href="https://www.interactivebrokers.com" target="_blank" rel="noopener" class="aff-link-btn" data-i18n="aff_ib_btn">开通专享 API 通道 →</a>
+          </div>
+
+          <!-- Binance -->
+          <div class="aff-item-card">
+            <div>
+              <h4 class="aff-item-name" data-i18n="aff_binance_name">Binance VIP 量化通道</h4>
+              <p class="aff-item-desc" data-i18n="aff_binance_desc">全球最大流动性交易池，最高减免 20% 交易手续费</p>
+            </div>
+            <a href="https://www.binance.com" target="_blank" rel="noopener" class="aff-link-btn" data-i18n="aff_binance_btn">领取手续费返佣 →</a>
+          </div>
+
+          <!-- TradingView -->
+          <div class="aff-item-card">
+            <div>
+              <h4 class="aff-item-name" data-i18n="aff_tv_name">TradingView Pro 订阅</h4>
+              <p class="aff-item-desc" data-i18n="aff_tv_desc">全球顶尖专业量化图表与 Pine Script 编写调试神器</p>
+            </div>
+            <a href="https://www.tradingview.com" target="_blank" rel="noopener" class="aff-link-btn" data-i18n="aff_tv_btn">激活专属折扣 →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Web3 Crypto Tip Jar -->
+      <div class="tip-jar-card reveal-on-scroll">
+        <h3 class="card-title" style="font-size: 1.15rem; color: #FFFFFF; margin-bottom: 8px;" data-i18n="tip_title">支柱三：Web3 Crypto 链上赞助与打赏</h3>
+        <p style="font-size: 0.88rem; color: #B4B2AA;" data-i18n="tip_desc">
+          支持以加密资产支持本开源量化项目的持续运营与模型算力维护：
+        </p>
+
+        <div class="tip-addr-box">
+          <span class="mono-tag" style="color: #1F44FF; font-size: 0.72rem;">USDT/USDC:</span>
+          <span class="tip-addr-text" id="tip-wallet-addr">0x71C836043264F658607a972620A511d7350A53a8</span>
+          <button class="btn-tip-copy" id="tip-copy-btn" data-i18n="tip_btn_copy">复制链上地址</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. METRICS PROOF BAND -->
+  <section class="metrics-band">
+    <div class="container">
+      <div class="metrics-row">
+        <div class="metrics-col">
+          <div class="metrics-val">$4.2B<span>+</span></div>
+          <div class="metrics-lbl" data-i18n="m1_lbl">模拟回测交易量</div>
+        </div>
+        <div class="metrics-col">
+          <div class="metrics-val">128,400<span>+</span></div>
+          <div class="metrics-lbl" data-i18n="m2_lbl">累计策略回测运行次数</div>
+        </div>
+        <div class="metrics-col">
+          <div class="metrics-val">4<span> 语系</span></div>
+          <div class="metrics-lbl" data-i18n="m3_lbl">多国主流语言原生支持</div>
+        </div>
+        <div class="metrics-col">
+          <div class="metrics-val">99.98<span>%</span></div>
+          <div class="metrics-lbl" data-i18n="m4_lbl">高可用策略监控在线率</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FREQUENTLY ASKED QUESTIONS -->
+  <section class="section-wrapper" id="faq">
+    <div class="container">
+      <div class="section-header-block reveal-on-scroll">
+        <span class="mono-tag section-tag" data-i18n="faq_tag">(05) // 深度答疑</span>
+        <h2 class="section-title" data-i18n="faq_title">关于量化交易与商业方案的常见问题</h2>
+      </div>
+
+      <div class="faq-accordion-list reveal-on-scroll">
+        <!-- Q1 -->
+        <div class="faq-accordion-item active">
+          <div class="faq-accordion-header">
+            <h3 class="faq-q-title" data-i18n="q1">零基础编程者如何开启量化学习路径？</h3>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-accordion-body">
+            <p class="faq-a-text" data-i18n="a1">
+              建议遵循三步走路线：1. 掌握 Python 基础（核心掌握 Pandas 与 Numpy 数据清洗）；2. 深入理解经典统计指标与时间序列概念（均线、标准差、夏普比率、最大回撤）；3. 借助成熟的开源框架（如 Backtrader、Vectorbt）在历史数据上验证策略，严格警惕「过拟合」与「未来函数陷阱」。
+            </p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-accordion-item">
+          <div class="faq-accordion-header">
+            <h3 class="faq-q-title" data-i18n="q2">为什么回测看起来极其赚钱，实盘却亏损严重？</h3>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-accordion-body">
+            <p class="faq-a-text" data-i18n="a2">
+              这是所有量化新人必踩的「回测陷阱」。实盘中存在三大致命损耗：1. 交易滑点（Slippage）：在市价大单进入时无法以期望价格成交；2. 交易手续费与印花税累积；3. 幸存者偏差与过拟合：使用过度复杂的参数硬套历史数据，一旦市场体制切换（Regime Shift）即刻失效。
+            </p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-accordion-item">
+          <div class="faq-accordion-header">
+            <h3 class="faq-q-title" data-i18n="q3">购买 Alpha Pro 或源码后如何交付与获取？</h3>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-accordion-body">
+            <p class="faq-a-text" data-i18n="a3">
+              完成订阅或买断后，系统将即刻向您的注册邮箱自动发送专属 API Token、策略 GitHub 私有仓库访问邀请函、以及 Discord VIP 频道的激活指南。全流程自动化即时交付。
+            </p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-accordion-item">
+          <div class="faq-accordion-header">
+            <h3 class="faq-q-title" data-i18n="q4">这个网站是如何实现持续产生收益的？</h3>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-accordion-body">
+            <p class="faq-a-text" data-i18n="a4">
+              本网站通过「内容引流 + SaaS 订阅 + 高客单源码交付 + 经纪商返佣 + 机构咨询」形成了闭环商业矩阵。用户被优质深度的量化纪元史吸引停留，通过交互式回测建立信任，进而转化为 Pro 订阅会员或经纪商交易客户，产生稳定多元的现金流。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CHECKOUT / SUBSCRIPTION MODAL -->
+  <div class="modal-overlay" id="checkout-modal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close">&times;</button>
+
+      <!-- Step 1: Input & Checkout Form -->
+      <div id="modal-step-form">
+        <div class="modal-header">
+          <h3 class="modal-title" data-i18n="modal_checkout_title">开通量化服务与结算中心</h3>
+          <span class="modal-plan-tag"><span data-i18n="modal_plan_selected">已选方案: </span><strong id="modal-plan-name">ALPHA PRO</strong> (<span id="modal-plan-price">$39 / 月</span>)</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="modal-email" data-i18n="modal_email_label">接收账单与许可 Token 的邮箱</label>
+          <input type="email" id="modal-email" class="form-input" placeholder="quant.trader@fund.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" data-i18n="modal_method_label">支付结算方式</label>
+          <div class="payment-method-selector">
+            <label class="method-option">
+              <input type="radio" name="pay_method" value="card" checked>
+              <span data-i18n="modal_method_card">信用卡 /借记卡 (Stripe)</span>
+            </label>
+            <label class="method-option">
+              <input type="radio" name="pay_method" value="crypto">
+              <span data-i18n="modal_method_crypto">USDT / USDC 加密资产 (即时链上结算)</span>
+            </label>
+            <label class="method-option">
+              <input type="radio" name="pay_method" value="paypal">
+              <span data-i18n="modal_method_paypal">PayPal 快捷支付</span>
+            </label>
+          </div>
+        </div>
+
+        <button class="btn-modal-pay" id="modal-pay-btn" data-i18n="modal_btn_pay">确认支付并生成许可证</button>
+      </div>
+
+      <!-- Step 2: Instant Success & Key Delivery -->
+      <div id="modal-step-success" style="display: none;">
+        <div class="modal-header">
+          <h3 class="modal-title" style="color: #16A34A;" data-i18n="modal_success_title">支付成功！您的量化许可已激活</h3>
+          <p style="font-size: 0.85rem;" data-i18n="modal_success_tip">凭证已同步发送至您的邮箱，感谢您的支持！</p>
+        </div>
+
+        <span class="mono-tag" style="color: var(--muted);" data-i18n="modal_success_key">专属 API 许可证密钥:</span>
+        <div class="success-key-box" id="modal-api-key">AQ-KEY-2026-X892-PRO</div>
+
+        <button class="btn-modal-pay" id="modal-success-close-btn" data-i18n="modal_btn_close">关闭窗口</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div>
+          <div class="brand-wordmark" style="font-size: 1.4rem; margin-bottom: 14px;">AXIS<span>//</span>QUANT</div>
+          <p class="footer-disclaimer-text" data-i18n="footer_disclaimer">
+            【风险揭示与法律免责声明】本网站所展示之量化模型、历史编年史、回测模拟数据仅作学术交流、教育科研与产品演示之用，不构成任何形式的投资建议、财务担保或交易诱导。金融市场充满不确定性，历史回测表现不代表未来实盘收益。入市需谨慎，风险自负。
+          </p>
+        </div>
+
+        <div>
+          <h4 style="font-size: 1rem; color: #FFFFFF; margin-bottom: 8px;" data-i18n="footer_newsletter_title">订阅每周全球量化前沿研报</h4>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('订阅成功！每周阿尔法研报将直接投递到您的收件箱。');">
+            <input type="email" class="newsletter-input" placeholder="your.email@firm.com" required>
+            <button type="submit" class="btn-newsletter" data-i18n="footer_newsletter_btn">立即订阅</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div data-i18n="footer_rights">© 2026 AXIS QUANT 瑞士量化编辑系统. 商业版保留所有权利.</div>
+        <div>LATENCY: 0.82μs · DPR: 2.0 · ENGINE: v3.8</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/dotfield.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/monetization.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
