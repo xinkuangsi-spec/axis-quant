@@ -1,123 +1,26 @@
 /**
  * AXIS QUANT - Main Application Controller
- * Handles global clock, language switcher, scroll animations, accordions, and component wiring
+ * Handles model initialization, language toggling, checkout modal, and code copy
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize Global Clock
-  initGlobalClock();
+  // 1. Language Initialization
+  const savedLang = localStorage.getItem('axis_quant_lang') || 'zh';
+  initLanguage(savedLang);
 
-  // Initialize Language Manager
-  const currentLang = localStorage.getItem('axis_quant_lang') || 'zh';
-  initLanguage(currentLang);
+  // 2. Interactive Models Initialization
+  window.bsModel = new BlackScholesModel();
+  window.pairsModel = new PairsTradingModel();
+  window.backtester = new InteractiveQuantBacktester();
 
-  // Initialize Fluid Mathematical Waves Canvas (react-bits Waves adaptation)
-  if (document.getElementById('hero-waves-canvas')) {
-    window.wavesInstance = new WavesEffect('hero-waves-canvas', {
-      lineColor: 'rgba(31, 68, 255, 0.32)',
-      waveSpeedX: 0.012,
-      waveSpeedY: 0.005,
-      waveAmpX: 32,
-      waveAmpY: 16,
-      xGap: 20,
-      yGap: 30,
-      friction: 0.92,
-      tension: 0.006,
-      maxCursorMove: 90
-    });
-  }
+  // 3. Checkout Modal Wiring
+  initCheckout();
 
-  // Initialize Quant Backtest Simulator
-  const simulator = new QuantSimulator('sim-canvas');
-  window.quantSimInstance = simulator;
-
-  // Initialize Google Ecosystem Suite & react-bits SpotlightCard
-  const googleSuite = new GoogleSuiteManager();
-  window.googleSuiteInstance = googleSuite;
-
-  // Initialize Monetization Manager
-  const monetization = new MonetizationManager();
-
-  // Initialize Code Copy
+  // 4. Code Copy Button
   initCodeCopy();
-
-  // Initialize Accordions
-  initAccordions();
-
-  // Initialize Scroll Reveals
-  initScrollReveals();
-
-  // Initialize Mobile Navigation
-  initMobileNav();
-
-  // Initialize Epoch Flow Tabs
-  initEpochTabs();
 });
 
-// Epoch Timeline Tab Navigation
-function initEpochTabs() {
-  const tabs = document.querySelectorAll('.epoch-nav-tab');
-  const items = document.querySelectorAll('.epoch-flow-item');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const targetEpoch = tab.getAttribute('data-epoch');
-
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      items.forEach(item => {
-        if (targetEpoch === 'all' || item.getAttribute('data-epoch') === targetEpoch) {
-          item.style.display = 'grid';
-          item.classList.add('is-visible');
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    });
-  });
-}
-
-// Real-time Global Financial Market Clock
-function initGlobalClock() {
-  const clockEl = document.getElementById('global-clock-display');
-  if (!clockEl) return;
-
-  const updateClock = () => {
-    const now = new Date();
-    // UTC time strings
-    const nyTime = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'America/New_York',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false
-    }).format(now);
-
-    const londonTime = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Europe/London',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false
-    }).format(now);
-
-    const tokyoTime = new Intl.DateTimeFormat('ja-JP', {
-      timeZone: 'Asia/Tokyo',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false
-    }).format(now);
-
-    clockEl.innerHTML = `<span class="clock-city">NYC</span> ${nyTime} &middot; <span class="clock-city">LON</span> ${londonTime} &middot; <span class="clock-city">TYO</span> ${tokyoTime}`;
-  };
-
-  updateClock();
-  setInterval(updateClock, 1000);
-}
-
-// Multi-Language Switcher
+// Internationalization
 function initLanguage(defaultLang) {
   setLanguage(defaultLang);
 
@@ -125,7 +28,7 @@ function initLanguage(defaultLang) {
   langButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.getAttribute('data-lang');
-      if (lang && I18N_DATA[lang]) {
+      if (lang && I18N_DICTIONARY[lang]) {
         setLanguage(lang);
       }
     });
@@ -133,21 +36,15 @@ function initLanguage(defaultLang) {
 }
 
 function setLanguage(lang) {
-  if (!I18N_DATA[lang]) return;
-  const dict = I18N_DATA[lang];
+  if (!I18N_DICTIONARY[lang]) return;
+  const dict = I18N_DICTIONARY[lang];
 
   localStorage.setItem('axis_quant_lang', lang);
 
-  // Update button active state
   document.querySelectorAll('.lang-btn').forEach(btn => {
-    if (btn.getAttribute('data-lang') === lang) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
   });
 
-  // Replace text in all elements with data-i18n attribute
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (dict[key] !== undefined) {
@@ -159,86 +56,95 @@ function setLanguage(lang) {
     }
   });
 
-  // Re-run backtest simulator UI update to refresh chart labels if needed
-  if (window.quantSimInstance) {
-    window.quantSimInstance.render();
+  // Re-render curves to match font & labels
+  if (window.bsModel) window.bsModel.renderCurve();
+  if (window.pairsModel) window.pairsModel.render();
+  if (window.backtester) window.backtester.render();
+}
+
+// Checkout Modal
+function initCheckout() {
+  const modal = document.getElementById('checkout-modal');
+  const closeBtn = document.getElementById('modal-close-btn');
+  const payBtn = document.getElementById('modal-pay-btn');
+  const successCloseBtn = document.getElementById('modal-success-close-btn');
+  const planDisplay = document.getElementById('modal-plan-name');
+
+  const formView = document.getElementById('modal-form-view');
+  const successView = document.getElementById('modal-success-view');
+
+  const openCheckout = (tierName, price) => {
+    if (planDisplay) planDisplay.textContent = `${tierName} (${price})`;
+    if (formView) formView.style.display = 'block';
+    if (successView) successView.style.display = 'none';
+    if (modal) modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeCheckout = () => {
+    if (modal) modal.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('.btn-buy-tier').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tier = btn.getAttribute('data-tier') || 'Research Dispatch';
+      const price = btn.getAttribute('data-price') || '$29';
+      openCheckout(tier, price);
+    });
+  });
+
+  const headerBtn = document.getElementById('btn-header-access');
+  if (headerBtn) {
+    headerBtn.addEventListener('click', () => {
+      openCheckout('RESEARCH DISPATCH', '$29/月');
+    });
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeCheckout);
+  if (successCloseBtn) successCloseBtn.addEventListener('click', closeCheckout);
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeCheckout();
+    });
+  }
+
+  if (payBtn) {
+    payBtn.addEventListener('click', () => {
+      const email = document.getElementById('modal-email').value.trim();
+      if (!email || !email.includes('@')) {
+        alert('请输入有效的电子邮箱以接收许可证密钥与研报。');
+        return;
+      }
+
+      payBtn.disabled = true;
+      payBtn.textContent = '正在处理结算...';
+
+      setTimeout(() => {
+        payBtn.disabled = false;
+        payBtn.textContent = '确认结算并生成许可证';
+
+        const token = `AQ-KEY-2026-${Math.random().toString(36).substring(2, 8).toUpperCase()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+        document.getElementById('modal-token-display').textContent = token;
+
+        if (formView) formView.style.display = 'none';
+        if (successView) successView.style.display = 'block';
+      }, 1000);
+    });
   }
 }
 
-// Code Copy Button
+// Code Copy
 function initCodeCopy() {
-  const copyBtn = document.getElementById('code-copy-btn');
-  const codeBlock = document.getElementById('strategy-python-code');
+  const copyBtn = document.getElementById('btn-copy-code');
+  const codeEl = document.getElementById('python-strategy-code');
 
-  if (copyBtn && codeBlock) {
+  if (copyBtn && codeEl) {
     copyBtn.addEventListener('click', () => {
-      const code = codeBlock.textContent;
-      navigator.clipboard.writeText(code).then(() => {
-        const origText = copyBtn.textContent;
-        copyBtn.textContent = '✓ 已复制源码';
-        setTimeout(() => {
-          copyBtn.textContent = origText;
-        }, 2200);
-      });
-    });
-  }
-}
-
-// Accordions for FAQ
-function initAccordions() {
-  const accHeaders = document.querySelectorAll('.faq-accordion-header');
-  accHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-      const item = header.parentElement;
-      const isOpen = item.classList.contains('active');
-
-      // Close all others
-      document.querySelectorAll('.faq-accordion-item').forEach(i => i.classList.remove('active'));
-
-      // Toggle current
-      if (!isOpen) {
-        item.classList.add('active');
-      }
-    });
-  });
-}
-
-// Scroll Reveals via IntersectionObserver
-function initScrollReveals() {
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
-  if (!('IntersectionObserver' in window)) {
-    revealElements.forEach(el => el.classList.add('is-visible'));
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -40px 0px'
-  });
-
-  revealElements.forEach(el => observer.observe(el));
-}
-
-// Mobile Navigation
-function initMobileNav() {
-  const toggleBtn = document.getElementById('mobile-nav-toggle');
-  const navMenu = document.getElementById('site-nav-menu');
-
-  if (toggleBtn && navMenu) {
-    toggleBtn.addEventListener('click', () => {
-      navMenu.classList.toggle('mobile-open');
-    });
-
-    navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('mobile-open');
+      navigator.clipboard.writeText(codeEl.textContent).then(() => {
+        const orig = copyBtn.textContent;
+        copyBtn.textContent = '✓ 已复制';
+        setTimeout(() => copyBtn.textContent = orig, 2000);
       });
     });
   }
