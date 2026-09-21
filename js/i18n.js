@@ -23,7 +23,7 @@ const I18N_DICTIONARY = {
     byline_published: "最后修订: 2026年9月",
     byline_specs: "10+ 顶级开源项目 · 4套实战教程 · 3套数理分析引擎",
     hero_visual_tag: "数理金融与计算架构演进谱系图卷",
-    hero_fig_caption: "<strong>架构图解：</strong>从手写黑板推导的连续时间随机微积分（伊藤引理与布莱克-斯科尔斯偏微分方程），过渡演进至现代微秒级低延迟数据流、高维因子特征工程与张量计算拓扑图。",
+    hero_fig_caption: "<strong>架构图解：</strong>量化交易工程全景架构谱系图——从连续时间随机微积分（B-S偏微分方程与O-U过程），到L2高频微观盘口撮合、多因子特征流水线与智能订单路由。",
 
     // Microstructure Order Book
     ob_title: "实时微观结构：L2 深度订单簿与逐笔成交流水",
@@ -181,7 +181,7 @@ const I18N_DICTIONARY = {
     byline_published: "Revised: September 2026",
     byline_specs: "10+ Leading Open Source Projects · 4 Step-by-Step Tutorials · 3 Math Engines",
     hero_visual_tag: "ARCHITECTURAL EVOLUTION OF QUANTITATIVE FINANCE",
-    hero_fig_caption: "<strong>Architectural Plate:</strong> The continuous evolution from blackboard chalk derivations of stochastic Ito calculus and Black-Scholes PDEs, to modern sub-microsecond low-latency streaming, factor feature pipelines, and high-dimensional tensor graphs.",
+    hero_fig_caption: "<strong>Architectural Blueprint:</strong> Quantitative Trading Systems Architecture—From continuous stochastic calculus (Black-Scholes &amp; Ornstein-Uhlenbeck), to L2 microstructure matching, multi-factor pipelines, and optimal order routing.",
 
     // Microstructure Order Book
     ob_title: "Market Microstructure: L2 Limit Order Book & Real-Time Tape",
@@ -339,7 +339,7 @@ const I18N_DICTIONARY = {
     byline_published: "改訂: 2026年9月",
     byline_specs: "10+ 主要OSSプロジェクト · 4本の実践講座 · 3基の解析モデル",
     hero_visual_tag: "数理ファイナンスと計算機アーキテクチャ進化譜系図",
-    hero_fig_caption: "<strong>構造図解：</strong>黒板上の確率微積分（伊藤の補題とブラック＝ショールズ方程式）から、超低遅延データストリーム、高次元特徴量パイプライン、テンソル計算グラフへの進化譜系譜。",
+    hero_fig_caption: "<strong>システム設計図解：</strong>クオンツ取引エンジニアリング全景譜系図——連続時間確率微積分（B-S方程式とOU過程）から、L2板情報マッチング、マルチファクター特徴量パイプライン、最適注文執行まで。",
 
     // Microstructure Order Book
     ob_title: "市場微細構造：L2 板情報と歩み値ストリーム",
@@ -497,7 +497,7 @@ const I18N_DICTIONARY = {
     byline_published: "Stand: September 2026",
     byline_specs: "10+ führende Open-Source-Projekte · 4 Tutorials · 3 Mathe-Engines",
     hero_visual_tag: "ARCHITEKTUR-EVOLUTION DES FINANCIAL ENGINEERING",
-    hero_fig_caption: "<strong>Architekturtafel:</strong> Die Evolution von stochastischem Ito-Kalkül und Black-Scholes-Gleichungen an der Tafel bis hin zu Mikrosekunden-Streaming, Faktor-Pipelines und Tensor-Topologien.",
+    hero_fig_caption: "<strong>System-Architektur:</strong> Quant-Trading-Architektur-Blueprint—Von stochastischen Differentialgleichungen (Black-Scholes &amp; Ornstein-Uhlenbeck) über L2-Orderbuch-Matching bis zu Multi-Faktor-Pipelines und optimaler Orderausführung.",
 
     // Microstructure Order Book
     ob_title: "Marktmikrostruktur: L2-Orderbuch & Realtime-Tickstream",

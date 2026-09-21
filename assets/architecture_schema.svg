@@ -1,0 +1,243 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="100%" height="100%">
+  <defs>
+    <!-- Background & Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080D1A" />
+      <stop offset="50%" stop-color="#0B1224" />
+      <stop offset="100%" stop-color="#060A14" />
+    </linearGradient>
+
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111B30" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#0D1527" stop-opacity="0.9" />
+    </linearGradient>
+
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <linearGradient id="accentCyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+
+    <linearGradient id="pipeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#10B981" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#6366F1" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Marker Arrow -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8" />
+    </marker>
+  </defs>
+
+  <style>
+    .font-mono { font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace; }
+    .font-sans { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .stage-title { font-weight: 700; font-size: 13px; fill: #F8FAFC; letter-spacing: 0.02em; }
+    .stage-sub { font-size: 10px; fill: #64748B; font-weight: 600; text-transform: uppercase; }
+    .item-label { font-size: 11px; fill: #94A3B8; }
+    .item-val { font-size: 11px; font-weight: 600; fill: #38BDF8; }
+    .math-formula { font-size: 11px; fill: #E2E8F0; font-weight: 500; }
+    .tag-badge { font-size: 9px; font-weight: 700; fill: #38BDF8; letter-spacing: 0.05em; }
+  </style>
+
+  <!-- Canvas Backdrop -->
+  <rect x="0" y="0" width="1200" height="480" rx="8" fill="url(#bgGrad)" stroke="#1E293B" stroke-width="1.5" />
+
+  <!-- Top System Header Bar -->
+  <rect x="0" y="0" width="1200" height="42" rx="8" fill="url(#headerGrad)" />
+  <line x1="0" y1="42" x2="1200" y2="42" stroke="#1E293B" stroke-width="1" />
+
+  <!-- Terminal Status Indicators -->
+  <circle cx="24" cy="21" r="5" fill="#EF4444" opacity="0.8" />
+  <circle cx="40" cy="21" r="5" fill="#F59E0B" opacity="0.8" />
+  <circle cx="56" cy="21" r="5" fill="#10B981" opacity="0.8" />
+
+  <text x="76" y="25" class="font-mono" font-size="11" font-weight="700" fill="#E2E8F0" letter-spacing="0.04em">
+    AXIS QUANT // QUANTITATIVE ENGINEERING PIPELINE &amp; ARCHITECTURAL EVOLUTION
+  </text>
+  <text x="1176" y="25" text-anchor="end" class="font-mono" font-size="10" fill="#64748B">
+    BLUEPRINT: v4.8 · SPEC: INSTITUTIONAL QUANT PRODUCTION
+  </text>
+
+  <!-- Connective Data Flow Rail (Stage 1 to 4) -->
+  <path d="M 270 240 L 315 240" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" opacity="0.6" />
+  <path d="M 570 240 L 615 240" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" opacity="0.6" />
+  <path d="M 870 240 L 915 240" stroke="#818CF8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" opacity="0.6" />
+
+  <!-- ============================================================ -->
+  <!-- COLUMN 1: CONTINUOUS-TIME STOCHASTIC CALCULUS (1973 - 1990) -->
+  <!-- ============================================================ -->
+  <g transform="translate(20, 60)">
+    <rect x="0" y="0" width="250" height="395" rx="6" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.2" />
+    
+    <!-- Header -->
+    <rect x="0" y="0" width="250" height="38" rx="6" fill="#131D33" />
+    <line x1="0" y1="38" x2="250" y2="38" stroke="#1E293B" stroke-width="1" />
+    <text x="16" y="20" class="font-mono tag-badge">STAGE 01 · 1973 - 1990</text>
+    <text x="16" y="32" class="font-sans stage-title">连续时间随机金融工程</text>
+
+    <!-- Block 1: Black-Scholes PDE -->
+    <g transform="translate(14, 52)">
+      <rect x="0" y="0" width="222" height="96" rx="4" fill="#0A0F1D" stroke="#1E293B" stroke-width="1" />
+      <text x="10" y="18" class="font-mono stage-sub" fill="#38BDF8">BLACK-SCHOLES-MERTON PDE</text>
+      <text x="10" y="42" class="font-mono math-formula">∂V/∂t + ½σ²S² ∂²V/∂S²</text>
+      <text x="10" y="60" class="font-mono math-formula">+ rS ∂V/∂S - rV = 0</text>
+      <line x1="10" y1="70" x2="212" y2="70" stroke="#1E293B" stroke-width="0.8" />
+      <text x="10" y="84" class="font-mono" font-size="10" fill="#94A3B8">Greeks: Δ = N(d₁), Γ, Θ, ν</text>
+    </g>
+
+    <!-- Block 2: Ornstein-Uhlenbeck SDE -->
+    <g transform="translate(14, 160)">
+      <rect x="0" y="0" width="222" height="106" rx="4" fill="#0A0F1D" stroke="#1E293B" stroke-width="1" />
+      <text x="10" y="18" class="font-mono stage-sub" fill="#38BDF8">ORNSTEIN-UHLENBECK SDE</text>
+      <text x="10" y="42" class="font-mono math-formula">dX_t = θ(μ - X_t)dt + σdW_t</text>
+      <text x="10" y="62" class="font-mono" font-size="10" fill="#64748B">协整均值回归与半衰期估计:</text>
+      <text x="10" y="78" class="font-mono math-formula">t_half = ln(2) / θ</text>
+      <text x="10" y="96" class="font-mono" font-size="10" fill="#10B981">ADF 检验: p &lt; 0.01 (平稳)</text>
+    </g>
+
+    <!-- Block 3: Quantitative Edge -->
+    <g transform="translate(14, 278)">
+      <rect x="0" y="0" width="222" height="102" rx="4" fill="#0A0F1D" stroke="#1E293B" stroke-width="1" />
+      <text x="10" y="18" class="font-mono stage-sub" fill="#94A3B8">PARADIGM HIGHLIGHTS</text>
+      <text x="10" y="38" class="font-sans item-label">• 无套利定价与动态复制组合</text>
+      <text x="10" y="58" class="font-sans item-label">• 伊藤引理 (Itô's Lemma) 随机积分</text>
+      <text x="10" y="78" class="font-sans item-label">• 配对套利 (Pairs Trading) 诞生</text>
+      <text x="10" y="94" class="font-mono" font-size="9" fill="#38BDF8">REPRESENT: Fischer Black, Jim Simons</text>
+    </g>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- COLUMN 2: MARKET MICROSTRUCTURE & L2 ORDER BOOK (2000 - 2015) -->
+  <!-- ============================================================ -->
+  <g transform="translate(320, 60)">
+    <rect x="0" y="0" width="250" height="395" rx="6" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.2" />
+    
+    <!-- Header -->
+    <rect x="0" y="0" width="250" height="38" rx="6" fill="#131D33" />
+    <line x1="0" y1="38" x2="250" y2="38" stroke="#1E293B" stroke-width="1" />
+    <text x="16" y="20" class="font-mono tag-badge" fill="#10B981">STAGE 02 · 2000 - 2015</text>
+    <text x="16" y="32" class="font-sans stage-title">市场微观结构与低延迟撮合</text>
+
+    <!-- Block 1: L2 Limit Order Book -->
+    <g transform="translate(14, 52)">
+      <rect x="0" y="0" width="222" height="96" rx="4" fill="#0A0F1D" stroke="#1E293B" stroke-width="1" />
+      <text x="10" y="18" class="font-mono stage-sub" fill="#10B981">L2 LIMIT ORDER BOOK (LOB)</text>
+      <text x="10" y="36" class="font-mono" font-size="10" fill="#EF4444">ASK: 520.45 [480] · 520.50 [620]</text>
+      <text x="10" y="52" class="font-mono" font-size="10" fill="#64748B">SPREAD: $0.05 · MID: $520.425</text>
+      <text x="10" y="68" class="font-mono" font-size="10" fill="#10B981">BID: 520.40 [710] · 520.35 [850]</text>
+      <text x="10" y="86" class="font-mono math-formula">OBI = (V_bid - V_ask) / ΣV</text>
+    </g>
+
+    <!-- Block 2: Optimal Execution & Impact -->
+    <g transform="translate(14, 160)">
+      <rect x="0" y="0" width="222" height="106" rx="4" fill="#0A0F1D" stroke="#1E293B" stroke-width="1" />
+      <text x="10" y="18" class="font-mono stage-sub" fill="#10B981">MARKET IMPACT &amp; SLIPPAGE</text>
+      <text x="10" y="42" class="font-mono math-formula">ΔP = λ · Q (Kyle's Lambda)</text>
+      <text x="10" y="62" class="font-mono" font-size="10" fill="#64748B">Almgren-Chriss 冲击最小化:</text>
+      <text x="10" y="78" class="font-mono math-formula">min E[Cost] + γ Var[Cost]</text>
+      <text x="10" y="96" class="font-mono" font-size="10" fill="#38BDF8">TWAP / VWAP 动态规划拆单</text>
+    </g>
+
+    <!-- Block 3: Infrastructure -->
+    <g transform="translate(14, 278)">
+      <rect x="0" y="0" width="222" height="102" rx="4" fill="#0A0F1D" stroke="#1E293B" stroke-width="1" />
+      <text x="10" y="18" class="font-mono stage-sub" fill="#94A3B8">HARDWARE &amp; PROTOCOLS</text>
+      <text x="10" y="38" class="font-sans item-label">• 二进制行情流: ITCH / OUCH</text>
+      <text x="10" y="58" class="font-sans item-label">• FPGA 硬件网卡解包与微波直连</text>
+      <text x="10" y="78" class="font-sans item-label">• 毫秒做市撤单与 2010 闪崩启示</text>
+      <text x="10" y="94" class="font-mono" font-size="9" fill="#10B981">REPRESENT: Citadel, Virtu, Jump</text>
+    </g>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- COLUMN 3: MULTI-FACTOR & FEATURE PIPELINES (2015 - 2022) -->
+  <!-- ============================================================ -->
+  <g transform="translate(620, 60)">
+    <rect x="0" y="0" width="250" height="395" rx="6" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.2" />
+    
+    <!-- Header -->
+    <rect x="0" y="0" width="250" height="38" rx="6" fill="#131D33" />
+    <line x1="0" y1="38" x2="250" y2="38" stroke="#1E293B" stroke-width="1" />
+    <text x="16" y="20" class="font-mono tag-badge" fill="#F59E0B">STAGE 03 · 2015 - 2022</text>
+    <text x="16" y="32" class="font-sans stage-title">多因子投资与特征工程工场</text>
+
+    <!-- Block 1: Factor Model & Cross-Section -->
+    <g transform="translate(14, 52)">
+      <rect x="0" y="0" width="222" height="96" rx="4" fill="#0A0F1D" stroke="#1E293B" stroke-width="1" />
+      <text x="10" y="18" class="font-mono stage-sub" fill="#F59E0B">FACTOR DECOMPOSITION</text>
+      <text x="10" y="42" class="font-mono math-formula">R_it = α_i + Σ β_ik · F_kt + ε_it</text>
+      <text x="10" y="60" class="font-mono" font-size="10" fill="#64748B">Barra 风险结构归因 (CNE6):</text>
+      <text x="10" y="76" class="font-mono" font-size="10" fill="#E2E8F0">Size, Value, Momentum, Vol</text>
+      <text x="10" y="90" class="font-mono" font-size="9" fill="#F59E0B">Covariance Shrinkage Matrix</text>
+    </g>
+
+    <!-- Block 2: Alpha Research & Machine Learning -->
+    <g transform="translate(14, 160)">
+      <rect x="0" y="0" width="222" height="106" rx="4" fill="#0A0F1D" stroke="#1E293B" stroke-width="1" />
+      <text x="10" y="18" class="font-mono stage-sub" fill="#F59E0B">ALPHA RESEARCH &amp; EVAL</text>
+      <text x="10" y="38" class="font-mono" font-size="10" fill="#94A3B8">• Alpha158 自动化特征衍生</text>
+      <text x="10" y="56" class="font-mono" font-size="10" fill="#94A3B8">• LightGBM / XGB 滚动截面排序</text>
+      <text x="10" y="74" class="font-mono math-formula">Rank-IC = corr(rank(ŷ), rank(y))</text>
+      <text x="10" y="94" class="font-mono" font-size="10" fill="#10B981">Target: IC &gt; 0.065 · IR &gt; 1.85</text>
+    </g>
+
+    <!-- Block 3: Alternative Data -->
+    <g transform="translate(14, 278)">
+      <rect x="0" y="0" width="222" height="102" rx="4" fill="#0A0F1D" stroke="#1E293B" stroke-width="1" />
+      <text x="10" y="18" class="font-mono stage-sub" fill="#94A3B8">DATA EXPANSION</text>
+      <text x="10" y="38" class="font-sans item-label">• 卫星高空图 (零售停车场/油罐)</text>
+      <text x="10" y="58" class="font-sans item-label">• 匿名信用卡流水与供应链提单</text>
+      <text x="10" y="78" class="font-sans item-label">• 领先财报预测基本面突变拐点</text>
+      <text x="10" y="94" class="font-mono" font-size="9" fill="#F59E0B">REPRESENT: AQR, Two Sigma, WorldQuant</text>
+    </g>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- COLUMN 4: PORTFOLIO RISK & AGENTIC STACKS (2023 - PRESENT) -->
+  <!-- ============================================================ -->
+  <g transform="translate(920, 60)">
+    <rect x="0" y="0" width="260" height="395" rx="6" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.2" />
+    
+    <!-- Header -->
+    <rect x="0" y="0" width="260" height="38" rx="6" fill="#131D33" />
+    <line x1="0" y1="38" x2="260" y2="38" stroke="#1E293B" stroke-width="1" />
+    <text x="16" y="20" class="font-mono tag-badge" fill="#818CF8">STAGE 04 · 2023 - PRESENT</text>
+    <text x="16" y="32" class="font-sans stage-title">风险预算与开源自适应交易栈</text>
+
+    <!-- Block 1: Volatility Scaling & Sizing -->
+    <g transform="translate(14, 52)">
+      <rect x="0" y="0" width="232" height="96" rx="4" fill="#0A0F1D" stroke="#1E293B" stroke-width="1" />
+      <text x="10" y="18" class="font-mono stage-sub" fill="#818CF8">ADAPTIVE SIZING &amp; REGIME</text>
+      <text x="10" y="42" class="font-mono math-formula">w_i = min(L_max, σ* / σ̂_i,20)</text>
+      <text x="10" y="60" class="font-mono" font-size="10" fill="#64748B">逆波动率分配熨平极端尾部冲击</text>
+      <text x="10" y="76" class="font-mono math-formula">StopLoss: max(3%, 2.2·ATR/P)</text>
+      <text x="10" y="90" class="font-mono" font-size="9" fill="#10B981">99% 日间 VaR 约束预算</text>
+    </g>
+
+    <!-- Block 2: Open Source Ecosystem -->
+    <g transform="translate(14, 160)">
+      <rect x="0" y="0" width="232" height="106" rx="4" fill="#0A0F1D" stroke="#1E293B" stroke-width="1" />
+      <text x="10" y="18" class="font-mono stage-sub" fill="#818CF8">OPEN PRODUCTION STACKS</text>
+      <text x="10" y="38" class="font-mono" font-size="10" fill="#38BDF8">VectorBT · Numba 极速网格</text>
+      <text x="10" y="56" class="font-mono" font-size="10" fill="#38BDF8">Backtrader · 经典事件驱动</text>
+      <text x="10" y="74" class="font-mono" font-size="10" fill="#38BDF8">NautilusTrader · Rust 亚微秒执行</text>
+      <text x="10" y="94" class="font-mono" font-size="10" fill="#38BDF8">Microsoft Qlib · AI 因子研究</text>
+    </g>
+
+    <!-- Block 3: Production Gateway -->
+    <g transform="translate(14, 278)">
+      <rect x="0" y="0" width="232" height="102" rx="4" fill="#0A0F1D" stroke="#1E293B" stroke-width="1" />
+      <text x="10" y="18" class="font-mono stage-sub" fill="#94A3B8">EXECUTION &amp; REBATES</text>
+      <text x="10" y="38" class="font-sans item-label">• FIX 4.4 / DMA 机构专线通道</text>
+      <text x="10" y="58" class="font-sans item-label">• 交易所 VIP 做市挂单返佣 (Maker)</text>
+      <text x="10" y="78" class="font-sans item-label">• 严谨样本外步进 (Walk-Forward)</text>
+      <text x="10" y="94" class="font-mono" font-size="9" fill="#818CF8">STANDARD: IEEE, Journal of Finance</text>
+    </g>
+  </g>
+</svg>
