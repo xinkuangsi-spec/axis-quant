@@ -481,6 +481,42 @@ class InteractiveQuantBacktester {
     window.addEventListener('resize', () => this.render());
   }
 
+  applyCustomStrategy(fast, slow, stopLoss, codeString, asset) {
+    if (asset) {
+      this.selectedAsset = asset;
+      const assetBtns = document.querySelectorAll('.asset-select-btn');
+      assetBtns.forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-asset') === asset);
+      });
+    }
+    if (fast !== undefined) {
+      this.fastPeriod = fast;
+      const fastInput = document.getElementById('bt-fast');
+      if (fastInput) fastInput.value = fast;
+      const fastVal = document.getElementById('bt-fast-val');
+      if (fastVal) fastVal.textContent = `${fast} 日`;
+    }
+    if (slow !== undefined) {
+      this.slowPeriod = slow;
+      const slowInput = document.getElementById('bt-slow');
+      if (slowInput) slowInput.value = slow;
+      const slowVal = document.getElementById('bt-slow-val');
+      if (slowVal) slowVal.textContent = `${slow} 日`;
+    }
+    if (stopLoss !== undefined) {
+      this.stopLossPct = stopLoss;
+      const stopInput = document.getElementById('bt-stoploss');
+      if (stopInput) stopInput.value = stopLoss;
+      const stopVal = document.getElementById('bt-stoploss-val');
+      if (stopVal) stopVal.textContent = `${stopLoss.toFixed(1)}%`;
+    }
+    if (codeString) {
+      const codeEl = document.getElementById('python-strategy-code');
+      if (codeEl) codeEl.textContent = codeString;
+    }
+    this.run();
+  }
+
   run() {
     const series = this.assetData[this.selectedAsset];
     if (!series) return;

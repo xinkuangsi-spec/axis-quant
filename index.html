@@ -50,6 +50,20 @@
         <span class="hero-byline-item" data-i18n="byline_published">最后修订: 2026年9月</span>
         <span class="hero-byline-item" data-i18n="byline_models">互动模型: 3套可运行分析引擎</span>
       </div>
+
+      <!-- Bespoke Editorial Visual Journalism Centerpiece (Google Generative Engine) -->
+      <figure class="hero-visual-figure">
+        <div class="hero-visual-wrapper">
+          <img src="assets/hero_visual.jpg" alt="从伊藤微积分推导到深度强化学习张量计算的量化金融演进图卷" class="hero-visual-img" loading="eager">
+          <div class="hero-visual-tag" data-i18n="hero_visual_tag">GOOGLE 原生生成式视觉 · AXIS ARCHIVAL PLATE I</div>
+        </div>
+        <figcaption class="hero-visual-caption">
+          <span class="caption-num" data-i18n="hero_cap_num">图例 1.0</span>
+          <span class="caption-text" data-i18n="hero_cap_text">
+            <strong>范式跃迁全景：</strong>由黑板粉笔书写的连续时间随机微积分（伊藤引理与布莱克-斯科尔斯偏微分方程），过渡演进至现代微秒级低延迟数据流、深度强化学习与高维张量计算拓扑图。由 Google 原生高精度图像生成模型合成。
+          </span>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -264,6 +278,102 @@
             <p class="chapter-body-text" data-i18n="ch5_p2">
               未来的量化竞争不再是单一公式的保密，而是算法自我进化、数据流水线工程化与风险极端压力测试体系的综合协同能力。
             </p>
+          </div>
+        </div>
+
+        <!-- NATIVE AI QUANT STRATEGY COPILOT (GEMINI QUANT REASONING CORE) -->
+        <div class="copilot-widget" id="copilot">
+          <div class="copilot-top-bar">
+            <div class="copilot-brand-title">
+              <span class="copilot-status-dot"></span>
+              <span data-i18n="copilot_header">原生 AI 策略架构师 // GEMINI QUANT REASONING CORE</span>
+            </div>
+            <span class="mono-figure copilot-badge">LATENCY: 0.12s · INFERENCE: ACTIVE</span>
+          </div>
+
+          <div class="copilot-body">
+            <div class="copilot-intro-row">
+              <p class="copilot-desc" data-i18n="copilot_desc">
+                输入您的投资哲学假设或从经典机构流派中选择。原生 AI 推理核心将形式化推导随机过程方程、设定风险预算边界，并合成工业级可执行 Python 代码，且可直接注入下方实战回测工作台。
+              </p>
+            </div>
+
+            <!-- Archetype Selector Chips -->
+            <div class="copilot-archetypes">
+              <span class="copilot-pill-label" data-i18n="copilot_select_archetype">预设量化流派:</span>
+              <button class="copilot-pill active" data-archetype="vol_squeeze" data-i18n="copilot_pill_vol">波动率挤压突破 (Vol Squeeze)</button>
+              <button class="copilot-pill" data-archetype="stat_arb" data-i18n="copilot_pill_ou">协整均值回归 (OU Pairs)</button>
+              <button class="copilot-pill" data-archetype="momentum_trend" data-i18n="copilot_pill_mom">跨周期动量跟踪 (Momentum)</button>
+              <button class="copilot-pill" data-archetype="regime_filter" data-i18n="copilot_pill_regime">宏观体制自适应 (Adaptive Filter)</button>
+            </div>
+
+            <!-- Custom Prompt Input -->
+            <div class="copilot-input-container">
+              <input type="text" id="copilot-custom-input" class="copilot-text-input" placeholder="输入自定义量化假设，例如：利用成交量突破与 ATR 动态追踪止损构建自适应趋势策略..." data-i18n="copilot_input_placeholder">
+              <button class="copilot-btn-run" id="btn-copilot-synthesize">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <span data-i18n="copilot_btn_synthesize">生成数理假设与代码</span>
+              </button>
+            </div>
+
+            <!-- Dynamic Output Deck -->
+            <div class="copilot-deck" id="copilot-output-deck">
+              <div class="copilot-deck-header">
+                <div class="copilot-deck-title" id="copilot-output-title">波动率挤压与通道突破阿尔法 (Volatility Squeeze Alpha)</div>
+                <div class="copilot-deck-tags" id="copilot-output-tags">
+                  <span class="copilot-tag">SDE / Keltner Squeeze</span>
+                  <span class="copilot-tag">Vectorized</span>
+                  <span class="copilot-tag">Kelly: 0.38</span>
+                </div>
+              </div>
+
+              <div class="copilot-grid-details">
+                <!-- Mathematical Rigor Column -->
+                <div class="copilot-detail-col">
+                  <h4 class="copilot-subhead" data-i18n="copilot_math_title">数理形式化推导与计量检验</h4>
+                  <div class="copilot-formula-box" id="copilot-math-box"></div>
+                  <p class="copilot-notes" id="copilot-math-notes"></p>
+                </div>
+
+                <!-- Risk Management Column -->
+                <div class="copilot-detail-col">
+                  <h4 class="copilot-subhead" data-i18n="copilot_risk_title">风险约束与执行边界</h4>
+                  <div class="copilot-risk-specs" id="copilot-risk-box">
+                    <div class="risk-spec-item">
+                      <span class="risk-lbl" data-i18n="copilot_risk_sl">硬止损限制 (Stop Loss):</span>
+                      <strong class="risk-val" id="copilot-val-sl">4.0%</strong>
+                    </div>
+                    <div class="risk-spec-item">
+                      <span class="risk-lbl" data-i18n="copilot_risk_fast">快线周期建议:</span>
+                      <strong class="risk-val" id="copilot-val-fast">7 日</strong>
+                    </div>
+                    <div class="risk-spec-item">
+                      <span class="risk-lbl" data-i18n="copilot_risk_slow">慢线周期建议:</span>
+                      <strong class="risk-val" id="copilot-val-slow">21 日</strong>
+                    </div>
+                    <div class="risk-spec-item">
+                      <span class="risk-lbl" data-i18n="copilot_risk_var">99% VaR 风险预算:</span>
+                      <strong class="risk-val">2.1% 日间</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Python Code Snippet -->
+              <div class="copilot-code-container">
+                <div class="copilot-code-bar">
+                  <span class="copilot-code-title">generated_strategy.py (Backtrader & NumPy)</span>
+                  <div class="copilot-code-actions">
+                    <button class="btn-copilot-action" id="btn-copilot-inject" data-i18n="copilot_inject_btn">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                      <span>载入至下方回测工作台</span>
+                    </button>
+                    <button class="btn-copilot-action" id="btn-copilot-copy" data-i18n="copilot_copy_btn">复制代码</button>
+                  </div>
+                </div>
+                <pre class="copilot-code-body"><code id="copilot-code-content"># 策略代码由 AI 原生推导核心实时生成</code></pre>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -567,6 +677,7 @@ class DualSMACrossoverStrategy(bt.Strategy):
   <!-- Scripts -->
   <script src="js/i18n.js"></script>
   <script src="js/models.js"></script>
+  <script src="js/copilot.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

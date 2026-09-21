@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.bsModel = new BlackScholesModel();
   window.pairsModel = new PairsTradingModel();
   window.backtester = new InteractiveQuantBacktester();
+  window.copilot = new AIStrategyCopilot();
 
   // 3. Checkout Modal Wiring
   initCheckout();
@@ -50,6 +51,8 @@ function setLanguage(lang) {
     if (dict[key] !== undefined) {
       if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
         el.placeholder = dict[key];
+      } else if (dict[key].includes('<')) {
+        el.innerHTML = dict[key];
       } else {
         el.textContent = dict[key];
       }
@@ -60,6 +63,7 @@ function setLanguage(lang) {
   if (window.bsModel) window.bsModel.renderCurve();
   if (window.pairsModel) window.pairsModel.render();
   if (window.backtester) window.backtester.render();
+  if (window.copilot) window.copilot.renderOutput();
 }
 
 // Checkout Modal
