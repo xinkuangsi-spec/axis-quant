@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AXIS QUANT // 阿尔法架构：量化金融演进史、开源矩阵与实战教程</title>
-  <meta name="description" content="从伊藤引理与布莱克-斯科尔斯公式到大模型智能体：半个世纪的量化思想史、全球顶级开源量化项目矩阵、互动实战教程与可交互数理引擎。">
+  <title>AXIS QUANT // 量化金融全景：思想演进、开源矩阵与实战指南</title>
+  <meta name="description" content="系统梳理半个世纪的量化交易思想史，汇聚全球主流开源量化框架与实战代码教程。从布莱克-斯科尔斯公式到多因子、机器学习与微观结构。">
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,14 +15,18 @@
   <!-- 1. NAVIGATION HEADER -->
   <header class="site-header">
     <div class="container header-row">
-      <a href="#top" class="brand-title" data-i18n="brand_name">AXIS QUANT // 量化生态</a>
+      <a href="#top" class="brand-title">
+        <span>AXIS QUANT</span>
+        <span class="brand-tag">OPEN HUB</span>
+      </a>
 
       <nav class="header-nav">
         <a href="#history" class="nav-link" data-i18n="nav_history">量化编年史</a>
+        <a href="#orderbook" class="nav-link" data-i18n="nav_micro">微观盘口</a>
         <a href="#projects" class="nav-link" data-i18n="nav_projects">开源矩阵</a>
         <a href="#tutorials" class="nav-link" data-i18n="nav_tutorials">实战教程</a>
         <a href="#workbench" class="nav-link" data-i18n="nav_workbench">回测台</a>
-        <a href="#partners" class="nav-link" data-i18n="nav_partners">机构通道</a>
+        <a href="#infrastructure" class="nav-link" data-i18n="nav_infra">基础设施</a>
       </nav>
 
       <div class="header-actions">
@@ -32,72 +36,112 @@
           <button class="lang-btn" data-lang="ja" title="日本語">日</button>
           <button class="lang-btn" data-lang="de" title="Deutsch">DE</button>
         </div>
-        <a href="#projects" class="btn-header-cta" data-i18n="nav_explore_cta">探索开源库</a>
       </div>
     </div>
   </header>
 
-  <!-- 2. DYNAMIC HERO SECTION WITH NATIVE BG & STOCHASTIC PARTICLE SIMULATION -->
-  <section class="essay-hero" id="top">
-    <!-- Interactive Canvas Layer for Market Stochastic Dynamics -->
-    <canvas id="hero-dynamic-canvas" class="hero-canvas-overlay"></canvas>
-
-    <div class="container hero-content-wrapper">
-      <div class="hero-top-badges">
-        <div class="hero-kicker" data-i18n="hero_kicker">开源量化金融思想史与实战工程矩阵</div>
-        <div class="flow-controls">
-          <span class="flow-label" data-i18n="flow_label">动态微观模拟:</span>
-          <button class="flow-mode-btn active" data-mode="order_flow" data-i18n="flow_order">高频订单流</button>
-          <button class="flow-mode-btn" data-mode="brownian" data-i18n="flow_brownian">布朗随机漫步</button>
-          <button class="flow-mode-btn" data-mode="ou_reversion" data-i18n="flow_ou">均值回归引力</button>
-        </div>
-      </div>
-
-      <h1 class="hero-headline" data-i18n="hero_headline">阿尔法的架构：半个世纪的量化交易演进史</h1>
+  <!-- 2. HERO SECTION -->
+  <section class="hero-section" id="top">
+    <div class="container">
+      <div class="hero-kicker" data-i18n="hero_kicker">金融工程与算法交易知识库</div>
+      <h1 class="hero-headline" data-i18n="hero_headline">量化金融全景：从布莱克-斯科尔斯到开源交易生态</h1>
       <p class="hero-standfirst" data-i18n="hero_standfirst">
-        从 1970 年代随机漫步假说与布莱克-斯科尔斯公式，到大奖章基金的统计套利，再到今日开源量化框架与多智能体自适应挖掘——我们以数理语言重构概率优势，并汇聚全球顶级开源量化工具与教程。
+        系统梳理半个世纪的量化交易思想演进，汇聚全球主流开源量化框架与实战代码教程。从连续时间随机微积分到高频微观结构与统计套利。
       </p>
 
-      <div class="hero-byline-row">
-        <span class="hero-byline-item" data-i18n="byline_author">架构: AXIS 开源量化社区</span>
-        <span class="hero-byline-item" data-i18n="byline_published">最后修订: 2026年9月</span>
-        <span class="hero-byline-item" data-i18n="byline_specs">10+ 顶级开源项目 · 4套实战教程 · 3套数理分析引擎</span>
+      <!-- 3. LEVEL-2 LIMIT ORDER BOOK & TRADE TAPE (REAL QUANT DYNAMICS) -->
+      <div class="orderbook-panel" id="orderbook">
+        <div class="ob-header-bar">
+          <div class="ob-title-group">
+            <span class="ob-indicator-dot"></span>
+            <span class="ob-title" data-i18n="ob_title">实时微观结构：L2 深度订单簿与逐笔成交流水</span>
+          </div>
+
+          <div class="ob-stats-row">
+            <span class="ob-stat-item"><span data-i18n="ob_mid_lbl">中间价:</span> <strong id="ob-mid-price">$520.40</strong></span>
+            <span class="ob-stat-item"><span data-i18n="ob_spread_lbl">买卖价差:</span> <strong id="ob-spread-val">$0.05</strong></span>
+            <span class="ob-stat-item"><span data-i18n="ob_obi_lbl">盘口失衡度 (OBI):</span> <strong id="ob-obi-val">+0.0%</strong></span>
+          </div>
+
+          <div class="ob-interactive-actions">
+            <button class="btn-ob-action btn-ob-buy" id="btn-order-buy" data-i18n="btn_market_buy">买入冲击 450股</button>
+            <button class="btn-ob-action btn-ob-sell" id="btn-order-sell" data-i18n="btn_market_sell">卖出冲击 450股</button>
+            <button class="btn-ob-action btn-ob-reset" id="btn-order-reset" data-i18n="btn_reset_book">重置撮合</button>
+          </div>
+        </div>
+
+        <div class="ob-grid">
+          <!-- Order Ladder -->
+          <div class="ob-ladder-col">
+            <div class="ob-col-heading">
+              <span data-i18n="ob_col_price">挂单价格 (Price)</span>
+              <span data-i18n="ob_col_size">深度委托量 (Shares)</span>
+            </div>
+
+            <!-- Asks (Sells) -->
+            <div class="ob-table-block" id="ob-asks-body"></div>
+
+            <!-- Spread Indicator -->
+            <div class="ob-spread-divider">
+              <span data-i18n="ob_spread_divider">--- 买卖一档价差 (Bid-Ask Spread) ---</span>
+              <span id="ob-spread-display">0.05 USD</span>
+            </div>
+
+            <!-- Bids (Buys) -->
+            <div class="ob-table-block" id="ob-bids-body"></div>
+          </div>
+
+          <!-- Live Trade Tape -->
+          <div class="ob-tape-col">
+            <div class="ob-col-heading">
+              <span data-i18n="tape_col_time">成交时间</span>
+              <span data-i18n="tape_col_side">方向</span>
+              <span data-i18n="tape_col_price">价格</span>
+              <span data-i18n="tape_col_qty">数量</span>
+            </div>
+            <div class="tape-list" id="ob-trades-list"></div>
+          </div>
+        </div>
+
+        <!-- Imbalance Gauge -->
+        <div class="ob-imbalance-gauge">
+          <span class="imbalance-label" data-i18n="ob_gauge_lbl">订单簿失衡度 (OBI = (V_bid - V_ask) / (V_bid + V_ask)):</span>
+          <div class="imbalance-track">
+            <div class="imbalance-fill" id="ob-obi-bar"></div>
+          </div>
+        </div>
       </div>
 
-      <!-- Bespoke Editorial Visual Plate (Google Generative Core) -->
-      <figure class="hero-visual-figure">
-        <div class="hero-visual-wrapper">
-          <img src="assets/hero_visual.jpg" alt="从伊藤微积分推导到深度强化学习张量计算的量化金融演进图卷" class="hero-visual-img" loading="eager">
-          <div class="hero-visual-tag" data-i18n="hero_visual_tag">GOOGLE 原生生成式视觉 · AXIS ARCHIVAL PLATE I</div>
-        </div>
+      <!-- Schematic Historical Architecture Card -->
+      <figure class="hero-visual-card">
+        <img src="assets/hero_visual.jpg" alt="从伊藤微积分推导到深度强化学习张量计算的量化金融演进图卷" class="hero-visual-img" loading="eager">
         <figcaption class="hero-visual-caption">
-          <span class="caption-num" data-i18n="hero_cap_num">图例 1.0</span>
-          <span class="caption-text" data-i18n="hero_cap_text">
-            <strong>范式跃迁全景：</strong>由黑板粉笔书写的连续时间随机微积分（伊藤引理与布莱克-斯科尔斯偏微分方程），过渡演进至现代微秒级低延迟数据流、深度强化学习与高维张量计算拓扑图。由 Google 原生高精度图像生成核心合成。
+          <span data-i18n="hero_fig_caption">
+            <strong>架构图解：</strong>从手写黑板推导的连续时间随机微积分（伊藤引理与布莱克-斯科尔斯偏微分方程），过渡演进至现代微秒级低延迟数据流、深度学习因子挖掘与高维张量计算拓扑图。
           </span>
         </figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- 3. CURATED OPEN-SOURCE QUANT PROJECTS MATRIX -->
-  <section class="section-container" id="projects">
+  <!-- 4. CURATED OPEN-SOURCE QUANT PROJECTS MATRIX -->
+  <section class="content-section" id="projects">
     <div class="container">
-      <div class="chapter-header">
-        <div class="chapter-number" data-i18n="proj_kicker">开源矩阵 // ECOSYSTEM</div>
-        <h2 class="chapter-title" data-i18n="proj_title">全球顶级开源量化工具与框架矩阵</h2>
-        <p class="chapter-subtitle" data-i18n="proj_subtitle">
-          精选工业界与学界主流开源量化基础设施，覆盖回测研究、机器学习、高频做市与底层数据工程。无需闭门造车，直接站在巨人的肩膀上。
+      <div class="section-header">
+        <div class="section-kicker" data-i18n="proj_kicker">开源矩阵 // ECOSYSTEM</div>
+        <h2 class="section-title" data-i18n="proj_title">全球主流开源量化框架矩阵</h2>
+        <p class="section-subtitle" data-i18n="proj_subtitle">
+          精选工业界与学界主流开源量化基础设施，覆盖全栈回测、机器学习/强化学习、高频交易执行与行情数据工程。
         </p>
       </div>
 
       <!-- Filter Tabs -->
-      <div class="projects-filter-bar">
-        <button class="proj-filter-btn active" data-cat="all" data-i18n="filter_all">全部框架 (All)</button>
-        <button class="proj-filter-btn" data-cat="backtest" data-i18n="filter_backtest">回测与研究 (Backtesting)</button>
-        <button class="proj-filter-btn" data-cat="ai_ml" data-i18n="filter_aiml">机器学习与 AI (ML & RL)</button>
-        <button class="proj-filter-btn" data-cat="execution" data-i18n="filter_execution">高频做市与执行 (Execution)</button>
-        <button class="proj-filter-btn" data-cat="data" data-i18n="filter_data">数据工程与因子 (Data & Factors)</button>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-cat="all" data-i18n="filter_all">全部框架 (All)</button>
+        <button class="filter-btn" data-cat="backtest" data-i18n="filter_backtest">回测与研究 (Backtesting)</button>
+        <button class="filter-btn" data-cat="ai_ml" data-i18n="filter_aiml">机器学习与 AI (ML & RL)</button>
+        <button class="filter-btn" data-cat="execution" data-i18n="filter_execution">高频执行与做市 (Execution)</button>
+        <button class="filter-btn" data-cat="data" data-i18n="filter_data">数据工程与因子 (Data & Factors)</button>
       </div>
 
       <!-- Projects Grid -->
@@ -105,14 +149,14 @@
     </div>
   </section>
 
-  <!-- 4. HANDS-ON QUANT TUTORIALS HUB -->
-  <section class="section-container section-alt" id="tutorials">
+  <!-- 5. PRACTICAL QUANT TUTORIALS HUB -->
+  <section class="content-section section-alt" id="tutorials">
     <div class="container">
-      <div class="chapter-header">
-        <div class="chapter-number" data-i18n="tut_kicker">实战教程 // TUTORIALS</div>
-        <h2 class="chapter-title" data-i18n="tut_title">量化实战教程精选：从零到生产级实盘</h2>
-        <p class="chapter-subtitle" data-i18n="tut_subtitle">
-          拒绝浮夸理论，深入每一个数学细节与底层代码，掌握严谨的量化研究与生产范式。
+      <div class="section-header">
+        <div class="section-kicker" data-i18n="tut_kicker">实战教程 // TUTORIALS</div>
+        <h2 class="section-title" data-i18n="tut_title">量化实战教程：从零到实盘架构</h2>
+        <p class="section-subtitle" data-i18n="tut_subtitle">
+          拒绝浮夸理论，深入每一个数学细节与底层代码，掌握严谨的量化研究范式。
         </p>
       </div>
 
@@ -123,7 +167,7 @@
           <div class="tutorial-badge" data-i18n="tut1_badge">架构基础</div>
           <h3 class="tutorial-title" data-i18n="tut1_title">教程 1：从零手写事件驱动回测引擎</h3>
           <p class="tutorial-desc" data-i18n="tut1_desc">
-            掌握事件队列（EventQueue）、标的行情切片（DataHandler）、撮合模拟器（ExecutionHandler）与投资组合记账（Portfolio），彻底规避“未来函数”与“幸存者偏差”。
+            掌握事件队列（EventQueue）、行情分发（DataHandler）、撮合模拟器（ExecutionHandler）与投资组合记账（Portfolio），彻底规避“未来函数”与“幸存者偏差”。
           </p>
           <div class="tutorial-meta">
             <span>难度: 进阶</span>
@@ -173,58 +217,43 @@
           <div class="tutorial-badge" data-i18n="tut4_badge">市场微观</div>
           <h3 class="tutorial-title" data-i18n="tut4_title">教程 4：高频订单簿与最优执行（TWAP / VWAP）</h3>
           <p class="tutorial-desc" data-i18n="tut4_desc">
-            解析 L2/L3 行情深度订单簿失衡（Order Book Imbalance, OBI）、微观买卖价差与冲击成本模型（Almgren-Chriss），使用动态规划与强化学习拆解大单以最小化滑点。
+            解析 L2/L3 行情深度订单簿失衡（Order Book Imbalance, OBI）、微观买卖价差与冲击成本模型（Almgren-Chriss），使用动态规划拆解大单以最小化滑点。
           </p>
           <div class="tutorial-meta">
             <span>难度: 极客级</span>
             <span>技术栈: CCXT / NautilusTrader</span>
           </div>
           <div class="tutorial-actions">
-            <a href="https://github.com/nautechsystems/nautilus_trader" target="_blank" rel="noopener" class="btn-tut-colab" data-i18n="tut_nautilus_btn">查看 Nautilus 实现 →</a>
+            <a href="https://github.com/nautechsystems/nautilus_trader" target="_blank" rel="noopener" class="btn-tut-colab" data-i18n="tut_nautilus_btn">查看 NautilusTrader →</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 5. ESSAY CHAPTERS & EMBEDDED EXPLORABLE MODELS -->
+  <!-- 6. ESSAY CHAPTERS & EMBEDDED EXPLORABLE MODELS -->
   <main id="history">
     
     <!-- CHAPTER 1: 1973 -->
-    <section class="chapter-section" id="models">
+    <section class="content-section" id="models">
       <div class="container">
-        <div class="chapter-header">
-          <div class="chapter-number" data-i18n="ch1_num">第一章 · 1973</div>
-          <h2 class="chapter-title" data-i18n="ch1_title">期权定价与连续时间金融工程的诞生</h2>
+        <div class="section-header">
+          <div class="section-kicker" data-i18n="ch1_num">第一章 · 1973</div>
+          <h2 class="section-title" data-i18n="ch1_title">期权定价与连续时间金融工程的诞生</h2>
         </div>
 
-        <div class="chapter-prose-split">
-          <div>
-            <p class="chapter-body-text" data-i18n="ch1_p1">
-              在 1970 年代之前，金融市场被视为不可预测的随机游走，投资机构几乎完全依靠基本面定性判断与图表技术分析。1973 年，费希尔·布莱克（Fischer Black）与迈隆·斯科尔斯（Myron Scholes）发表了划时代的期权定价公式，随后罗伯特·默顿（Robert Merton）进一步将其扩展为严谨的连续时间金融数学大厦。
-            </p>
-            <p class="chapter-body-text" data-i18n="ch1_p2">
-              B-S 模型将复杂的衍生品定价问题，精妙地转化为物理学中的一维热传导扩散方程。通过在标的资产与无风险债券之间构建动态对冲组合，消除无系统风险，为现代全球衍生品市场的繁荣奠定了基石。
-            </p>
-          </div>
-          <div>
-            <div class="chapter-callout">
-              <div class="callout-title" data-i18n="ch1_callout_title">模型现实边界</div>
-              <p class="callout-body" data-i18n="ch1_callout_body">
-                B-S 模型假设标的资产回报服从对数正态分布且波动率为常数。但在真实市场中，极度恐慌时往往出现“肥尾效应”与“波动率微笑”（Volatility Smile），促使后来的宽客开发出局部波动率与随机波动率模型（如 Heston 模型）。
-              </p>
-            </div>
-          </div>
-        </div>
+        <p class="chapter-body-text" data-i18n="ch1_p1">
+          在 1970 年代之前，金融市场被视为不可预测的随机游走，投资机构几乎完全依靠基本面定性判断与图表技术分析。1973 年，费希尔·布莱克（Fischer Black）与迈隆·斯科尔斯（Myron Scholes）发表了划时代的期权定价公式，随后罗伯特·默顿（Robert Merton）进一步将其扩展为严谨的连续时间金融数学大厦。
+        </p>
 
         <!-- Interactive Model 1: Black-Scholes Curve -->
-        <div class="interactive-widget-box">
-          <div class="widget-top-bar">
-            <span class="widget-label" data-i18n="bs_widget_title">交互模型 · 布莱克-斯科尔斯分析定价器</span>
+        <div class="model-widget-box">
+          <div class="model-top-bar">
+            <span class="model-label" data-i18n="bs_widget_title">交互模型 · 布莱克-斯科尔斯分析定价器</span>
             <span class="mono-figure" style="font-size: 0.75rem; color: var(--text-muted);">C = S·N(d₁) - K·e⁻ʳᵀ·N(d₂)</span>
           </div>
 
-          <div class="widget-controls-grid">
+          <div class="model-controls-grid">
             <div class="input-field">
               <div class="field-header">
                 <span data-i18n="bs_spot_label">标的现价 (S)</span>
@@ -258,7 +287,7 @@
             </div>
           </div>
 
-          <div class="widget-results-row">
+          <div class="model-results-row">
             <div class="res-stat-item">
               <span class="res-stat-lbl" data-i18n="bs_call_price">看涨期权理论价 (Call)</span>
               <span class="res-stat-val" id="bs-call-res">$0.00</span>
@@ -273,7 +302,7 @@
             </div>
           </div>
 
-          <div class="canvas-chart-holder">
+          <div class="canvas-holder">
             <canvas id="bs-curve-canvas"></canvas>
           </div>
         </div>
@@ -281,40 +310,25 @@
     </section>
 
     <!-- CHAPTER 2: 1988 -->
-    <section class="chapter-section">
+    <section class="content-section">
       <div class="container">
-        <div class="chapter-header">
-          <div class="chapter-number" data-i18n="ch2_num">第二章 · 1988</div>
-          <h2 class="chapter-title" data-i18n="ch2_title">大奖章基金的神话与统计套利革命</h2>
+        <div class="section-header">
+          <div class="section-kicker" data-i18n="ch2_num">第二章 · 1988</div>
+          <h2 class="section-title" data-i18n="ch2_title">大奖章基金的神话与统计套利革命</h2>
         </div>
 
-        <div class="chapter-prose-split">
-          <div>
-            <p class="chapter-body-text" data-i18n="ch2_p1">
-              冷战时期的密码破译专家吉姆·西蒙斯（Jim Simons）在长岛创立文艺复兴科技公司。与华尔街传统商学院毕业生不同，西蒙斯几乎只招募理论物理学家、天体物理学家与纯数学家，彻底摒弃主观直觉判断，完全用海量历史行情数据驱动决策。
-            </p>
-            <p class="chapter-body-text" data-i18n="ch2_p2">
-              由詹姆斯·埃克斯（James Ax）等人开发的大奖章基金（Medallion Fund）首创了统计套利（Statistical Arbitrage）与配对交易（Pairs Trading）：当具有长期协整关系的两个资产价差偏离历史均值超过 2 个标准差时，买入相对低估资产、做空相对高估资产，并在价差回归均值时获利平仓。
-            </p>
-          </div>
-          <div>
-            <div class="chapter-callout">
-              <div class="callout-title" data-i18n="ch2_callout_title">1998 LTCM 危机启示录</div>
-              <p class="callout-body" data-i18n="ch2_callout_body">
-                由诺贝尔奖得主默顿和斯科尔斯坐镇的长期资本管理公司（LTCM），因过度杠杆（资产负债比高达 25:1）并在俄罗斯主权债务违约时遭遇全球流动性骤枯竭，在数月内亏损超 40 亿美元濒临清盘，警示量化界：流动性风险是数学模型最大的盲区。
-              </p>
-            </div>
-          </div>
-        </div>
+        <p class="chapter-body-text" data-i18n="ch2_p1">
+          由詹姆斯·埃克斯（James Ax）等人开发的大奖章基金（Medallion Fund）首创了统计套利（Statistical Arbitrage）与配对交易（Pairs Trading）：当具有长期协整关系的两个资产价差偏离历史均值超过 2 个标准差时，买入相对低估资产、做空相对高估资产，并在价差回归均值时获利平仓。
+        </p>
 
         <!-- Interactive Model 2: Pairs Trading Ornstein-Uhlenbeck Simulator -->
-        <div class="interactive-widget-box" id="stat-arb-demo">
-          <div class="widget-top-bar">
-            <span class="widget-label" data-i18n="stat_arb_widget_title">交互模型 · 统计套利均值回归与价差测试</span>
-            <button class="btn-refresh-sim" id="btn-reseed-spread" data-i18n="stat_arb_reset_btn">重新生成随机游走价差</button>
+        <div class="model-widget-box" id="stat-arb-demo">
+          <div class="model-top-bar">
+            <span class="model-label" data-i18n="stat_arb_widget_title">交互模型 · 统计套利均值回归与价差测试</span>
+            <button class="btn-ob-action btn-ob-reset" id="btn-reseed-spread" data-i18n="stat_arb_reset_btn">重新生成随机游走价差</button>
           </div>
 
-          <div class="widget-controls-grid" style="grid-template-columns: 1fr;">
+          <div class="model-controls-grid" style="grid-template-columns: 1fr;">
             <div class="input-field">
               <div class="field-header">
                 <span data-i18n="stat_arb_thresh_label">建仓偏差阈值 (Z-Score)</span>
@@ -324,7 +338,7 @@
             </div>
           </div>
 
-          <div class="widget-results-row">
+          <div class="model-results-row">
             <div class="res-stat-item">
               <span class="res-stat-lbl" data-i18n="stat_arb_trades_label">触发套利笔数</span>
               <span class="res-stat-val" id="stat-arb-trades-val">0</span>
@@ -335,176 +349,79 @@
             </div>
             <div class="res-stat-item">
               <span class="res-stat-lbl">ADF 统计检验</span>
-              <span class="res-stat-val" style="color: var(--brand-green);">p = 0.003 (协整显著)</span>
+              <span class="res-stat-val" style="color: var(--accent-green);">p = 0.003 (协整显著)</span>
             </div>
           </div>
 
-          <div class="canvas-chart-holder">
+          <div class="canvas-holder">
             <canvas id="pairs-spread-canvas"></canvas>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CHAPTER 3: 2000-2015 -->
-    <section class="chapter-section">
+    <!-- CHAPTER 5: 2023-PRESENT & STRATEGY PLAYGROUND -->
+    <section class="content-section section-alt">
       <div class="container">
-        <div class="chapter-header">
-          <div class="chapter-number" data-i18n="ch3_num">第三章 · 2000 — 2015</div>
-          <h2 class="chapter-title" data-i18n="ch3_title">算法交易、超低延迟与 2010 闪崩之谜</h2>
+        <div class="section-header">
+          <div class="section-kicker" data-i18n="ch5_num">第五章 · 2023 — 至今</div>
+          <h2 class="section-title" data-i18n="ch5_title">机器学习、高维特征工程与现代量化策略实验台</h2>
         </div>
 
-        <div class="chapter-prose-split">
-          <div>
-            <p class="chapter-body-text" data-i18n="ch3_p1">
-              随着全球主要证券交易所全面转向电子化撮合，量化机构从“日级别模型”向“微秒甚至纳秒级别”突进。Citadel、Virtu Financial 和 Jump Trading 斥巨资架设连接芝加哥商品交易所与纽约证券交易所的微波直线塔，并使用 FPGA 硬件重写底层网卡逻辑。
-            </p>
-          </div>
-          <div>
-            <p class="chapter-body-text" data-i18n="ch3_p2">
-              2010 年 5 月 6 日，著名的“美股闪崩”（Flash Crash）爆发：道琼斯指数在数分钟内狂泻近 1,000 点，随后又迅速反弹。事件揭示了现代高频做市商在市场遭遇单边大单冲击时会瞬间撤单自保，导致全市场流动性在毫秒内归零的微观结构脆弱性。
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <p class="chapter-body-text" data-i18n="ch5_p1">
+          现代量化系统开始全面部署高维特征提取与非线性学习模型。下方策略实验台支持快速切换经典量化流派，导出数理推导假说与向量化实盘代码，并可无缝注入至下方回测引擎。
+        </p>
 
-    <!-- CHAPTER 4: 2015-2022 -->
-    <section class="chapter-section">
-      <div class="container">
-        <div class="chapter-header">
-          <div class="chapter-number" data-i18n="ch4_num">第四章 · 2015 — 2022</div>
-          <h2 class="chapter-title" data-i18n="ch4_title">多因子投资、风险模型与另类数据纪元</h2>
-        </div>
-
-        <div class="chapter-prose-split">
-          <div>
-            <p class="chapter-body-text" data-i18n="ch4_p1">
-              速度的军备竞赛边际收益递减后，宽客将重心转向信息维度。尤金·法玛（Eugene Fama）与肯尼斯·弗伦奇（Kenneth French）的多因子资产定价模型成为公募量化与 Smart Beta 的底层基石；AQR、Two Sigma 与 WorldQuant 建立了涵盖动量、价值、质量、低波动与规模的因子工场。
-            </p>
-          </div>
-          <div>
-            <p class="chapter-body-text" data-i18n="ch4_p2">
-              与此同时，卫星遥感图像（监测大型零售商停车场车流量与原油储罐浮顶高度）、匿名信用卡脱敏流水、供应链运单等“另类数据”（Alternative Data）被引入多因子策略，使得量化机构能够领先季度财报预测公司基本面拐点。
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CHAPTER 5: 2023-PRESENT -->
-    <section class="chapter-section">
-      <div class="container">
-        <div class="chapter-header">
-          <div class="chapter-number" data-i18n="ch5_num">第五章 · 2023 — 至今</div>
-          <h2 class="chapter-title" data-i18n="ch5_title">大语言模型、深度强化学习与智能体阿尔法</h2>
-        </div>
-
-        <div class="chapter-prose-split">
-          <div>
-            <p class="chapter-body-text" data-i18n="ch5_p1">
-              随着生成式人工智能突破非结构化文本的理解边界，量化系统开始全面部署多智能体协作网络：专门的智能体负责实时解析全球央行纪要与供应链突发新闻，推断宏观体制转换；强化学习（RL）算法在订单执行端动态学习最优拆单策略以最小化市场冲击滑点。
-            </p>
-          </div>
-          <div>
-            <p class="chapter-body-text" data-i18n="ch5_p2">
-              未来的量化竞争不再是单一公式的保密，而是算法自我进化、数据流水线工程化与风险极端压力测试体系的综合协同能力。
-            </p>
-          </div>
-        </div>
-
-        <!-- NATIVE AI QUANT STRATEGY COPILOT (GEMINI QUANT REASONING CORE) -->
-        <div class="copilot-widget" id="copilot">
-          <div class="copilot-top-bar">
-            <div class="copilot-brand-title">
-              <span class="copilot-status-dot"></span>
-              <span data-i18n="copilot_header">原生 AI 策略架构师 // GEMINI QUANT REASONING CORE</span>
-            </div>
-            <span class="mono-figure copilot-badge">LATENCY: 0.12s · INFERENCE: ACTIVE</span>
+        <!-- STRATEGY PLAYGROUND -->
+        <div class="playground-box">
+          <div class="playground-top">
+            <span class="model-label" data-i18n="pg_title">量化策略假说推导与参数矩阵</span>
+            <span class="mono-figure" style="font-size: 0.74rem; color: var(--text-muted);">VECTORIZED / EVENT-DRIVEN READY</span>
           </div>
 
-          <div class="copilot-body">
-            <div class="copilot-intro-row">
-              <p class="copilot-desc" data-i18n="copilot_desc">
-                输入您的投资哲学假设或从经典机构流派中选择。原生 AI 推理核心将形式化推导随机过程方程、设定风险预算边界，并合成工业级可执行 Python 代码，且可直接注入下方实战回测工作台。
-              </p>
+          <div class="playground-body">
+            <div class="archetype-pills">
+              <span class="pill-lbl" data-i18n="copilot_select_archetype">预设量化流派:</span>
+              <button class="pill-btn active" data-archetype="vol_squeeze" data-i18n="copilot_pill_vol">波动率挤压突破</button>
+              <button class="pill-btn" data-archetype="stat_arb" data-i18n="copilot_pill_ou">协整均值回归</button>
+              <button class="pill-btn" data-archetype="momentum_trend" data-i18n="copilot_pill_mom">跨周期动量跟踪</button>
+              <button class="pill-btn" data-archetype="regime_filter" data-i18n="copilot_pill_regime">宏观体制自适应</button>
             </div>
 
-            <!-- Archetype Selector Chips -->
-            <div class="copilot-archetypes">
-              <span class="copilot-pill-label" data-i18n="copilot_select_archetype">预设量化流派:</span>
-              <button class="copilot-pill active" data-archetype="vol_squeeze" data-i18n="copilot_pill_vol">波动率挤压突破 (Vol Squeeze)</button>
-              <button class="copilot-pill" data-archetype="stat_arb" data-i18n="copilot_pill_ou">协整均值回归 (OU Pairs)</button>
-              <button class="copilot-pill" data-archetype="momentum_trend" data-i18n="copilot_pill_mom">跨周期动量跟踪 (Momentum)</button>
-              <button class="copilot-pill" data-archetype="regime_filter" data-i18n="copilot_pill_regime">宏观体制自适应 (Adaptive Filter)</button>
-            </div>
-
-            <!-- Custom Prompt Input -->
-            <div class="copilot-input-container">
-              <input type="text" id="copilot-custom-input" class="copilot-text-input" placeholder="输入自定义量化假设，例如：利用成交量突破与 ATR 动态追踪止损构建自适应趋势策略..." data-i18n="copilot_input_placeholder">
-              <button class="copilot-btn-run" id="btn-copilot-synthesize">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                <span data-i18n="copilot_btn_synthesize">生成数理假设与代码</span>
-              </button>
-            </div>
-
-            <!-- Dynamic Output Deck -->
-            <div class="copilot-deck" id="copilot-output-deck">
-              <div class="copilot-deck-header">
-                <div class="copilot-deck-title" id="copilot-output-title">波动率挤压与通道突破阿尔法 (Volatility Squeeze Alpha)</div>
-                <div class="copilot-deck-tags" id="copilot-output-tags">
-                  <span class="copilot-tag">SDE / Keltner Squeeze</span>
-                  <span class="copilot-tag">Vectorized</span>
-                  <span class="copilot-tag">Kelly: 0.38</span>
-                </div>
-              </div>
-
-              <div class="copilot-grid-details">
-                <!-- Mathematical Rigor Column -->
-                <div class="copilot-detail-col">
-                  <h4 class="copilot-subhead" data-i18n="copilot_math_title">数理形式化推导与计量检验</h4>
-                  <div class="copilot-formula-box" id="copilot-math-box"></div>
-                  <p class="copilot-notes" id="copilot-math-notes"></p>
+            <div class="playground-deck">
+              <h3 class="deck-title" id="copilot-output-title">波动率挤压与通道突破阿尔法</h3>
+              
+              <div class="deck-grid">
+                <div>
+                  <div class="deck-col-title" data-i18n="copilot_math_title">数理形式化推导与计量检验</div>
+                  <div class="formula-card" id="copilot-math-box"></div>
+                  <p class="formula-notes" id="copilot-math-notes"></p>
                 </div>
 
-                <!-- Risk Management Column -->
-                <div class="copilot-detail-col">
-                  <h4 class="copilot-subhead" data-i18n="copilot_risk_title">风险约束与执行边界</h4>
-                  <div class="copilot-risk-specs" id="copilot-risk-box">
-                    <div class="risk-spec-item">
-                      <span class="risk-lbl" data-i18n="copilot_risk_sl">硬止损限制 (Stop Loss):</span>
-                      <strong class="risk-val" id="copilot-val-sl">4.0%</strong>
+                <div>
+                  <div class="deck-col-title" data-i18n="copilot_risk_title">风控参数与执行边界</div>
+                  <div class="specs-list">
+                    <div class="spec-row">
+                      <span class="spec-lbl" data-i18n="copilot_risk_sl">硬止损限制:</span>
+                      <strong class="spec-val" id="copilot-val-sl">4.0%</strong>
                     </div>
-                    <div class="risk-spec-item">
-                      <span class="risk-lbl" data-i18n="copilot_risk_fast">快线周期建议:</span>
-                      <strong class="risk-val" id="copilot-val-fast">7 日</strong>
+                    <div class="spec-row">
+                      <span class="spec-lbl" data-i18n="copilot_risk_fast">快线周期建议:</span>
+                      <strong class="spec-val" id="copilot-val-fast">7 日</strong>
                     </div>
-                    <div class="risk-spec-item">
-                      <span class="risk-lbl" data-i18n="copilot_risk_slow">慢线周期建议:</span>
-                      <strong class="risk-val" id="copilot-val-slow">21 日</strong>
-                    </div>
-                    <div class="risk-spec-item">
-                      <span class="risk-lbl" data-i18n="copilot_risk_var">99% VaR 风险预算:</span>
-                      <strong class="risk-val">2.1% 日间</strong>
+                    <div class="spec-row">
+                      <span class="spec-lbl" data-i18n="copilot_risk_slow">慢线周期建议:</span>
+                      <strong class="spec-val" id="copilot-val-slow">21 日</strong>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Python Code Snippet -->
-              <div class="copilot-code-container">
-                <div class="copilot-code-bar">
-                  <span class="copilot-code-title">generated_strategy.py (Backtrader & NumPy)</span>
-                  <div class="copilot-code-actions">
-                    <button class="btn-copilot-action" id="btn-copilot-inject" data-i18n="copilot_inject_btn">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-                      <span>载入至下方回测工作台</span>
-                    </button>
-                    <button class="btn-copilot-action" id="btn-copilot-copy" data-i18n="copilot_copy_btn">复制代码</button>
-                  </div>
-                </div>
-                <pre class="copilot-code-body"><code id="copilot-code-content"># 策略代码由 AI 原生推导核心实时生成</code></pre>
+              <div class="deck-actions">
+                <button class="btn-inject-wb" id="btn-copilot-inject" data-i18n="copilot_inject_btn">载入至下方回测工作台</button>
+                <button class="btn-proj-code" id="btn-copilot-copy" data-i18n="copilot_copy_btn">复制代码</button>
               </div>
+              <pre style="display: none;"><code id="copilot-code-content"></code></pre>
             </div>
           </div>
         </div>
@@ -513,28 +430,27 @@
 
   </main>
 
-  <!-- 6. STRATEGY WORKBENCH & INTERACTIVE BACKTESTER -->
-  <section class="workbench-section" id="workbench">
+  <!-- 7. STRATEGY WORKBENCH & INTERACTIVE BACKTESTER -->
+  <section class="content-section" id="workbench">
     <div class="container">
-      <div class="chapter-header">
-        <h2 class="chapter-title" data-i18n="wb_title">算法实战工作台：双均线突破与多资产回测</h2>
-        <p data-i18n="wb_subtitle">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="wb_title">算法实战工作台：双均线突破与多资产回测</h2>
+        <p class="section-subtitle" data-i18n="wb_subtitle">
           在真实波动率样本上调整策略参数，观察收益曲线分布与最大回撤控制。
         </p>
       </div>
 
-      <!-- Asset Pill Switcher -->
-      <div class="asset-pill-selector">
-        <span style="font-size: 0.85rem; color: var(--text-muted); align-self: center; margin-right: 6px;" data-i18n="wb_select_asset">测试标的资产:</span>
-        <button class="asset-select-btn active" data-asset="SPY">S&P 500 (SPY)</button>
-        <button class="asset-select-btn" data-asset="BTC">Bitcoin (BTC-USD)</button>
-        <button class="asset-select-btn" data-asset="NVDA">Nvidia (NVDA)</button>
-        <button class="asset-select-btn" data-asset="AAPL">Apple (AAPL)</button>
+      <!-- Asset Selector -->
+      <div class="asset-selector">
+        <button class="asset-btn active" data-asset="SPY">S&P 500 (SPY)</button>
+        <button class="asset-btn" data-asset="BTC">Bitcoin (BTC-USD)</button>
+        <button class="asset-btn" data-asset="NVDA">Nvidia (NVDA)</button>
+        <button class="asset-btn" data-asset="AAPL">Apple (AAPL)</button>
       </div>
 
       <!-- Controls & Metrics Box -->
-      <div class="interactive-widget-box" style="margin-top: 0;">
-        <div class="widget-controls-grid">
+      <div class="model-widget-box" style="margin-top: 0;">
+        <div class="model-controls-grid">
           <div class="input-field">
             <div class="field-header">
               <span data-i18n="wb_fast_label">快线 SMA 周期</span>
@@ -560,7 +476,7 @@
           </div>
         </div>
 
-        <div class="widget-results-row">
+        <div class="model-results-row">
           <div class="res-stat-item">
             <span class="res-stat-lbl" data-i18n="wb_stat_return">策略总回报率</span>
             <span class="res-stat-val" id="bt-stat-return">+0.00%</span>
@@ -587,21 +503,21 @@
           </div>
         </div>
 
-        <div class="canvas-chart-holder">
+        <div class="canvas-holder">
           <canvas id="main-backtest-canvas"></canvas>
         </div>
       </div>
 
-      <!-- Production Python Code Panel with Direct Google Colab Launcher -->
-      <div class="code-viewer-panel">
-        <div class="code-viewer-top">
-          <span class="code-viewer-title">strategy_dual_sma_backtest.py</span>
-          <div class="code-actions">
-            <a href="https://colab.research.google.com/github/xinkuangsi-spec/axis-quant/blob/main/notebooks/quant_tutorial_sma.ipynb" target="_blank" rel="noopener" class="btn-colab-link">
+      <!-- Python Code Panel -->
+      <div class="code-panel">
+        <div class="code-panel-top">
+          <span class="code-panel-title">strategy_dual_sma_backtest.py</span>
+          <div class="code-panel-actions">
+            <a href="https://colab.research.google.com/github/xinkuangsi-spec/axis-quant/blob/main/notebooks/quant_tutorial_sma.ipynb" target="_blank" rel="noopener" class="btn-code-colab">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
               <span data-i18n="colab_cta_title">在 Google Colab 中一键运行 (Jupyter Notebook)</span>
             </a>
-            <button class="btn-copy-code" id="btn-copy-code" data-i18n="code_copy_btn">复制源码</button>
+            <button class="btn-code-copy" id="btn-copy-code" data-i18n="code_copy_btn">复制源码</button>
           </div>
         </div>
         <pre class="code-body"><code id="python-strategy-code">import backtrader as bt
@@ -651,117 +567,115 @@ class DualSMACrossoverStrategy(bt.Strategy):
     </div>
   </section>
 
-  <!-- 7. REVENUE ARCHITECTURE: INSTITUTIONAL BROKERS, REBATES & SPONSORS (NO USER SUBSCRIPTION PAYWALL) -->
-  <section class="section-container" id="partners">
+  <!-- 8. TRADING INFRASTRUCTURE & PARTNERS (NO SUBSCRIPTION PAYWALL) -->
+  <section class="content-section section-alt" id="infrastructure">
     <div class="container">
-      <div class="chapter-header">
-        <div class="chapter-number" data-i18n="partner_kicker">极速通道与生态变现 // PARTNERS & REBATES</div>
-        <h2 class="chapter-title" data-i18n="partner_title">量化机构交易通道、费率返还与算力赞助</h2>
-        <p class="chapter-subtitle" data-i18n="partner_subtitle">
-          本站完全开源免费，所有教程与模型均无会员锁。我们通过机构交易通道合作、极速 API 交易量返佣与算力生态赞助实现可持续自运转。
+      <div class="section-header">
+        <div class="section-kicker" data-i18n="partner_kicker">基础设施与合作通道 // INFRASTRUCTURE & ACCESS</div>
+        <h2 class="section-title" data-i18n="partner_title">量化交易基础设施与机构通道</h2>
+        <p class="section-subtitle" data-i18n="partner_subtitle">
+          本站永久开源免费，不向用户收取任何订阅费用。我们通过接入行业合规交易通道、券商/交易所做市商 API 费率分成与服务器算力赞助保持独立运转。
         </p>
       </div>
 
       <div class="partners-grid">
         <!-- Partner 1: Interactive Brokers -->
-        <div class="partner-card featured-partner">
-          <div class="partner-badge">顶级全球券商</div>
+        <div class="partner-card">
+          <div class="partner-badge">全球主流券商</div>
           <h3 class="partner-name">Interactive Brokers (盈透证券)</h3>
           <p class="partner-desc">
-            全球量化机构与专业交易者的行业标准底层。提供原生 C++ / Python TWS API 连接，多币种直接结算，全美最低保证金借贷利率与证券借贷收益分成计划（SYEP）。
+            全球量化机构与独立宽客的行业标准。提供官方 TWS API 与 Client Portal Web API，支持全美最低保证金借贷利率及证券借贷计划（SYEP）。
           </p>
-          <div class="partner-perks">
-            <span>✓ 官方 API 直连低延迟网关</span>
-            <span>✓ 极低融资利率</span>
-            <span>✓ 独家量化开户福利通道</span>
+          <div class="partner-features">
+            <span>• 支持原生 Python / C++ / Java API</span>
+            <span>• 全球 150+ 交易所多币种一账户直通</span>
           </div>
-          <a href="https://www.interactivebrokers.com" target="_blank" rel="noopener" class="btn-partner-action" data-i18n="btn_ibkr">激活专属机构通道 →</a>
+          <a href="https://www.interactivebrokers.com" target="_blank" rel="noopener" class="btn-partner-link" data-i18n="btn_ibkr">开通 IBKR 机构 API 通道 →</a>
         </div>
 
-        <!-- Partner 2: Exchange High-Frequency API Rebates -->
-        <div class="partner-card featured-partner">
-          <div class="partner-badge">极速 API 返佣</div>
-          <h3 class="partner-name">数字资产高频 API VIP 专区 (Binance / OKX)</h3>
+        <!-- Partner 2: Exchange High-Frequency API -->
+        <div class="partner-card">
+          <div class="partner-badge">极速做市商费率</div>
+          <h3 class="partner-name">数字资产量化做市商渠道 (Binance / OKX)</h3>
           <p class="partner-desc">
-            量化高频做市商与网格量化必备通道。通过 AXIS 专属代码注册连接，享永久 -20% 顶级手续费折扣，每月交易量达标可升级为负费率做市商（Maker 获得返现奖励）。
+            高频套利与做市商团队必备。通过本站渠道接入专享极低手续费等级，月交易量达标可享负费率返现奖励（Maker 挂单返利）。
           </p>
-          <div class="partner-perks">
-            <span>✓ 毫秒级 WebSocket 深度流</span>
-            <span>✓ 阶梯手续费直接返还至账户</span>
-            <span>✓ 独立 IP 限频白名单</span>
+          <div class="partner-features">
+            <span>• 毫秒级 WebSocket 深度流与专线</span>
+            <span>• 独立 IP 频次限制白名单</span>
           </div>
-          <a href="https://www.binance.com" target="_blank" rel="noopener" class="btn-partner-action" data-i18n="btn_exchange">申请量化 VIP 费率 →</a>
+          <a href="https://www.binance.com" target="_blank" rel="noopener" class="btn-partner-link" data-i18n="btn_exchange">申请量化做市商费率 →</a>
         </div>
 
         <!-- Partner 3: TradingView Pro -->
         <div class="partner-card">
-          <div class="partner-badge">图表与 Pine Script</div>
-          <h3 class="partner-name">TradingView Pro 机构订阅特惠</h3>
+          <div class="partner-badge">图表与告警</div>
+          <h3 class="partner-name">TradingView Pro 订阅</h3>
           <p class="partner-desc">
-            全球宽客与技术分析师标配。支持多图表联动、秒级 K 线回放、云端实时 Webhook 信号推送到个人量化服务器。
+            专业图表分析与 Pine Script 策略开发调试环境，支持云端秒级告警直推 Webhook 至个人回测实盘服务器。
           </p>
-          <div class="partner-perks">
-            <span>✓ 独家最高 60% 续订折扣</span>
-            <span>✓ 云端秒级告警直推</span>
+          <div class="partner-features">
+            <span>• 秒级 Bar 回放与多周期联动</span>
+            <span>• 云端 Webhook 信号自动转发</span>
           </div>
-          <a href="https://www.tradingview.com" target="_blank" rel="noopener" class="btn-partner-action" data-i18n="btn_tradingview">获取独家订阅优惠 →</a>
+          <a href="https://www.tradingview.com" target="_blank" rel="noopener" class="btn-partner-link" data-i18n="btn_tradingview">获取独家订阅优惠 →</a>
         </div>
 
-        <!-- Partner 4: Cloud Compute & Sponsors -->
+        <!-- Partner 4: Cloud Compute -->
         <div class="partner-card">
-          <div class="partner-badge">算力赞助 & 开源基金</div>
-          <h3 class="partner-name">GPU 算力云与量化主机合作</h3>
+          <div class="partner-badge">算力与赞助</div>
+          <h3 class="partner-name">GPU 算力云与开源赞助</h3>
           <p class="partner-desc">
-            为量化模型训练与高频实盘托管提供高 SLA 低延迟 VPS。支持通过 GitHub Sponsors 与企业算力赞助支持本开源知识库。
+            为机器学习量化模型训练与高频节点提供低延迟 VPS 主机支持。欢迎通过 GitHub Sponsors 支持本站独立开源研究。
           </p>
-          <div class="partner-perks">
-            <span>✓ 靠近芝加哥/纽约机房专属主机</span>
-            <span>✓ 企业 Logo 赞助席位</span>
+          <div class="partner-features">
+            <span>• 靠近主要交易所机房的低延迟节点</span>
+            <span>• 企业与算力赞助席位</span>
           </div>
-          <a href="https://github.com/sponsors" target="_blank" rel="noopener" class="btn-partner-action" data-i18n="btn_sponsor">赞助此开源项目 →</a>
+          <a href="https://github.com/sponsors" target="_blank" rel="noopener" class="btn-partner-link" data-i18n="btn_sponsor">在 GitHub 赞助本项目 →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 8. CODE PREVIEW MODAL -->
+  <!-- 9. CODE PREVIEW MODAL -->
   <div class="modal-backdrop" id="code-preview-modal" role="dialog" aria-modal="true">
-    <div class="modal-sheet modal-code-sheet">
-      <div class="modal-code-header">
-        <h3 class="modal-code-heading" id="code-modal-title">框架核心代码预览</h3>
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3 class="modal-title" id="code-modal-title">框架核心代码预览</h3>
         <button class="modal-close" id="code-modal-close" aria-label="Close">&times;</button>
       </div>
-      <div class="modal-code-actions">
-        <button class="btn-copilot-action" id="code-modal-copy">复制代码</button>
-        <a href="#" target="_blank" rel="noopener" id="code-modal-link" class="btn-copilot-action">在 GitHub 查看仓库 ↗</a>
+      <div class="modal-actions">
+        <button class="btn-modal-action" id="code-modal-copy">复制代码</button>
+        <a href="#" target="_blank" rel="noopener" id="code-modal-link" class="btn-modal-action">在 GitHub 查看仓库 ↗</a>
       </div>
-      <pre class="modal-code-pre"><code id="code-modal-body"></code></pre>
+      <pre class="modal-code-block"><code id="code-modal-body"></code></pre>
     </div>
   </div>
 
-  <!-- 9. FOOTER -->
+  <!-- 10. FOOTER -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
         <p class="footer-disclaimer" data-i18n="footer_disclaimer">
-          【免责声明与学术条款】AXIS QUANT 平台所刊载之全部历史考证、开源项目整理、数学推导与示例代码仅供学术交流与金融工程教学之用，绝不构成任何投资建议或收益保证。金融交易具有本金亏损风险，过往回测绩效不预示未来实盘表现。
+          【免责声明】AXIS QUANT 刊载之全部历史文章、开源项目整理、数学推导与回测代码仅供学术交流与金融工程教学之用，不构成任何投资建议。金融交易具有本金亏损风险，过往回测绩效不代表未来实盘表现。
         </p>
         <div style="text-align: right;">
-          <div style="font-family: var(--font-serif); font-size: 1.15rem; color: #FFFFFF; margin-bottom: 6px;">AXIS QUANT</div>
-          <div style="font-size: 0.8rem; color: var(--text-muted);">Open-Source Quantitative Engineering & Research Hub</div>
+          <div style="font-family: var(--font-mono); font-size: 1rem; color: #FFFFFF; margin-bottom: 4px;">AXIS QUANT</div>
+          <div style="font-size: 0.76rem; color: var(--text-muted);">Open-Source Quantitative Research Hub</div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span data-i18n="footer_copy">© 2026 AXIS QUANT. 拥抱开源、严谨数理与工业级工程.</span>
-        <span class="mono-figure">SYS: v4.2 · ENGINE: GEMINI 2.0 · LATENCY: 0.08μs · COLAB: READY</span>
+        <span data-i18n="footer_copy">© 2026 AXIS QUANT. 保持学术严谨与工业级工程标准.</span>
+        <span class="mono-figure">DATA: HISTORICAL DAILY & L2 TICKS · REPO: OPEN-SOURCE (MIT)</span>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="js/i18n.js"></script>
-  <script src="js/dynamics.js"></script>
+  <script src="js/orderbook.js"></script>
   <script src="js/models.js"></script>
   <script src="js/copilot.js"></script>
   <script src="js/projects.js"></script>

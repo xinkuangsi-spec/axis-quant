@@ -1,11 +1,11 @@
 /**
- * AXIS QUANT - Native AI Quant Strategy Copilot Engine
- * Synthesizes quantitative investment theses into rigorous mathematical SDEs,
- * risk constraints, and production-grade Python backtesting code.
+ * AXIS QUANT - Strategy Archetype & Mathematical Formulation Engine
+ * Formulates quantitative investment theses into rigorous SDEs,
+ * risk budget bounds, and production-grade Python backtesting code.
  * Direct bridge to the InteractiveQuantBacktester.
  */
 
-class AIStrategyCopilot {
+class StrategyArchetypeEngine {
   constructor() {
     this.currentArchetype = 'vol_squeeze';
     this.archetypes = {
@@ -53,23 +53,19 @@ class VolatilitySqueezeBreakout(bt.Strategy):
         self.entry_price = None
 
     def next(self):
-        # 计算布林带相对带宽 (Bandwidth)
         bandwidth = (self.bb.lines.top[0] - self.bb.lines.bot[0]) / self.bb.lines.mid[0]
         
-        # 止损风控
         if self.position and self.entry_price:
             dd = (self.entry_price - self.data.close[0]) / self.entry_price
             if dd >= self.params.stop_loss_pct:
                 self.close()
                 return
 
-        # 处于挤压蓄能状态，且价格突破 20 日最高价
         if not self.position and bandwidth <= self.params.squeeze_thresh:
             if self.data.close[0] > self.highest_20[0]:
                 self.entry_price = self.data.close[0]
                 self.buy()
         
-        # 跌破快线均线离场
         elif self.position and self.data.close[0] < self.fast_ma[0]:
             self.close()
 `
@@ -110,10 +106,8 @@ class OrnsteinUhlenbeckPairsTrader:
         self.stop_loss_pct = stop_loss_pct
 
     def fit_spread(self, p1, p2):
-        # 估计协整对冲比率 Beta
         beta = np.cov(p1, p2)[0, 1] / np.var(p2)
         spread = p1 - beta * p2
-        # ADF 单位根检验
         adf_res = adfuller(spread)
         p_val = adf_res[1]
         return beta, spread, p_val
@@ -124,7 +118,6 @@ class OrnsteinUhlenbeckPairsTrader:
         z_score = (spread - roll_mean) / roll_std
         
         signals = np.zeros(len(spread))
-        # 超过 2 个标准差做空价差，低于 -2 做多价差
         signals[z_score >= self.z_entry] = -1.0
         signals[z_score <= -self.z_entry] = 1.0
         signals[np.abs(z_score) <= self.z_exit] = 0.0
@@ -219,13 +212,10 @@ class AdaptiveVolTargeting:
         self.stop_loss_pct = stop_loss_pct
 
     def compute_position_weight(self, returns_window):
-        # 计算 20 日年化已实现波动率
         realized_vol = np.std(returns_window) * np.sqrt(252)
         if realized_vol <= 0:
             return 1.0
-        # 逆波动率头寸分配
-        weight = min(self.max_leverage, self.target_vol / realized_vol)
-        return weight
+        return min(self.max_leverage, self.target_vol / realized_vol)
 `
       }
     };
@@ -234,8 +224,8 @@ class AdaptiveVolTargeting:
   }
 
   bindEvents() {
-    // 1. Archetype pills
-    const pills = document.querySelectorAll('.copilot-pill');
+    // 1. Archetype selection pills (supports both .pill-btn and .copilot-pill)
+    const pills = document.querySelectorAll('.pill-btn[data-archetype], .copilot-pill');
     pills.forEach(pill => {
       pill.addEventListener('click', () => {
         pills.forEach(p => p.classList.remove('active'));
@@ -248,93 +238,28 @@ class AdaptiveVolTargeting:
       });
     });
 
-    // 2. Synthesize button & Enter key
-    const btnRun = document.getElementById('btn-copilot-synthesize');
-    const inputField = document.getElementById('copilot-custom-input');
-
-    if (btnRun) {
-      btnRun.addEventListener('click', () => this.handleCustomSynthesis());
-    }
-    if (inputField) {
-      inputField.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          this.handleCustomSynthesis();
-        }
-      });
-    }
-
-    // 3. Inject into Backtester Button
+    // 2. Inject into Backtester Button
     const btnInject = document.getElementById('btn-copilot-inject');
     if (btnInject) {
       btnInject.addEventListener('click', () => this.injectIntoWorkbench());
     }
 
-    // 4. Copy Code Button
+    // 3. Copy Code Button
     const btnCopy = document.getElementById('btn-copilot-copy');
     if (btnCopy) {
       btnCopy.addEventListener('click', () => {
-        const code = document.getElementById('copilot-code-content').textContent;
-        navigator.clipboard.writeText(code).then(() => {
+        const codeEl = document.getElementById('copilot-code-content');
+        if (!codeEl) return;
+        navigator.clipboard.writeText(codeEl.textContent).then(() => {
           const original = btnCopy.textContent;
-          btnCopy.textContent = "已复制到剪贴板！";
-          setTimeout(() => { btnCopy.textContent = original; }, 2000);
+          btnCopy.textContent = "已复制！";
+          setTimeout(() => { btnCopy.textContent = original; }, 1800);
         });
       });
     }
 
     // Initial render
     this.renderOutput();
-  }
-
-  handleCustomSynthesis() {
-    const inputField = document.getElementById('copilot-custom-input');
-    const query = inputField ? inputField.value.trim() : '';
-    if (!query) {
-      this.renderOutput();
-      return;
-    }
-
-    // Visual feedback during synthesis
-    const deck = document.getElementById('copilot-output-deck');
-    if (deck) deck.style.opacity = '0.4';
-
-    setTimeout(() => {
-      this.synthesizeFromPrompt(query);
-      if (deck) deck.style.opacity = '1.0';
-    }, 220);
-  }
-
-  synthesizeFromPrompt(prompt) {
-    const p = prompt.toLowerCase();
-    let strat;
-
-    if (p.includes('套利') || p.includes('配对') || p.includes('均值') || p.includes('arb') || p.includes('pair')) {
-      strat = this.archetypes.stat_arb;
-    } else if (p.includes('体制') || p.includes('风控') || p.includes('波动') || p.includes('regime') || p.includes('vol')) {
-      strat = this.archetypes.regime_filter;
-    } else if (p.includes('挤压') || p.includes('通道') || p.includes('突破') || p.includes('squeeze') || p.includes('breakout')) {
-      strat = this.archetypes.vol_squeeze;
-    } else {
-      strat = this.archetypes.momentum_trend;
-    }
-
-    const curLang = localStorage.getItem('axis_quant_lang') || 'zh';
-    const titleEl = document.getElementById('copilot-output-title');
-    const mathBox = document.getElementById('copilot-math-box');
-    const notesEl = document.getElementById('copilot-math-notes');
-    const slEl = document.getElementById('copilot-val-sl');
-    const fastEl = document.getElementById('copilot-val-fast');
-    const slowEl = document.getElementById('copilot-val-slow');
-    const codeEl = document.getElementById('copilot-code-content');
-
-    if (titleEl) titleEl.textContent = `[AI 合成] ${prompt.slice(0, 32)}...`;
-    if (mathBox) mathBox.textContent = strat.mathFormula;
-    if (notesEl) notesEl.textContent = strat.mathNotes[curLang] || strat.mathNotes.zh;
-    if (slEl) slEl.textContent = `${strat.stopLoss.toFixed(1)}%`;
-    if (fastEl) fastEl.textContent = `${strat.fast} 日`;
-    if (slowEl) slowEl.textContent = `${strat.slow} 日`;
-    if (codeEl) codeEl.textContent = strat.code;
   }
 
   renderOutput() {
@@ -371,11 +296,10 @@ class AdaptiveVolTargeting:
     const wb = document.getElementById('workbench');
     if (wb) {
       wb.scrollIntoView({ behavior: 'smooth' });
-      // Temporary highlight
       const box = wb.querySelector('.interactive-widget-box');
       if (box) {
         box.style.transition = 'box-shadow 0.4s ease';
-        box.style.boxShadow = '0 0 0 3px #057A55';
+        box.style.boxShadow = '0 0 0 3px #10B981';
         setTimeout(() => {
           box.style.boxShadow = '';
         }, 1600);
@@ -383,3 +307,6 @@ class AdaptiveVolTargeting:
     }
   }
 }
+
+// Backward compatibility alias
+window.AIStrategyCopilot = StrategyArchetypeEngine;

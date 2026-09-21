@@ -1,7 +1,7 @@
 /**
  * AXIS QUANT - Main Application Controller
- * Handles dynamic canvas simulation, model initialization, open-source matrix,
- * tutorials, language toggling, and code copy.
+ * Initializes real-time L2 order book simulation, quantitative math models,
+ * strategy archetype explorer, open-source project matrix, tutorials, and i18n.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,18 +9,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedLang = localStorage.getItem('axis_quant_lang') || 'zh';
   initLanguage(savedLang);
 
-  // 2. Dynamic Stochastic Particle & Order Flow Simulation
-  window.quantFlow = new DynamicQuantFlow('hero-dynamic-canvas');
+  // 2. Real-Time Market Microstructure Simulator (L2 Limit Order Book & Tape)
+  if (typeof MicrostructureSimulator === 'function') {
+    window.orderbook = new MicrostructureSimulator();
+  }
 
-  // 3. Mathematical Models & AI Copilot Initialization
-  window.bsModel = new BlackScholesModel();
-  window.pairsModel = new PairsTradingModel();
-  window.backtester = new InteractiveQuantBacktester();
-  window.copilot = new AIStrategyCopilot();
+  // 3. Mathematical Models & Quantitative Strategy Archetypes
+  if (typeof BlackScholesModel === 'function') {
+    window.bsModel = new BlackScholesModel();
+  }
+  if (typeof PairsTradingModel === 'function') {
+    window.pairsModel = new PairsTradingModel();
+  }
+  if (typeof InteractiveQuantBacktester === 'function') {
+    window.backtester = new InteractiveQuantBacktester();
+  }
+  if (typeof StrategyArchetypeEngine === 'function') {
+    window.strategyEngine = new StrategyArchetypeEngine();
+  } else if (typeof AIStrategyCopilot === 'function') {
+    window.strategyEngine = new AIStrategyCopilot();
+  }
 
-  // 4. Open-Source Projects Matrix & Code Preview Modal
-  initOpenSourceProjects();
-  initCodeModal();
+  // 4. Curated Open-Source Projects Matrix & Code Modal
+  if (typeof initOpenSourceProjects === 'function') {
+    initOpenSourceProjects();
+  }
+  if (typeof initCodeModal === 'function') {
+    initCodeModal();
+  }
 
   // 5. Code Copy Buttons
   initCodeCopy();
@@ -42,7 +58,7 @@ function initLanguage(defaultLang) {
 }
 
 function setLanguage(lang) {
-  if (!I18N_DICTIONARY[lang]) return;
+  if (!I18N_DICTIONARY || !I18N_DICTIONARY[lang]) return;
   const dict = I18N_DICTIONARY[lang];
 
   localStorage.setItem('axis_quant_lang', lang);
@@ -65,10 +81,18 @@ function setLanguage(lang) {
   });
 
   // Re-render curves to match font & labels
-  if (window.bsModel) window.bsModel.renderCurve();
-  if (window.pairsModel) window.pairsModel.render();
-  if (window.backtester) window.backtester.render();
-  if (window.copilot) window.copilot.renderOutput();
+  if (window.bsModel && typeof window.bsModel.calculateAndRender === 'function') {
+    window.bsModel.calculateAndRender();
+  }
+  if (window.pairsModel && typeof window.pairsModel.render === 'function') {
+    window.pairsModel.render();
+  }
+  if (window.backtester && typeof window.backtester.render === 'function') {
+    window.backtester.render();
+  }
+  if (window.strategyEngine && typeof window.strategyEngine.renderOutput === 'function') {
+    window.strategyEngine.renderOutput();
+  }
 
   // Re-render projects in current language
   if (typeof initOpenSourceProjects === 'function') {
@@ -87,7 +111,7 @@ function initCodeCopy() {
 
     navigator.clipboard.writeText(codeEl.textContent).then(() => {
       const curLang = localStorage.getItem('axis_quant_lang') || 'zh';
-      const dict = I18N_DICTIONARY[curLang] || I18N_DICTIONARY.zh;
+      const dict = (I18N_DICTIONARY && I18N_DICTIONARY[curLang]) ? I18N_DICTIONARY[curLang] : (I18N_DICTIONARY ? I18N_DICTIONARY.zh : {});
       const originalText = copyBtn.textContent;
 
       copyBtn.textContent = dict.code_copied || "已复制到剪贴板！";
