@@ -1,6 +1,7 @@
 /**
  * AXIS QUANT - Main Application Controller
- * Handles model initialization, language toggling, checkout modal, and code copy
+ * Handles dynamic canvas simulation, model initialization, open-source matrix,
+ * tutorials, language toggling, and code copy.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,16 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedLang = localStorage.getItem('axis_quant_lang') || 'zh';
   initLanguage(savedLang);
 
-  // 2. Interactive Models Initialization
+  // 2. Dynamic Stochastic Particle & Order Flow Simulation
+  window.quantFlow = new DynamicQuantFlow('hero-dynamic-canvas');
+
+  // 3. Mathematical Models & AI Copilot Initialization
   window.bsModel = new BlackScholesModel();
   window.pairsModel = new PairsTradingModel();
   window.backtester = new InteractiveQuantBacktester();
   window.copilot = new AIStrategyCopilot();
 
-  // 3. Checkout Modal Wiring
-  initCheckout();
+  // 4. Open-Source Projects Matrix & Code Preview Modal
+  initOpenSourceProjects();
+  initCodeModal();
 
-  // 4. Code Copy Button
+  // 5. Code Copy Buttons
   initCodeCopy();
 });
 
@@ -64,92 +69,36 @@ function setLanguage(lang) {
   if (window.pairsModel) window.pairsModel.render();
   if (window.backtester) window.backtester.render();
   if (window.copilot) window.copilot.renderOutput();
-}
 
-// Checkout Modal
-function initCheckout() {
-  const modal = document.getElementById('checkout-modal');
-  const closeBtn = document.getElementById('modal-close-btn');
-  const payBtn = document.getElementById('modal-pay-btn');
-  const successCloseBtn = document.getElementById('modal-success-close-btn');
-  const planDisplay = document.getElementById('modal-plan-name');
-
-  const formView = document.getElementById('modal-form-view');
-  const successView = document.getElementById('modal-success-view');
-
-  const openCheckout = (tierName, price) => {
-    if (planDisplay) planDisplay.textContent = `${tierName} (${price})`;
-    if (formView) formView.style.display = 'block';
-    if (successView) successView.style.display = 'none';
-    if (modal) modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeCheckout = () => {
-    if (modal) modal.classList.remove('open');
-    document.body.style.overflow = '';
-  };
-
-  document.querySelectorAll('.btn-buy-tier').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tier = btn.getAttribute('data-tier') || 'Research Dispatch';
-      const price = btn.getAttribute('data-price') || '$29';
-      openCheckout(tier, price);
-    });
-  });
-
-  const headerBtn = document.getElementById('btn-header-access');
-  if (headerBtn) {
-    headerBtn.addEventListener('click', () => {
-      openCheckout('RESEARCH DISPATCH', '$29/月');
-    });
-  }
-
-  if (closeBtn) closeBtn.addEventListener('click', closeCheckout);
-  if (successCloseBtn) successCloseBtn.addEventListener('click', closeCheckout);
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeCheckout();
-    });
-  }
-
-  if (payBtn) {
-    payBtn.addEventListener('click', () => {
-      const email = document.getElementById('modal-email').value.trim();
-      if (!email || !email.includes('@')) {
-        alert('请输入有效的电子邮箱以接收许可证密钥与研报。');
-        return;
-      }
-
-      payBtn.disabled = true;
-      payBtn.textContent = '正在处理结算...';
-
-      setTimeout(() => {
-        payBtn.disabled = false;
-        payBtn.textContent = '确认结算并生成许可证';
-
-        const token = `AQ-KEY-2026-${Math.random().toString(36).substring(2, 8).toUpperCase()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
-        document.getElementById('modal-token-display').textContent = token;
-
-        if (formView) formView.style.display = 'none';
-        if (successView) successView.style.display = 'block';
-      }, 1000);
-    });
+  // Re-render projects in current language
+  if (typeof initOpenSourceProjects === 'function') {
+    initOpenSourceProjects();
   }
 }
 
-// Code Copy
+// Global Code Copy Button
 function initCodeCopy() {
   const copyBtn = document.getElementById('btn-copy-code');
-  const codeEl = document.getElementById('python-strategy-code');
+  if (!copyBtn) return;
 
-  if (copyBtn && codeEl) {
-    copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(codeEl.textContent).then(() => {
-        const orig = copyBtn.textContent;
-        copyBtn.textContent = '✓ 已复制';
-        setTimeout(() => copyBtn.textContent = orig, 2000);
-      });
+  copyBtn.addEventListener('click', () => {
+    const codeEl = document.getElementById('python-strategy-code');
+    if (!codeEl) return;
+
+    navigator.clipboard.writeText(codeEl.textContent).then(() => {
+      const curLang = localStorage.getItem('axis_quant_lang') || 'zh';
+      const dict = I18N_DICTIONARY[curLang] || I18N_DICTIONARY.zh;
+      const originalText = copyBtn.textContent;
+
+      copyBtn.textContent = dict.code_copied || "已复制到剪贴板！";
+      copyBtn.style.background = '#057A55';
+      copyBtn.style.color = '#FFFFFF';
+
+      setTimeout(() => {
+        copyBtn.textContent = originalText;
+        copyBtn.style.background = '';
+        copyBtn.style.color = '';
+      }, 2000);
     });
-  }
+  });
 }

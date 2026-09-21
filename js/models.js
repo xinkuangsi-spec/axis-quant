@@ -145,7 +145,7 @@ class BlackScholesModel {
     const getY = (val) => padT + (1 - val / maxCallVal) * plotH;
 
     // Grid
-    ctx.strokeStyle = '#E8E6DF';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
     ctx.lineWidth = 1;
     ctx.beginPath();
     for (let i = 0; i <= 4; i++) {
@@ -158,19 +158,19 @@ class BlackScholesModel {
     // Strike vertical dashed line
     const strikeX = getX(this.K);
     ctx.setLineDash([4, 4]);
-    ctx.strokeStyle = '#8C887B';
+    ctx.strokeStyle = 'rgba(56, 189, 248, 0.5)';
     ctx.beginPath();
     ctx.moveTo(strikeX, padT);
     ctx.lineTo(strikeX, h - padB);
     ctx.stroke();
     ctx.setLineDash([]);
 
-    ctx.fillStyle = '#8C887B';
+    ctx.fillStyle = '#38BDF8';
     ctx.font = '10px "JetBrains Mono", monospace';
-    ctx.fillText(`行权价 K=$${this.K}`, strikeX + 4, padT + 14);
+    ctx.fillText(`行权价 K=$${this.K}`, strikeX + 6, padT + 14);
 
     // Draw Intrinsic Value at Expiry: max(0, S - K)
-    ctx.strokeStyle = '#D1CEC7';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(getX(minS), getY(0));
@@ -179,8 +179,8 @@ class BlackScholesModel {
     ctx.stroke();
 
     // Draw Theoretical Call Option Price Curve
-    ctx.strokeStyle = '#0A2540'; // Oxford Navy
-    ctx.lineWidth = 2.2;
+    ctx.strokeStyle = '#38BDF8'; // Luminous Cyan
+    ctx.lineWidth = 2.4;
     ctx.beginPath();
     const steps = 60;
     for (let i = 0; i <= steps; i++) {
@@ -193,17 +193,24 @@ class BlackScholesModel {
     }
     ctx.stroke();
 
-    // Highlight Current Spot Point
-    const currentRes = this.calculate(this.S, this.K, this.T, this.r, this.sigma);
-    const currX = getX(this.S);
-    const currY = getY(currentRes.call);
+    // Draw Current Spot Marker
+    const currentSpotX = getX(this.S);
+    const currentCallVal = this.calculate(this.S, this.K, this.T, this.r, this.sigma).call;
+    const currentSpotY = getY(currentCallVal);
 
-    ctx.fillStyle = '#057A55'; // Emerald green
+    ctx.fillStyle = '#F59E0B';
     ctx.beginPath();
-    ctx.arc(currX, currY, 5, 0, Math.PI * 2);
+    ctx.arc(currentSpotX, currentSpotY, 5, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.fillStyle = '#1A1A1A';
+    // Halo
+    ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(currentSpotX, currentSpotY, 9, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.fillStyle = '#F8FAFC';
     ctx.font = 'bold 11px "JetBrains Mono", monospace';
     ctx.fillText(`现价 S=$${this.S} (C=$${currentRes.call.toFixed(2)})`, Math.min(currX + 8, w - 160), currY - 8);
   }
@@ -298,14 +305,14 @@ class PairsTradingModel {
     const lowerY = getY(-this.threshold);
 
     // Shaded Arbitrage Entry Zones
-    ctx.fillStyle = 'rgba(5, 122, 85, 0.08)'; // Green Long Spread zone
+    ctx.fillStyle = 'rgba(16, 185, 129, 0.15)'; // Green Long Spread zone
     ctx.fillRect(padL, lowerY, plotW, getY(-maxZ) - lowerY);
 
-    ctx.fillStyle = 'rgba(220, 38, 38, 0.08)'; // Red Short Spread zone
+    ctx.fillStyle = 'rgba(239, 68, 68, 0.15)'; // Red Short Spread zone
     ctx.fillRect(padL, padT, plotW, upperY - padT);
 
     // Threshold lines
-    ctx.strokeStyle = '#DC2626';
+    ctx.strokeStyle = '#EF4444';
     ctx.lineWidth = 1;
     ctx.setLineDash([4, 4]);
     ctx.beginPath();
@@ -313,14 +320,14 @@ class PairsTradingModel {
     ctx.lineTo(w - padR, upperY);
     ctx.stroke();
 
-    ctx.strokeStyle = '#057A55';
+    ctx.strokeStyle = '#10B981';
     ctx.beginPath();
     ctx.moveTo(padL, lowerY);
     ctx.lineTo(w - padR, lowerY);
     ctx.stroke();
 
     // Center Zero Mean Line
-    ctx.strokeStyle = '#8C887B';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
     ctx.lineWidth = 1;
     ctx.setLineDash([]);
     ctx.beginPath();
@@ -329,15 +336,15 @@ class PairsTradingModel {
     ctx.stroke();
 
     // Labels
-    ctx.fillStyle = '#8C887B';
+    ctx.fillStyle = '#94A3B8';
     ctx.font = '10px "JetBrains Mono", monospace';
     ctx.fillText(`+${this.threshold.toFixed(1)}σ 做空价差`, padL + 6, upperY - 4);
     ctx.fillText(`-${this.threshold.toFixed(1)}σ 做多价差`, padL + 6, lowerY + 12);
     ctx.fillText(`均值 (0σ)`, padL + 6, zeroY - 4);
 
     // Plot Z-Score Spread Line
-    ctx.strokeStyle = '#0A2540';
-    ctx.lineWidth = 1.8;
+    ctx.strokeStyle = '#38BDF8';
+    ctx.lineWidth = 2.0;
     ctx.beginPath();
     for (let i = 0; i < this.spreadData.length; i++) {
       const x = getX(i);
@@ -693,7 +700,7 @@ class InteractiveQuantBacktester {
     const getY = (p) => padT + (1 - (p - minP) / (maxP - minP)) * plotH;
 
     // Grid lines
-    ctx.strokeStyle = '#E8E6DF';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
     ctx.lineWidth = 1;
     for (let i = 0; i <= 4; i++) {
       const y = padT + (i / 4) * plotH;
@@ -703,15 +710,15 @@ class InteractiveQuantBacktester {
       ctx.lineTo(w - padR, y);
       ctx.stroke();
 
-      ctx.fillStyle = '#8C887B';
+      ctx.fillStyle = '#94A3B8';
       ctx.font = '10px "JetBrains Mono", monospace';
       ctx.textAlign = 'right';
       ctx.fillText(`$${val.toFixed(1)}`, padL - 8, y + 3);
     }
 
-    // Slow SMA Line (Warm Gold / Ocre)
-    ctx.strokeStyle = '#B45309';
-    ctx.lineWidth = 1.8;
+    // Slow SMA Line (Amber Gold)
+    ctx.strokeStyle = '#F59E0B';
+    ctx.lineWidth = 2.0;
     ctx.beginPath();
     let slowStarted = false;
     for (let i = 0; i < series.length; i++) {
@@ -724,9 +731,9 @@ class InteractiveQuantBacktester {
     }
     ctx.stroke();
 
-    // Fast SMA Line (Oxford Navy)
-    ctx.strokeStyle = '#0A2540';
-    ctx.lineWidth = 2;
+    // Fast SMA Line (Luminous Cyan)
+    ctx.strokeStyle = '#38BDF8';
+    ctx.lineWidth = 2.2;
     ctx.beginPath();
     let fastStarted = false;
     for (let i = 0; i < series.length; i++) {
@@ -740,7 +747,7 @@ class InteractiveQuantBacktester {
     ctx.stroke();
 
     // Price Curve
-    ctx.strokeStyle = '#2D3748';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
     ctx.lineWidth = 1.2;
     ctx.beginPath();
     for (let i = 0; i < series.length; i++) {
@@ -757,20 +764,14 @@ class InteractiveQuantBacktester {
       const y = getY(sig.price);
 
       if (sig.type === 'BUY') {
-        ctx.fillStyle = '#057A55';
+        ctx.fillStyle = '#10B981';
         ctx.beginPath();
-        ctx.moveTo(x, y + 5);
-        ctx.lineTo(x - 5, y + 14);
-        ctx.lineTo(x + 5, y + 14);
-        ctx.closePath();
+        ctx.arc(x, y, 4.5, 0, Math.PI * 2);
         ctx.fill();
       } else {
-        ctx.fillStyle = '#DC2626';
+        ctx.fillStyle = '#EF4444';
         ctx.beginPath();
-        ctx.moveTo(x, y - 5);
-        ctx.lineTo(x - 5, y - 14);
-        ctx.lineTo(x + 5, y - 14);
-        ctx.closePath();
+        ctx.arc(x, y, 4.5, 0, Math.PI * 2);
         ctx.fill();
       }
     });

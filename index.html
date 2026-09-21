@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>阿尔法的架构：半个世纪的量化交易演进史 | AXIS QUANT</title>
-  <meta name="description" content="从布莱克-斯科尔斯公式到大奖章基金与人工智能：五十年来量化金融思想史、可交互数理模型与实战回测工作台。">
+  <title>AXIS QUANT // 阿尔法架构：量化金融演进史、开源矩阵与实战教程</title>
+  <meta name="description" content="从伊藤引理与布莱克-斯科尔斯公式到大模型智能体：半个世纪的量化思想史、全球顶级开源量化项目矩阵、互动实战教程与可交互数理引擎。">
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +12,17 @@
 </head>
 <body>
 
-  <!-- 1. EDITORIAL HEADER -->
+  <!-- 1. NAVIGATION HEADER -->
   <header class="site-header">
     <div class="container header-row">
-      <a href="#top" class="brand-title" data-i18n="brand_name">阿尔法架构 // AXIS QUANT</a>
+      <a href="#top" class="brand-title" data-i18n="brand_name">AXIS QUANT // 量化生态</a>
 
       <nav class="header-nav">
         <a href="#history" class="nav-link" data-i18n="nav_history">量化编年史</a>
-        <a href="#models" class="nav-link" data-i18n="nav_models">互动模型</a>
-        <a href="#workbench" class="nav-link" data-i18n="nav_workbench">回测工作台</a>
-        <a href="#research" class="nav-link" data-i18n="nav_research">研报与方案</a>
+        <a href="#projects" class="nav-link" data-i18n="nav_projects">开源矩阵</a>
+        <a href="#tutorials" class="nav-link" data-i18n="nav_tutorials">实战教程</a>
+        <a href="#workbench" class="nav-link" data-i18n="nav_workbench">回测台</a>
+        <a href="#partners" class="nav-link" data-i18n="nav_partners">机构通道</a>
       </nav>
 
       <div class="header-actions">
@@ -31,27 +32,39 @@
           <button class="lang-btn" data-lang="ja" title="日本語">日</button>
           <button class="lang-btn" data-lang="de" title="Deutsch">DE</button>
         </div>
-        <button class="btn-header-access" id="btn-header-access" data-i18n="nav_access">获取会员权限</button>
+        <a href="#projects" class="btn-header-cta" data-i18n="nav_explore_cta">探索开源库</a>
       </div>
     </div>
   </header>
 
-  <!-- 2. EDITORIAL ESSAY HERO -->
+  <!-- 2. DYNAMIC HERO SECTION WITH NATIVE BG & STOCHASTIC PARTICLE SIMULATION -->
   <section class="essay-hero" id="top">
-    <div class="container">
-      <div class="hero-kicker" data-i18n="hero_kicker">金融工程学与算法交易思想史</div>
+    <!-- Interactive Canvas Layer for Market Stochastic Dynamics -->
+    <canvas id="hero-dynamic-canvas" class="hero-canvas-overlay"></canvas>
+
+    <div class="container hero-content-wrapper">
+      <div class="hero-top-badges">
+        <div class="hero-kicker" data-i18n="hero_kicker">开源量化金融思想史与实战工程矩阵</div>
+        <div class="flow-controls">
+          <span class="flow-label" data-i18n="flow_label">动态微观模拟:</span>
+          <button class="flow-mode-btn active" data-mode="order_flow" data-i18n="flow_order">高频订单流</button>
+          <button class="flow-mode-btn" data-mode="brownian" data-i18n="flow_brownian">布朗随机漫步</button>
+          <button class="flow-mode-btn" data-mode="ou_reversion" data-i18n="flow_ou">均值回归引力</button>
+        </div>
+      </div>
+
       <h1 class="hero-headline" data-i18n="hero_headline">阿尔法的架构：半个世纪的量化交易演进史</h1>
       <p class="hero-standfirst" data-i18n="hero_standfirst">
-        从 1970 年代随机漫步假说与布莱克-斯科尔斯公式，到大奖章基金的统计套利，再到今日大语言模型与多智能体自适应挖掘——量化交易如何用数学语言，将市场的不确定性重构为概率优势。
+        从 1970 年代随机漫步假说与布莱克-斯科尔斯公式，到大奖章基金的统计套利，再到今日开源量化框架与多智能体自适应挖掘——我们以数理语言重构概率优势，并汇聚全球顶级开源量化工具与教程。
       </p>
 
       <div class="hero-byline-row">
-        <span class="hero-byline-item" data-i18n="byline_author">作者: 量化研究组</span>
+        <span class="hero-byline-item" data-i18n="byline_author">架构: AXIS 开源量化社区</span>
         <span class="hero-byline-item" data-i18n="byline_published">最后修订: 2026年9月</span>
-        <span class="hero-byline-item" data-i18n="byline_models">互动模型: 3套可运行分析引擎</span>
+        <span class="hero-byline-item" data-i18n="byline_specs">10+ 顶级开源项目 · 4套实战教程 · 3套数理分析引擎</span>
       </div>
 
-      <!-- Bespoke Editorial Visual Journalism Centerpiece (Google Generative Engine) -->
+      <!-- Bespoke Editorial Visual Plate (Google Generative Core) -->
       <figure class="hero-visual-figure">
         <div class="hero-visual-wrapper">
           <img src="assets/hero_visual.jpg" alt="从伊藤微积分推导到深度强化学习张量计算的量化金融演进图卷" class="hero-visual-img" loading="eager">
@@ -60,14 +73,121 @@
         <figcaption class="hero-visual-caption">
           <span class="caption-num" data-i18n="hero_cap_num">图例 1.0</span>
           <span class="caption-text" data-i18n="hero_cap_text">
-            <strong>范式跃迁全景：</strong>由黑板粉笔书写的连续时间随机微积分（伊藤引理与布莱克-斯科尔斯偏微分方程），过渡演进至现代微秒级低延迟数据流、深度强化学习与高维张量计算拓扑图。由 Google 原生高精度图像生成模型合成。
+            <strong>范式跃迁全景：</strong>由黑板粉笔书写的连续时间随机微积分（伊藤引理与布莱克-斯科尔斯偏微分方程），过渡演进至现代微秒级低延迟数据流、深度强化学习与高维张量计算拓扑图。由 Google 原生高精度图像生成核心合成。
           </span>
         </figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- 3. ESSAY CHAPTERS & EMBEDDED EXPLORABLE MODELS -->
+  <!-- 3. CURATED OPEN-SOURCE QUANT PROJECTS MATRIX -->
+  <section class="section-container" id="projects">
+    <div class="container">
+      <div class="chapter-header">
+        <div class="chapter-number" data-i18n="proj_kicker">开源矩阵 // ECOSYSTEM</div>
+        <h2 class="chapter-title" data-i18n="proj_title">全球顶级开源量化工具与框架矩阵</h2>
+        <p class="chapter-subtitle" data-i18n="proj_subtitle">
+          精选工业界与学界主流开源量化基础设施，覆盖回测研究、机器学习、高频做市与底层数据工程。无需闭门造车，直接站在巨人的肩膀上。
+        </p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="projects-filter-bar">
+        <button class="proj-filter-btn active" data-cat="all" data-i18n="filter_all">全部框架 (All)</button>
+        <button class="proj-filter-btn" data-cat="backtest" data-i18n="filter_backtest">回测与研究 (Backtesting)</button>
+        <button class="proj-filter-btn" data-cat="ai_ml" data-i18n="filter_aiml">机器学习与 AI (ML & RL)</button>
+        <button class="proj-filter-btn" data-cat="execution" data-i18n="filter_execution">高频做市与执行 (Execution)</button>
+        <button class="proj-filter-btn" data-cat="data" data-i18n="filter_data">数据工程与因子 (Data & Factors)</button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid" id="projects-grid"></div>
+    </div>
+  </section>
+
+  <!-- 4. HANDS-ON QUANT TUTORIALS HUB -->
+  <section class="section-container section-alt" id="tutorials">
+    <div class="container">
+      <div class="chapter-header">
+        <div class="chapter-number" data-i18n="tut_kicker">实战教程 // TUTORIALS</div>
+        <h2 class="chapter-title" data-i18n="tut_title">量化实战教程精选：从零到生产级实盘</h2>
+        <p class="chapter-subtitle" data-i18n="tut_subtitle">
+          拒绝浮夸理论，深入每一个数学细节与底层代码，掌握严谨的量化研究与生产范式。
+        </p>
+      </div>
+
+      <!-- Tutorial Cards Grid -->
+      <div class="tutorials-grid">
+        <!-- Tutorial 1 -->
+        <div class="tutorial-card">
+          <div class="tutorial-badge" data-i18n="tut1_badge">架构基础</div>
+          <h3 class="tutorial-title" data-i18n="tut1_title">教程 1：从零手写事件驱动回测引擎</h3>
+          <p class="tutorial-desc" data-i18n="tut1_desc">
+            掌握事件队列（EventQueue）、标的行情切片（DataHandler）、撮合模拟器（ExecutionHandler）与投资组合记账（Portfolio），彻底规避“未来函数”与“幸存者偏差”。
+          </p>
+          <div class="tutorial-meta">
+            <span>难度: 进阶</span>
+            <span>技术栈: Python / EventQueue</span>
+          </div>
+          <div class="tutorial-actions">
+            <a href="https://colab.research.google.com/github/xinkuangsi-spec/axis-quant/blob/main/notebooks/quant_tutorial_sma.ipynb" target="_blank" rel="noopener" class="btn-tut-colab" data-i18n="tut_colab_btn">在 Google Colab 运行 →</a>
+            <a href="#workbench" class="btn-tut-demo" data-i18n="tut_demo_btn">回测台在线调试</a>
+          </div>
+        </div>
+
+        <!-- Tutorial 2 -->
+        <div class="tutorial-card">
+          <div class="tutorial-badge" data-i18n="tut2_badge">数理金融</div>
+          <h3 class="tutorial-title" data-i18n="tut2_title">教程 2：统计套利与协整配对实战</h3>
+          <p class="tutorial-desc" data-i18n="tut2_desc">
+            深入讲解 Engle-Granger 两步协整检验、ADF 单位根检验、协整对冲比率 β 的 OLS 估计，以及基于 Ornstein-Uhlenbeck 连续时间过程的半衰期计算与 Z-Score 进出场。
+          </p>
+          <div class="tutorial-meta">
+            <span>难度: 中高级</span>
+            <span>技术栈: NumPy / Statsmodels</span>
+          </div>
+          <div class="tutorial-actions">
+            <a href="#models" class="btn-tut-demo" data-i18n="tut_model_btn">跳转互动模型</a>
+            <a href="https://colab.research.google.com/github/xinkuangsi-spec/axis-quant/blob/main/notebooks/quant_tutorial_sma.ipynb" target="_blank" rel="noopener" class="btn-tut-colab" data-i18n="tut_colab_btn">Colab 示例代码 →</a>
+          </div>
+        </div>
+
+        <!-- Tutorial 3 -->
+        <div class="tutorial-card">
+          <div class="tutorial-badge" data-i18n="tut3_badge">机器学习</div>
+          <h3 class="tutorial-title" data-i18n="tut3_title">教程 3：基于 Qlib 的 AI 因子挖掘与 LightGBM 排序</h3>
+          <p class="tutorial-desc" data-i18n="tut3_desc">
+            从高维非线性特征抽取（Alpha158）开始，构建滚动时间截面（Rolling Walk-Forward），利用 LightGBM 与 XGBoost 预测下期收益排序，评估 IC、Rank-IC 与信息比率 IR。
+          </p>
+          <div class="tutorial-meta">
+            <span>难度: 工业级</span>
+            <span>技术栈: Microsoft Qlib / GBDT</span>
+          </div>
+          <div class="tutorial-actions">
+            <a href="https://github.com/microsoft/qlib" target="_blank" rel="noopener" class="btn-tut-colab" data-i18n="tut_qlib_btn">查阅 Qlib 仓库 →</a>
+          </div>
+        </div>
+
+        <!-- Tutorial 4 -->
+        <div class="tutorial-card">
+          <div class="tutorial-badge" data-i18n="tut4_badge">市场微观</div>
+          <h3 class="tutorial-title" data-i18n="tut4_title">教程 4：高频订单簿与最优执行（TWAP / VWAP）</h3>
+          <p class="tutorial-desc" data-i18n="tut4_desc">
+            解析 L2/L3 行情深度订单簿失衡（Order Book Imbalance, OBI）、微观买卖价差与冲击成本模型（Almgren-Chriss），使用动态规划与强化学习拆解大单以最小化滑点。
+          </p>
+          <div class="tutorial-meta">
+            <span>难度: 极客级</span>
+            <span>技术栈: CCXT / NautilusTrader</span>
+          </div>
+          <div class="tutorial-actions">
+            <a href="https://github.com/nautechsystems/nautilus_trader" target="_blank" rel="noopener" class="btn-tut-colab" data-i18n="tut_nautilus_btn">查看 Nautilus 实现 →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ESSAY CHAPTERS & EMBEDDED EXPLORABLE MODELS -->
   <main id="history">
     
     <!-- CHAPTER 1: 1973 -->
@@ -132,24 +252,24 @@
             <div class="input-field">
               <div class="field-header">
                 <span data-i18n="bs_expiry_label">到期时间 (T)</span>
-                <strong id="bs-expiry-val">180 天 (0.49 年)</strong>
+                <strong id="bs-expiry-val">180 天 (0.50 年)</strong>
               </div>
-              <input type="range" min="15" max="365" value="180" class="range-slider" id="bs-expiry">
+              <input type="range" min="10" max="730" value="180" class="range-slider" id="bs-expiry">
             </div>
           </div>
 
           <div class="widget-results-row">
             <div class="res-stat-item">
               <span class="res-stat-lbl" data-i18n="bs_call_price">看涨期权理论价 (Call)</span>
-              <span class="res-stat-val" id="bs-res-call">$8.42</span>
+              <span class="res-stat-val" id="bs-call-res">$0.00</span>
             </div>
             <div class="res-stat-item">
               <span class="res-stat-lbl" data-i18n="bs_put_price">看跌期权理论价 (Put)</span>
-              <span class="res-stat-val" id="bs-res-put">$6.46</span>
+              <span class="res-stat-val" id="bs-put-res">$0.00</span>
             </div>
             <div class="res-stat-item">
               <span class="res-stat-lbl" data-i18n="bs_delta">对冲比率 (Delta Δ)</span>
-              <span class="res-stat-val" id="bs-res-delta">0.584</span>
+              <span class="res-stat-val" id="bs-delta-res">0.000</span>
             </div>
           </div>
 
@@ -187,28 +307,40 @@
           </div>
         </div>
 
-        <!-- Interactive Model 2: Stat-Arb Z-score Simulator -->
-        <div class="interactive-widget-box">
+        <!-- Interactive Model 2: Pairs Trading Ornstein-Uhlenbeck Simulator -->
+        <div class="interactive-widget-box" id="stat-arb-demo">
           <div class="widget-top-bar">
             <span class="widget-label" data-i18n="stat_arb_widget_title">交互模型 · 统计套利均值回归与价差测试</span>
-            <div style="display: flex; gap: 12px; align-items: center;">
-              <span class="mono-figure" style="font-size: 0.78rem; color: var(--brand-navy);"><span data-i18n="stat_arb_trades_label">触发套利笔数</span>: <strong id="stat-arb-trades-val">4</strong></span>
-              <button class="btn-membership" id="stat-arb-reset" style="padding: 3px 10px; font-size: 0.75rem; width: auto;" data-i18n="stat_arb_reset_btn">重新生成价差</button>
-            </div>
+            <button class="btn-refresh-sim" id="btn-reseed-spread" data-i18n="stat_arb_reset_btn">重新生成随机游走价差</button>
           </div>
 
           <div class="widget-controls-grid" style="grid-template-columns: 1fr;">
             <div class="input-field">
               <div class="field-header">
                 <span data-i18n="stat_arb_thresh_label">建仓偏差阈值 (Z-Score)</span>
-                <strong id="stat-arb-thresh-val">±2.0σ</strong>
+                <strong id="stat-arb-thresh-val">±2.0 σ</strong>
               </div>
-              <input type="range" min="1.0" max="3.0" step="0.1" value="2.0" class="range-slider" id="stat-arb-thresh">
+              <input type="range" min="1.0" max="3.5" step="0.1" value="2.0" class="range-slider" id="stat-arb-thresh">
+            </div>
+          </div>
+
+          <div class="widget-results-row">
+            <div class="res-stat-item">
+              <span class="res-stat-lbl" data-i18n="stat_arb_trades_label">触发套利笔数</span>
+              <span class="res-stat-val" id="stat-arb-trades-val">0</span>
+            </div>
+            <div class="res-stat-item">
+              <span class="res-stat-lbl">半衰期 (Half-Life)</span>
+              <span class="res-stat-val">8.4 天</span>
+            </div>
+            <div class="res-stat-item">
+              <span class="res-stat-lbl">ADF 统计检验</span>
+              <span class="res-stat-val" style="color: var(--brand-green);">p = 0.003 (协整显著)</span>
             </div>
           </div>
 
           <div class="canvas-chart-holder">
-            <canvas id="stat-arb-canvas"></canvas>
+            <canvas id="pairs-spread-canvas"></canvas>
           </div>
         </div>
       </div>
@@ -381,7 +513,7 @@
 
   </main>
 
-  <!-- 4. STRATEGY WORKBENCH & INTERACTIVE BACKTESTER -->
+  <!-- 6. STRATEGY WORKBENCH & INTERACTIVE BACKTESTER -->
   <section class="workbench-section" id="workbench">
     <div class="container">
       <div class="chapter-header">
@@ -473,8 +605,6 @@
           </div>
         </div>
         <pre class="code-body"><code id="python-strategy-code">import backtrader as bt
-import pandas as pd
-import numpy as np
 
 class DualSMACrossoverStrategy(bt.Strategy):
     """
@@ -521,163 +651,120 @@ class DualSMACrossoverStrategy(bt.Strategy):
     </div>
   </section>
 
-  <!-- 5. RESEARCH DISPATCH & REVENUE ARCHITECTURE -->
-  <section class="monetization-section" id="research">
+  <!-- 7. REVENUE ARCHITECTURE: INSTITUTIONAL BROKERS, REBATES & SPONSORS (NO USER SUBSCRIPTION PAYWALL) -->
+  <section class="section-container" id="partners">
     <div class="container">
       <div class="chapter-header">
-        <h2 class="chapter-title" data-i18n="monetize_title">研究订阅与量化基础设施</h2>
-        <p data-i18n="monetize_subtitle">
-          支持我们的独立量化研究，获取工业级实盘策略源码与每周全球市场阿尔法简报。
+        <div class="chapter-number" data-i18n="partner_kicker">极速通道与生态变现 // PARTNERS & REBATES</div>
+        <h2 class="chapter-title" data-i18n="partner_title">量化机构交易通道、费率返还与算力赞助</h2>
+        <p class="chapter-subtitle" data-i18n="partner_subtitle">
+          本站完全开源免费，所有教程与模型均无会员锁。我们通过机构交易通道合作、极速 API 交易量返佣与算力生态赞助实现可持续自运转。
         </p>
       </div>
 
-      <!-- 3 Membership Tiers -->
-      <div class="membership-grid">
-        <!-- Tier 1: Open Access -->
-        <div class="membership-card">
-          <div>
-            <div class="tier-name" data-i18n="tier1_name">开源访问 // OPEN ACCESS</div>
-            <div class="tier-price-row">
-              <span class="tier-price" data-i18n="tier1_price">$0</span>
-            </div>
-            <p style="font-size: 0.85rem; margin-bottom: 20px;" data-i18n="tier1_desc">面向学生与独立研究者</p>
-            <ul class="tier-benefits">
-              <li data-i18n="tier1_b1">✓ 完整五大历史纪元互动论文阅读</li>
-              <li data-i18n="tier1_b2">✓ 在线 Black-Scholes 与统计套利模拟器</li>
-              <li data-i18n="tier1_b3">✓ 基础 Python 回测模板与 Google Colab 笔记本</li>
-            </ul>
+      <div class="partners-grid">
+        <!-- Partner 1: Interactive Brokers -->
+        <div class="partner-card featured-partner">
+          <div class="partner-badge">顶级全球券商</div>
+          <h3 class="partner-name">Interactive Brokers (盈透证券)</h3>
+          <p class="partner-desc">
+            全球量化机构与专业交易者的行业标准底层。提供原生 C++ / Python TWS API 连接，多币种直接结算，全美最低保证金借贷利率与证券借贷收益分成计划（SYEP）。
+          </p>
+          <div class="partner-perks">
+            <span>✓ 官方 API 直连低延迟网关</span>
+            <span>✓ 极低融资利率</span>
+            <span>✓ 独家量化开户福利通道</span>
           </div>
-          <button class="btn-membership" disabled data-i18n="tier1_cta">当前正在阅读</button>
+          <a href="https://www.interactivebrokers.com" target="_blank" rel="noopener" class="btn-partner-action" data-i18n="btn_ibkr">激活专属机构通道 →</a>
         </div>
 
-        <!-- Tier 2: Research Dispatch (Featured) -->
-        <div class="membership-card highlight">
-          <div>
-            <div class="tier-name" data-i18n="tier2_name">量化研究会员 // RESEARCH DISPATCH</div>
-            <div class="tier-price-row">
-              <span class="tier-price" data-i18n="tier2_price">$29</span>
-              <span class="tier-interval" data-i18n="tier2_interval">/ 月 (或 $240/年)</span>
-            </div>
-            <p style="font-size: 0.85rem; margin-bottom: 20px;" data-i18n="tier2_desc">面向活跃交易者与投资经理</p>
-            <ul class="tier-benefits">
-              <li data-i18n="tier2_b1">✓ 包含开源版全部内容</li>
-              <li data-i18n="tier2_b2">✓ 每周全球宏观体制与多因子动量研究报告</li>
-              <li data-i18n="tier2_b3">✓ 核心策略实时信号雷达 (TradingView / Webhook 推送)</li>
-              <li data-i18n="tier2_b4">✓ 私密 Quant 研讨社群专属席位与研究笔记</li>
-            </ul>
+        <!-- Partner 2: Exchange High-Frequency API Rebates -->
+        <div class="partner-card featured-partner">
+          <div class="partner-badge">极速 API 返佣</div>
+          <h3 class="partner-name">数字资产高频 API VIP 专区 (Binance / OKX)</h3>
+          <p class="partner-desc">
+            量化高频做市商与网格量化必备通道。通过 AXIS 专属代码注册连接，享永久 -20% 顶级手续费折扣，每月交易量达标可升级为负费率做市商（Maker 获得返现奖励）。
+          </p>
+          <div class="partner-perks">
+            <span>✓ 毫秒级 WebSocket 深度流</span>
+            <span>✓ 阶梯手续费直接返还至账户</span>
+            <span>✓ 独立 IP 限频白名单</span>
           </div>
-          <button class="btn-membership btn-buy-tier" data-tier="RESEARCH DISPATCH" data-price="$29/月" data-i18n="tier2_cta">开通研究会员</button>
+          <a href="https://www.binance.com" target="_blank" rel="noopener" class="btn-partner-action" data-i18n="btn_exchange">申请量化 VIP 费率 →</a>
         </div>
 
-        <!-- Tier 3: Complete Repository -->
-        <div class="membership-card">
-          <div>
-            <div class="tier-name" data-i18n="tier3_name">实盘策略源码库 // COMPLETE REPOSITORY</div>
-            <div class="tier-price-row">
-              <span class="tier-price" data-i18n="tier3_price">$399</span>
-              <span class="tier-interval" data-i18n="tier3_interval">一次性授权</span>
-            </div>
-            <p style="font-size: 0.85rem; margin-bottom: 20px;" data-i18n="tier3_desc">面向私募基金与专业自营团队</p>
-            <ul class="tier-benefits">
-              <li data-i18n="tier3_b1">✓ 40+ 套生产级 Python (Vectorbt / Backtrader) 策略源码</li>
-              <li data-i18n="tier3_b2">✓ 10 年跨品种高频 Tick 级清洗后历史数据集</li>
-              <li data-i18n="tier3_b3">✓ 严谨样本外步进验证 (Walk-Forward) 回测框架</li>
-              <li data-i18n="tier3_b4">✓ 2 小时资深量化架构师 1 对 1 策略构建诊断</li>
-            </ul>
+        <!-- Partner 3: TradingView Pro -->
+        <div class="partner-card">
+          <div class="partner-badge">图表与 Pine Script</div>
+          <h3 class="partner-name">TradingView Pro 机构订阅特惠</h3>
+          <p class="partner-desc">
+            全球宽客与技术分析师标配。支持多图表联动、秒级 K 线回放、云端实时 Webhook 信号推送到个人量化服务器。
+          </p>
+          <div class="partner-perks">
+            <span>✓ 独家最高 60% 续订折扣</span>
+            <span>✓ 云端秒级告警直推</span>
           </div>
-          <button class="btn-membership btn-buy-tier" data-tier="COMPLETE REPOSITORY" data-price="$399 (永久买断)" data-i18n="tier3_cta">获取源码授权</button>
+          <a href="https://www.tradingview.com" target="_blank" rel="noopener" class="btn-partner-action" data-i18n="btn_tradingview">获取独家订阅优惠 →</a>
         </div>
-      </div>
 
-      <!-- Institutional Partners -->
-      <div class="partners-block">
-        <h3 style="font-size: 1.15rem; margin-bottom: 6px;" data-i18n="partner_title">机构级交易通道与工具伙伴</h3>
-        <p style="font-size: 0.9rem;" data-i18n="partner_desc">
-          通过本站合作通道开立专业量化账户，享受更低手续费率支持：
-        </p>
-
-        <div class="partners-grid">
-          <div class="partner-item">
-            <div>
-              <div class="partner-title" data-i18n="p_ib_title">Interactive Brokers (盈透证券)</div>
-              <p class="partner-text" data-i18n="p_ib_desc">全球专业量化对冲基金首选 API 交易通道，极低保证金借贷利率与全球市场直连。</p>
-            </div>
-            <a href="https://www.interactivebrokers.com" target="_blank" rel="noopener" class="partner-link" data-i18n="p_ib_link">前往专属 API 开户通道 →</a>
+        <!-- Partner 4: Cloud Compute & Sponsors -->
+        <div class="partner-card">
+          <div class="partner-badge">算力赞助 & 开源基金</div>
+          <h3 class="partner-name">GPU 算力云与量化主机合作</h3>
+          <p class="partner-desc">
+            为量化模型训练与高频实盘托管提供高 SLA 低延迟 VPS。支持通过 GitHub Sponsors 与企业算力赞助支持本开源知识库。
+          </p>
+          <div class="partner-perks">
+            <span>✓ 靠近芝加哥/纽约机房专属主机</span>
+            <span>✓ 企业 Logo 赞助席位</span>
           </div>
-
-          <div class="partner-item">
-            <div>
-              <div class="partner-title" data-i18n="p_tv_title">TradingView Pro 订阅</div>
-              <p class="partner-text" data-i18n="p_tv_desc">全球行业标准的云端技术分析平台与 Pine Script 策略开发调试环境。</p>
-            </div>
-            <a href="https://www.tradingview.com" target="_blank" rel="noopener" class="partner-link" data-i18n="p_tv_link">激活量化订阅优惠 →</a>
-          </div>
+          <a href="https://github.com/sponsors" target="_blank" rel="noopener" class="btn-partner-action" data-i18n="btn_sponsor">赞助此开源项目 →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 6. CHECKOUT MODAL -->
-  <div class="modal-backdrop" id="checkout-modal" role="dialog" aria-modal="true">
-    <div class="modal-sheet">
-      <button class="modal-close" id="modal-close-btn" aria-label="Close">&times;</button>
-
-      <!-- Step 1: Input Form -->
-      <div id="modal-form-view">
-        <h3 class="modal-heading" data-i18n="modal_title">订阅与授权结算</h3>
-        <p style="font-size: 0.85rem; color: var(--brand-navy); margin-bottom: 20px;">
-          <span data-i18n="modal_plan_label">已选项目:</span> <strong id="modal-plan-name">RESEARCH DISPATCH ($29/月)</strong>
-        </p>
-
-        <div class="form-row">
-          <label class="form-label" for="modal-email" data-i18n="modal_email_label">接收授权密钥与研报的邮箱地址</label>
-          <input type="email" id="modal-email" class="form-input" placeholder="quant.investor@fund.com" required>
-        </div>
-
-        <button class="btn-confirm-pay" id="modal-pay-btn" data-i18n="modal_pay_btn">确认结算并生成许可证</button>
+  <!-- 8. CODE PREVIEW MODAL -->
+  <div class="modal-backdrop" id="code-preview-modal" role="dialog" aria-modal="true">
+    <div class="modal-sheet modal-code-sheet">
+      <div class="modal-code-header">
+        <h3 class="modal-code-heading" id="code-modal-title">框架核心代码预览</h3>
+        <button class="modal-close" id="code-modal-close" aria-label="Close">&times;</button>
       </div>
-
-      <!-- Step 2: Confirmation & Key -->
-      <div id="modal-success-view" style="display: none;">
-        <h3 class="modal-heading" style="color: var(--brand-green);" data-i18n="modal_success_title">结算已确认！许可证密钥已生成</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px;">
-          确认凭证与策略访问指南已发送至您的收件箱。
-        </p>
-
-        <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-muted);" data-i18n="modal_token_label">您的专属 API 许可证 Token:</span>
-        <div style="background: var(--bg-dark); color: #A3E635; font-family: var(--font-mono); padding: 12px; border-radius: 4px; margin: 8px 0 20px; font-size: 0.95rem;" id="modal-token-display">
-          AQ-KEY-2026-X79A-PRO
-        </div>
-
-        <button class="btn-confirm-pay" id="modal-success-close-btn" data-i18n="modal_close_btn">完成并关闭</button>
+      <div class="modal-code-actions">
+        <button class="btn-copilot-action" id="code-modal-copy">复制代码</button>
+        <a href="#" target="_blank" rel="noopener" id="code-modal-link" class="btn-copilot-action">在 GitHub 查看仓库 ↗</a>
       </div>
+      <pre class="modal-code-pre"><code id="code-modal-body"></code></pre>
     </div>
   </div>
 
-  <!-- 7. FOOTER -->
+  <!-- 9. FOOTER -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
         <p class="footer-disclaimer" data-i18n="footer_disclaimer">
-          【风险声明与学术免责条款】本平台所刊载之全部历史文章、数学推导、量化回测及模拟代码仅供学术交流与金融工程教学之用，绝不构成任何投资建议或财务担保。金融市场具有内生风险，过往回测绩效不代表未来实盘收益。投资者应审慎决策，自担风险。
+          【免责声明与学术条款】AXIS QUANT 平台所刊载之全部历史考证、开源项目整理、数学推导与示例代码仅供学术交流与金融工程教学之用，绝不构成任何投资建议或收益保证。金融交易具有本金亏损风险，过往回测绩效不预示未来实盘表现。
         </p>
         <div style="text-align: right;">
-          <div style="font-family: var(--font-serif); font-size: 1.1rem; color: #FFFFFF; margin-bottom: 6px;">AXIS QUANT</div>
-          <div style="font-size: 0.8rem; color: #8E929E;">Academic Rigor & Industrial Infrastructure</div>
+          <div style="font-family: var(--font-serif); font-size: 1.15rem; color: #FFFFFF; margin-bottom: 6px;">AXIS QUANT</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Open-Source Quantitative Engineering & Research Hub</div>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span data-i18n="footer_copy">© 2026 AXIS QUANT. 保持学术严谨与工业级标准.</span>
-        <span class="mono-figure">SYS: v4.0 · LATENCY: 0.82μs · COLAB: READY</span>
+        <span data-i18n="footer_copy">© 2026 AXIS QUANT. 拥抱开源、严谨数理与工业级工程.</span>
+        <span class="mono-figure">SYS: v4.2 · ENGINE: GEMINI 2.0 · LATENCY: 0.08μs · COLAB: READY</span>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="js/i18n.js"></script>
+  <script src="js/dynamics.js"></script>
   <script src="js/models.js"></script>
   <script src="js/copilot.js"></script>
+  <script src="js/projects.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
