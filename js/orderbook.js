@@ -2,6 +2,7 @@
  * AXIS QUANT - High-Frequency Limit Order Book (L2) & Microstructure Simulation
  * Simulates real-time bids/asks queue, trade tape, order book imbalance (OBI),
  * and liquidity replenishment after market order impacts.
+ * Engineered for institutional financial terminal aesthetics.
  */
 
 class MicrostructureSimulator {
@@ -41,6 +42,7 @@ class MicrostructureSimulator {
     this.tradesList = document.getElementById('ob-trades-list');
     this.midPriceEl = document.getElementById('ob-mid-price');
     this.spreadEl = document.getElementById('ob-spread-val');
+    this.spreadDisplayEl = document.getElementById('ob-spread-display');
     this.obiValEl = document.getElementById('ob-obi-val');
     this.obiBarEl = document.getElementById('ob-obi-bar');
 
@@ -81,7 +83,8 @@ class MicrostructureSimulator {
           time: timeStr,
           side: 'BUY',
           price: topAsk.price,
-          qty: fillQty
+          qty: fillQty,
+          isNew: true
         });
 
         if (topAsk.size <= 0) {
@@ -105,7 +108,8 @@ class MicrostructureSimulator {
           time: timeStr,
           side: 'SELL',
           price: topBid.price,
-          qty: fillQty
+          qty: fillQty,
+          isNew: true
         });
 
         if (topBid.size <= 0) {
@@ -144,10 +148,10 @@ class MicrostructureSimulator {
       const timeStr = now.toTimeString().split(' ')[0] + '.' + String(now.getMilliseconds()).padStart(3, '0');
 
       if (isBuy && this.asks[0]) {
-        this.trades.unshift({ time: timeStr, side: 'BUY', price: this.asks[0].price, qty: fillQty });
+        this.trades.unshift({ time: timeStr, side: 'BUY', price: this.asks[0].price, qty: fillQty, isNew: true });
         this.asks[0].size = Math.max(30, this.asks[0].size - fillQty);
       } else if (!isBuy && this.bids[0]) {
-        this.trades.unshift({ time: timeStr, side: 'SELL', price: this.bids[0].price, qty: fillQty });
+        this.trades.unshift({ time: timeStr, side: 'SELL', price: this.bids[0].price, qty: fillQty, isNew: true });
         this.bids[0].size = Math.max(30, this.bids[0].size - fillQty);
       }
 
@@ -160,7 +164,7 @@ class MicrostructureSimulator {
   }
 
   startStreaming() {
-    setInterval(() => this.tickSimulation(), 350);
+    setInterval(() => this.tickSimulation(), 380);
   }
 
   render() {
@@ -173,34 +177,49 @@ class MicrostructureSimulator {
     // Order Book Imbalance (OBI): (BidVol - AskVol) / (BidVol + AskVol)
     const obi = (totalBidVol - totalAskVol) / (totalBidVol + totalAskVol || 1);
 
-    // Update Top Stats
+    // Top Stats Calculation
     const bestAsk = this.asks[0] ? this.asks[0].price : this.midPrice;
     const bestBid = this.bids[0] ? this.bids[0].price : this.midPrice;
-    const spread = (bestAsk - bestBid);
+    const spread = Math.max(0, bestAsk - bestBid);
+    const spreadBps = ((spread / this.midPrice) * 10000).toFixed(1);
 
     if (this.midPriceEl) this.midPriceEl.textContent = `$${this.midPrice.toFixed(2)}`;
-    if (this.spreadEl) this.spreadEl.textContent = `$${Math.max(0, spread).toFixed(2)}`;
+    if (this.spreadEl) this.spreadEl.textContent = `$${spread.toFixed(2)}`;
+    if (this.spreadDisplayEl) {
+      this.spreadDisplayEl.textContent = `$${spread.toFixed(2)} (${spreadBps} bps)`;
+    }
 
     if (this.obiValEl) {
       this.obiValEl.textContent = `${obi >= 0 ? '+' : ''}${(obi * 100).toFixed(1)}%`;
-      this.obiValEl.style.color = obi >= 0 ? '#10B981' : '#EF4444';
+      this.obiValEl.style.color = obi >= 0 ? '#10B981' : '#F43F5E';
     }
+
+    // Bidirectional Imbalance Gauge
     if (this.obiBarEl) {
-      // 50% is neutral
-      const pct = Math.max(5, Math.min(95, 50 + obi * 50));
-      this.obiBarEl.style.width = `${pct}%`;
-      this.obiBarEl.style.background = obi >= 0 ? '#10B981' : '#EF4444';
+      const absObi = Math.min(1, Math.abs(obi));
+      const widthPct = (absObi * 50); // 0% to 50%
+      if (obi >= 0) {
+        this.obiBarEl.style.left = '50%';
+        this.obiBarEl.style.right = 'auto';
+        this.obiBarEl.style.width = `${Math.max(2, widthPct)}%`;
+        this.obiBarEl.style.background = 'linear-gradient(90deg, #10B981, #34D399)';
+      } else {
+        this.obiBarEl.style.left = 'auto';
+        this.obiBarEl.style.right = '50%';
+        this.obiBarEl.style.width = `${Math.max(2, widthPct)}%`;
+        this.obiBarEl.style.background = 'linear-gradient(90deg, #F43F5E, #FB7185)';
+      }
     }
 
     // Render Asks (Reverse so highest ask is at top)
     const reversedAsks = [...this.asks].reverse();
     let asksHtml = '';
     reversedAsks.forEach(a => {
-      const depthPct = (a.size / maxSingleSize) * 100;
+      const depthPct = ((a.size / maxSingleSize) * 100).toFixed(1);
       asksHtml += `
         <div class="ob-row ask-row">
-          <span class="ob-price ask-price">$${a.price.toFixed(2)}</span>
-          <span class="ob-size">${a.size}</span>
+          <span class="ob-price ask-price mono-num">$${a.price.toFixed(2)}</span>
+          <span class="ob-size mono-num">${a.size.toLocaleString()}</span>
           <div class="ob-depth-bar ask-bar" style="width: ${depthPct}%;"></div>
         </div>
       `;
@@ -210,11 +229,11 @@ class MicrostructureSimulator {
     // Render Bids
     let bidsHtml = '';
     this.bids.forEach(b => {
-      const depthPct = (b.size / maxSingleSize) * 100;
+      const depthPct = ((b.size / maxSingleSize) * 100).toFixed(1);
       bidsHtml += `
         <div class="ob-row bid-row">
-          <span class="ob-price bid-price">$${b.price.toFixed(2)}</span>
-          <span class="ob-size">${b.size}</span>
+          <span class="ob-price bid-price mono-num">$${b.price.toFixed(2)}</span>
+          <span class="ob-size mono-num">${b.size.toLocaleString()}</span>
           <div class="ob-depth-bar bid-bar" style="width: ${depthPct}%;"></div>
         </div>
       `;
@@ -228,12 +247,13 @@ class MicrostructureSimulator {
         const isBuy = t.side === 'BUY';
         tradesHtml += `
           <div class="tape-row ${isBuy ? 'tape-buy' : 'tape-sell'}">
-            <span class="tape-time">${t.time}</span>
-            <span class="tape-side">${isBuy ? '买入 B' : '卖出 S'}</span>
-            <span class="tape-price">$${t.price.toFixed(2)}</span>
-            <span class="tape-qty">${t.qty}</span>
+            <span class="tape-time mono-num">${t.time}</span>
+            <span class="tape-side-pill ${isBuy ? 'pill-buy' : 'pill-sell'}">${isBuy ? 'BUY' : 'SELL'}</span>
+            <span class="tape-price mono-num">$${t.price.toFixed(2)}</span>
+            <span class="tape-qty mono-num">${t.qty.toLocaleString()}</span>
           </div>
         `;
+        t.isNew = false;
       });
       this.tradesList.innerHTML = tradesHtml || '<div class="tape-empty">等待撮合数据流...</div>';
     }
