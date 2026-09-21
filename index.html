@@ -4,11 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AXIS QUANT — 量化交易纪元史与算法实战平台 | Chronicles of Quantitative Trading</title>
-  <meta name="description" content="半个世纪量化金融发展编年史、经典趋势突破与多因子量化实战教程，内置实时交互式策略回测引擎与全球多语言支持。">
+  <meta name="description" content="半个世纪量化金融发展编年史、经典趋势突破与多因子量化实战教程，内置 Google Colab 云端策略运行环境、Google Charts 专业金融图表、Google Trends 另类数据雷达与实时回测引擎。">
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Google Ecosystem: Google Charts Visualization API -->
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  
+  <!-- Google Ecosystem: Google AdSense Revenue Engine (Compliant Auto-Ads & Ad Units) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9842109842109842" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -30,6 +36,7 @@
             <li><a href="#timeline" class="nav-link" data-i18n="nav_timeline">纪元史</a></li>
             <li><a href="#tutorial" class="nav-link" data-i18n="nav_tutorial">策略教学</a></li>
             <li><a href="#tutorial" class="nav-link" data-i18n="nav_backtest">实时回测</a></li>
+            <li><a href="#google-trends" class="nav-link">另类数据</a></li>
             <li><a href="#monetization" class="nav-link" data-i18n="nav_pricing">商业方案</a></li>
             <li><a href="#faq" class="nav-link" data-i18n="nav_faq">常见问题</a></li>
           </ul>
@@ -51,8 +58,8 @@
 
   <!-- 2. HERO SECTION -->
   <section class="hero-section" id="top">
-    <!-- Interactive Canvas Background (react-bits DotField adaptation) -->
-    <canvas id="hero-dotfield" class="hero-canvas-bg"></canvas>
+    <!-- Fluid Mathematical Wave Field (react-bits Waves adaptation with Perlin noise & cursor physics) -->
+    <canvas id="hero-waves-canvas" class="hero-canvas-bg"></canvas>
 
     <div class="container hero-content">
       <div class="hero-left reveal-on-scroll">
@@ -68,12 +75,16 @@
         <div class="hero-actions">
           <a href="#timeline" class="btn-primary" data-i18n="hero_cta_explore">探索量化编年史</a>
           <a href="#tutorial" class="btn-outline" data-i18n="hero_cta_tutorial">上手策略实战</a>
+          <a href="https://colab.research.google.com/github/xinkuangsi-spec/axis-quant/blob/main/notebooks/quant_tutorial_sma.ipynb" target="_blank" rel="noopener" class="btn-open-colab">
+            <svg class="colab-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+            <span data-i18n="google_colab_btn">在 Google Colab 中一键运行 (Jupyter)</span>
+          </a>
         </div>
       </div>
 
-      <!-- Lifted Ticker Card -->
+      <!-- Lifted Ticker Card with react-bits Spotlight illumination -->
       <div class="hero-right reveal-on-scroll">
-        <div class="hero-ticker-card">
+        <div class="hero-ticker-card card-spotlight">
           <div class="card-top-bar">
             <span class="card-title" data-i18n="card_ticker_title">核心策略指标监控</span>
             <span class="card-signal-badge" data-i18n="card_ticker_signal">动量买入信号 · 触发</span>
@@ -124,7 +135,24 @@
     </div>
   </div>
 
-  <!-- 4. FIVE GREAT EPOCHS TIMELINE -->
+  <!-- Google AdSense Placement 1: Top Leaderboard -->
+  <div class="container">
+    <div class="google-ads-slot">
+      <span class="ads-micro-label" data-i18n="google_adsense_label">Google 广告联盟商业位 · 自动化高 eCPM 广告流</span>
+      <div class="ads-visual-placeholder">
+        <!-- Google AdSense Live Unit -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9842109842109842"
+             data-ad-slot="5849201948"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <span class="mono-tag" style="color: var(--muted); font-size: 0.72rem;">[ Google AdSense 728×90 机构级金融与经纪商广告赞助位 ]</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. FIVE GREAT EPOCHS TIMELINE (Editorial Fluid Flow, No Box Slop) -->
   <section class="section-wrapper" id="timeline">
     <div class="container">
       <div class="section-header-block reveal-on-scroll">
@@ -135,91 +163,163 @@
         </p>
       </div>
 
-      <div class="timeline-grid">
+      <!-- Epoch Selector Tabs -->
+      <div class="epoch-tabs-nav reveal-on-scroll" role="tablist">
+        <button class="epoch-nav-tab active" data-epoch="all">全景长卷 (ALL)</button>
+        <button class="epoch-nav-tab" data-epoch="1">1970 理论奠基</button>
+        <button class="epoch-nav-tab" data-epoch="2">1985 宽客崛起</button>
+        <button class="epoch-nav-tab" data-epoch="3">2000 电子革命</button>
+        <button class="epoch-nav-tab" data-epoch="4">2015 因子工场</button>
+        <button class="epoch-nav-tab" data-epoch="5">2023 智能体前沿</button>
+      </div>
+
+      <!-- Fluid Editorial Flow (Pure Typography & Hairlines, No Container Slop) -->
+      <div class="epoch-flow-container">
+        
         <!-- Epoch 1 -->
-        <article class="timeline-card reveal-on-scroll">
-          <div>
-            <span class="epoch-badge" data-i18n="epoch1_badge">1970 — 1985 · 理论奠基</span>
-            <h3 class="epoch-title" data-i18n="epoch1_title">期权定价与现代金融工程萌芽</h3>
-            <p class="epoch-desc" data-i18n="epoch1_desc">
+        <article class="epoch-flow-item reveal-on-scroll" data-epoch="1">
+          <div class="epoch-flow-meta">
+            <div class="epoch-year-colossal">1970</div>
+            <span class="epoch-range-tag" data-i18n="epoch1_badge">1970 — 1985 · 理论奠基</span>
+            <div class="epoch-formula-pill">
+              C(S,t) = S·N(d₁) - K·e⁻ʳᵀ·N(d₂)
+            </div>
+          </div>
+          <div class="epoch-content-body">
+            <h3 class="epoch-title-main" data-i18n="epoch1_title">期权定价与现代金融工程萌芽</h3>
+            <div class="epoch-pioneers-row">
+              <span class="pioneer-badge">Fischer Black</span>
+              <span class="pioneer-badge">Myron Scholes</span>
+              <span class="pioneer-badge">Robert Merton</span>
+              <span class="pioneer-badge">Ed Thorp (Princeton Newport)</span>
+            </div>
+            <p class="epoch-narrative" data-i18n="epoch1_desc">
               在 70 年代前，华尔街全凭直觉和看图做盘。1973 年 Fischer Black、Myron Scholes 和 Robert Merton 提出 B-S 期权定价模型，给衍生品敲定了客观数学定价法。同期的 Ed Thorp（数学家，21点算牌之父）创立了首家电脑量化对冲基金 Princeton Newport Partners，首次用计算机寻找可转债套利机会。
             </p>
+            <ul class="epoch-key-takeaways">
+              <li data-i18n="epoch1_key1">B-S 期权定价公式诞生</li>
+              <li data-i18n="epoch1_key2">可转债折价套利理论</li>
+              <li data-i18n="epoch1_key3">首批宽客进入对冲基金界</li>
+            </ul>
           </div>
-          <ul class="epoch-keys">
-            <li data-i18n="epoch1_key1">B-S 期权定价公式诞生</li>
-            <li data-i18n="epoch1_key2">可转债折价套利理论</li>
-            <li data-i18n="epoch1_key3">首批宽客进入对冲基金界</li>
-          </ul>
         </article>
 
         <!-- Epoch 2 -->
-        <article class="timeline-card featured reveal-on-scroll">
-          <div>
-            <span class="epoch-badge" data-i18n="epoch2_badge">1985 — 2000 · 宽客崛起</span>
-            <h3 class="epoch-title" data-i18n="epoch2_title">大奖章基金与统计套利的黄金时代</h3>
-            <p class="epoch-desc" data-i18n="epoch2_desc">
+        <article class="epoch-flow-item reveal-on-scroll" data-epoch="2">
+          <div class="epoch-flow-meta">
+            <div class="epoch-year-colossal">1985</div>
+            <span class="epoch-range-tag" data-i18n="epoch2_badge">1985 — 2000 · 宽客崛起</span>
+            <div class="epoch-formula-pill">
+              Hidden Markov P(Sₜ|O₁...Oₜ) · Stat-Arb
+            </div>
+          </div>
+          <div class="epoch-content-body">
+            <h3 class="epoch-title-main" data-i18n="epoch2_title">大奖章基金与统计套利的黄金时代</h3>
+            <div class="epoch-pioneers-row">
+              <span class="pioneer-badge">Jim Simons (Renaissance)</span>
+              <span class="pioneer-badge">James Ax</span>
+              <span class="pioneer-badge">Elwyn Berlekamp</span>
+              <span class="pioneer-badge">LTCM (John Meriwether)</span>
+            </div>
+            <p class="epoch-narrative" data-i18n="epoch2_desc">
               冷战密码学家 Jim Simons 创立 Renaissance Technologies（文艺复兴科技），招募天体物理学家与数学家，摒弃任何基本面直觉，完全依靠纯数据驱动与隐马尔可夫模型捕捉市场非理性微动。大奖章基金创下连续 30 年费前年化收益超 66% 的神话。然而 1998 年 LTCM（长期资本管理）因黑天鹅流动性枯竭轰然倒闭，给行业敲响了风险控制的警钟。
             </p>
+            <ul class="epoch-key-takeaways">
+              <li data-i18n="epoch2_key1">隐马尔可夫与统计套利模型</li>
+              <li data-i18n="epoch2_key2">文艺复兴科技大奖章基金传奇</li>
+              <li data-i18n="epoch2_key3">LTCM 危机与风险敞口深刻教训</li>
+            </ul>
           </div>
-          <ul class="epoch-keys">
-            <li data-i18n="epoch2_key1">隐马尔可夫与统计套利模型</li>
-            <li data-i18n="epoch2_key2">文艺复兴科技大奖章基金传奇</li>
-            <li data-i18n="epoch2_key3">LTCM 危机与风险敞口深刻教训</li>
-          </ul>
         </article>
 
         <!-- Epoch 3 -->
-        <article class="timeline-card reveal-on-scroll">
-          <div>
-            <span class="epoch-badge" data-i18n="epoch3_badge">2000 — 2015 · 电子革命</span>
-            <h3 class="epoch-title" data-i18n="epoch3_title">微波网络、暗池与超高频交易 (HFT)</h3>
-            <p class="epoch-desc" data-i18n="epoch3_desc">
+        <article class="epoch-flow-item reveal-on-scroll" data-epoch="3">
+          <div class="epoch-flow-meta">
+            <div class="epoch-year-colossal">2000</div>
+            <span class="epoch-range-tag" data-i18n="epoch3_badge">2000 — 2015 · 电子革命</span>
+            <div class="epoch-formula-pill">
+              FPGA Latency ≤ 820ns · L2/L3 OrderBook
+            </div>
+          </div>
+          <div class="epoch-content-body">
+            <h3 class="epoch-title-main" data-i18n="epoch3_title">微波网络、暗池与超高频交易 (HFT)</h3>
+            <div class="epoch-pioneers-row">
+              <span class="pioneer-badge">Ken Griffin (Citadel)</span>
+              <span class="pioneer-badge">Virtu Financial</span>
+              <span class="pioneer-badge">Jump Trading</span>
+              <span class="pioneer-badge">Tower Research</span>
+            </div>
+            <p class="epoch-narrative" data-i18n="epoch3_desc">
               随着交易所全面电子化，速度从“秒”被压缩到“纳秒”。对冲基金为了比对手快几个微秒，斥资数亿美元铺设芝加哥到纽约的激光微波直连塔，使用 FPGA 硬件重写网卡逻辑。Citadel、Virtu Financial、Jump Trading 成为新时代的市场流动性提供者，同时也诱发了 2010 年惊心动魄的“美股闪崩”（Flash Crash）。
             </p>
+            <ul class="epoch-key-takeaways">
+              <li data-i18n="epoch3_key1">订单簿微观结构与纳秒撮合</li>
+              <li data-i18n="epoch3_key2">FPGA 硬件加速与微波通信网络</li>
+              <li data-i18n="epoch3_key3">流动性做市 (Market Making) 与暗池</li>
+            </ul>
           </div>
-          <ul class="epoch-keys">
-            <li data-i18n="epoch3_key1">订单簿微观结构与纳秒撮合</li>
-            <li data-i18n="epoch3_key2">FPGA 硬件加速与微波通信网络</li>
-            <li data-i18n="epoch3_key3">流动性做市 (Market Making) 与暗池</li>
-          </ul>
         </article>
 
         <!-- Epoch 4 -->
-        <article class="timeline-card reveal-on-scroll">
-          <div>
-            <span class="epoch-badge" data-i18n="epoch4_badge">2015 — 2022 · 因子工场</span>
-            <h3 class="epoch-title" data-i18n="epoch4_title">多因子模型与另类数据爆发</h3>
-            <p class="epoch-desc" data-i18n="epoch4_desc">
+        <article class="epoch-flow-item reveal-on-scroll" data-epoch="4">
+          <div class="epoch-flow-meta">
+            <div class="epoch-year-colossal">2015</div>
+            <span class="epoch-range-tag" data-i18n="epoch4_badge">2015 — 2022 · 因子工场</span>
+            <div class="epoch-formula-pill">
+              Rᵢ - R𝒻 = β₁(Rₘ-R𝒻) + β₂SMB + β₃HML + ...
+            </div>
+          </div>
+          <div class="epoch-content-body">
+            <h3 class="epoch-title-main" data-i18n="epoch4_title">多因子模型与另类数据爆发</h3>
+            <div class="epoch-pioneers-row">
+              <span class="pioneer-badge">Cliff Asness (AQR)</span>
+              <span class="pioneer-badge">Two Sigma</span>
+              <span class="pioneer-badge">WorldQuant (Igor Tulchinsky)</span>
+              <span class="pioneer-badge">Eugene Fama & Kenneth French</span>
+            </div>
+            <p class="epoch-narrative" data-i18n="epoch4_desc">
               量化机构从比拼速度走向比拼信息维度。以 Fama-French 五因子（市值、账面市值比、盈利能力、投资模式、动量）为基础的多因子选股成为主流框架；WorldQuant 建立起拥有成千上万个Alpha因子的因子库。与此同时，卫星图（监控零售商停车场汽车数量）、信用卡脱敏消费流水、供应链物流数据等另类数据被大规模引入策略。
             </p>
+            <ul class="epoch-key-takeaways">
+              <li data-i18n="epoch4_key1">多因子正交化与风险模型 (Barra)</li>
+              <li data-i18n="epoch4_key2">卫星与信用卡另类数据挖掘</li>
+              <li data-i18n="epoch4_key3">加密货币全天候量化套利兴起</li>
+            </ul>
           </div>
-          <ul class="epoch-keys">
-            <li data-i18n="epoch4_key1">多因子正交化与风险模型 (Barra)</li>
-            <li data-i18n="epoch4_key2">卫星与信用卡另类数据挖掘</li>
-            <li data-i18n="epoch4_key3">加密货币全天候量化套利兴起</li>
-          </ul>
         </article>
 
         <!-- Epoch 5 -->
-        <article class="timeline-card featured reveal-on-scroll">
-          <div>
-            <span class="epoch-badge" data-i18n="epoch5_badge">2023 — 至今 · 智能体前沿</span>
-            <h3 class="epoch-title" data-i18n="epoch5_title">大语言模型与多智能体自主决策</h3>
-            <p class="epoch-desc" data-i18n="epoch5_desc">
+        <article class="epoch-flow-item reveal-on-scroll" data-epoch="5">
+          <div class="epoch-flow-meta">
+            <div class="epoch-year-colossal">2023</div>
+            <span class="epoch-range-tag" data-i18n="epoch5_badge">2023 — 至今 · 智能体前沿</span>
+            <div class="epoch-formula-pill">
+              Multi-Agent LLM Swarm · Deep RL Policy π*(a|s)
+            </div>
+          </div>
+          <div class="epoch-content-body">
+            <h3 class="epoch-title-main" data-i18n="epoch5_title">大语言模型与多智能体自主决策</h3>
+            <div class="epoch-pioneers-row">
+              <span class="pioneer-badge">AI Quant Agents</span>
+              <span class="pioneer-badge">DeepSeek / OpenAI Fin</span>
+              <span class="pioneer-badge">Reinforcement Learning</span>
+              <span class="pioneer-badge">Alternative Text Alpha</span>
+            </div>
+            <p class="epoch-narrative" data-i18n="epoch5_desc">
               生成式人工智能与大语言模型突破了非结构化文本的壁垒。如今的量化系统不仅使用深度强化学习（RL）优化执行滑点，更通过多个专家智能体（Agent）协同工作：一个智能体实时解析全球央行纪要与供应链新闻，另一个智能体动态构建策略因子，第三个智能体执行风控压力测试。人类宽客正转变为智能体系统的架构师与裁判员。
             </p>
+            <ul class="epoch-key-takeaways">
+              <li data-i18n="epoch5_key1">LLM 财报与非结构化文本情感量化</li>
+              <li data-i18n="epoch5_key2">强化学习连续动作执行与滑点控制</li>
+              <li data-i18n="epoch5_key3">多智能体自主 Alpha 发现与风控协作</li>
+            </ul>
           </div>
-          <ul class="epoch-keys">
-            <li data-i18n="epoch5_key1">LLM 财报与非结构化文本情感量化</li>
-            <li data-i18n="epoch5_key2">强化学习连续动作执行与滑点控制</li>
-            <li data-i18n="epoch5_key3">多智能体自主 Alpha 发现与风控协作</li>
-          </ul>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- 5. TUTORIAL & INTERACTIVE SIMULATOR -->
+  <!-- 5. TUTORIAL & INTERACTIVE SIMULATOR (Equipped with Google Suite) -->
   <section class="section-wrapper dark" id="tutorial">
     <div class="container">
       <div class="section-header-block reveal-on-scroll">
@@ -232,7 +332,7 @@
 
       <div class="tutorial-layout">
         <!-- Tutorial Guide Left -->
-        <div class="tutorial-steps-card reveal-on-scroll">
+        <div class="tutorial-steps-card card-spotlight reveal-on-scroll">
           <div class="tut-step-block">
             <h3 class="tut-step-title" data-i18n="tut_step1_title">1. 策略数学逻辑</h3>
             <p class="tut-step-body" data-i18n="tut_step1_body">
@@ -256,8 +356,8 @@
           </div>
         </div>
 
-        <!-- Backtester Panel Right -->
-        <div class="simulator-panel reveal-on-scroll">
+        <!-- Backtester Panel Right with react-bits SpotlightCard -->
+        <div class="simulator-panel card-spotlight reveal-on-scroll">
           <!-- Parameter Sliders -->
           <div class="sim-controls-grid">
             <div class="control-field">
@@ -317,18 +417,35 @@
             </div>
           </div>
 
-          <!-- Canvas Interactive Chart -->
+          <!-- Charts Display (Canvas View & Google Charts Institutional View) -->
           <div class="sim-chart-container">
             <canvas id="sim-canvas"></canvas>
+            <div id="google-chart-view" class="google-chart-view"></div>
+          </div>
+
+          <!-- Dual Engine Switcher & Colab Integration Actions -->
+          <div class="sim-engine-actions">
+            <button class="btn-chart-toggle" id="chart-engine-toggle" data-i18n="google_charts_toggle">
+              切换为: Google Charts 专业蜡烛图
+            </button>
+            <a href="https://colab.research.google.com/github/xinkuangsi-spec/axis-quant/blob/main/notebooks/quant_tutorial_sma.ipynb" target="_blank" rel="noopener" class="btn-open-colab">
+              <svg class="colab-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+              <span data-i18n="google_colab_btn">在 Google Colab 中一键运行 (Jupyter)</span>
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- Strategy Python Code Playground -->
+      <!-- Strategy Python Code Playground with Colab Direct Launch -->
       <div class="code-playground-box reveal-on-scroll">
         <div class="code-header">
           <span class="code-title" data-i18n="code_title">工业级 Python 策略代码范例 (Backtrader & Pandas)</span>
-          <button class="btn-code-copy" id="code-copy-btn" data-i18n="code_copy_btn">复制源码</button>
+          <div class="code-header-actions">
+            <a href="https://colab.research.google.com/github/xinkuangsi-spec/axis-quant/blob/main/notebooks/quant_tutorial_sma.ipynb" target="_blank" rel="noopener" class="btn-open-colab" style="padding: 4px 12px; font-size: 0.72rem;">
+              <span>Open in Colab</span>
+            </a>
+            <button class="btn-code-copy" id="code-copy-btn" data-i18n="code_copy_btn">复制源码</button>
+          </div>
         </div>
         <pre class="code-content"><code id="strategy-python-code">import backtrader as bt
 import pandas as pd
@@ -336,7 +453,7 @@ import numpy as np
 
 class DualSMACrossoverStrategy(bt.Strategy):
     """
-    工业级双均线交叉趋势动量策略
+    工业级双均线交叉趋势动量策略 (可直接部署于 Google Colab)
     包含动态止损、滑点规避与资产头寸自适应控制
     """
     params = (
@@ -386,8 +503,39 @@ class DualSMACrossoverStrategy(bt.Strategy):
         print(f'[{dt.isoformat()}] {txt}')
 </code></pre>
       </div>
+
+      <!-- Google Ecosystem: Google Trends Alternative Data Alpha Radar -->
+      <div class="google-trends-radar-box reveal-on-scroll" id="google-trends">
+        <div class="google-trends-header">
+          <h3 class="google-trends-title" data-i18n="google_trends_title">Google Trends 另类数据因子雷达 (Alternative Data Alpha)</h3>
+          <span class="mono-tag" style="color: #4285F4;">API SYNC: LIVE</span>
+        </div>
+        <p class="google-trends-desc" data-i18n="google_trends_desc">
+          现代量化对冲基金（第四与第五纪元）深度挖掘非传统金融数据。监控 Google 全球搜索热度指数（0-100），在散户羊群效应与恐慌爆发前构建先行预测信号：
+        </p>
+
+        <div class="trend-radar-list" id="google-trends-radar-list">
+          <!-- Populated dynamically by google-suite.js -->
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- Google AdSense Placement 2: Mid-Page High-RPM Financial Unit -->
+  <div class="container">
+    <div class="google-ads-slot dark">
+      <span class="ads-micro-label" data-i18n="google_adsense_label">Google 广告联盟商业位 · 自动化高 eCPM 广告流</span>
+      <div class="ads-visual-placeholder">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9842109842109842"
+             data-ad-slot="3940192841"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <span class="mono-tag" style="color: #8C8A84; font-size: 0.72rem;">[ Google AdSense 自适应金融终端与高频量化云服务器广告流 ]</span>
+      </div>
+    </div>
+  </div>
 
   <!-- 6. MONETIZATION & COMMERCIAL REVENUE ENGINE -->
   <section class="section-wrapper" id="monetization">
@@ -408,10 +556,10 @@ class DualSMACrossoverStrategy(bt.Strategy):
         </div>
       </div>
 
-      <!-- 3-Tier Pricing Grid -->
+      <!-- 3-Tier Pricing Grid with react-bits Spotlight illumination -->
       <div class="pricing-grid">
         <!-- Tier 1: Free Starter -->
-        <div class="pricing-card reveal-on-scroll">
+        <div class="pricing-card card-spotlight reveal-on-scroll">
           <div class="plan-header">
             <h3 class="plan-name" data-i18n="plan1_name">STARTER // 入门公开版</h3>
             <div class="plan-price-row">
@@ -430,7 +578,7 @@ class DualSMACrossoverStrategy(bt.Strategy):
         </div>
 
         <!-- Tier 2: Alpha Pro Terminal (Featured) -->
-        <div class="pricing-card featured reveal-on-scroll">
+        <div class="pricing-card featured card-spotlight reveal-on-scroll">
           <span class="plan-badge-top" data-i18n="plan2_badge">最受欢迎 · 极速回本</span>
           <div class="plan-header">
             <h3 class="plan-name" data-i18n="plan2_name">ALPHA PRO // 专业宽客终端</h3>
@@ -450,7 +598,7 @@ class DualSMACrossoverStrategy(bt.Strategy):
         </div>
 
         <!-- Tier 3: Institutional Algo Repo -->
-        <div class="pricing-card reveal-on-scroll">
+        <div class="pricing-card card-spotlight reveal-on-scroll">
           <div class="plan-header">
             <h3 class="plan-name" data-i18n="plan3_name">INSTITUTIONAL // 源码私塾与机构委任</h3>
             <div class="plan-price-row">
@@ -470,7 +618,7 @@ class DualSMACrossoverStrategy(bt.Strategy):
       </div>
 
       <!-- Pillar 2: Broker Affiliate Matrix -->
-      <div class="affiliate-section-card reveal-on-scroll">
+      <div class="affiliate-section-card card-spotlight reveal-on-scroll">
         <h3 class="card-title" style="font-size: 1.15rem; margin-bottom: 8px;" data-i18n="affiliate_title">支柱二：经纪商与基础设施返佣生态</h3>
         <p style="font-size: 0.9rem;" data-i18n="affiliate_desc">
           通过本站专属渠道接入全球头部量化交易通道，尊享顶级费率减免，同时为本站带来持续返佣现金流：
@@ -685,15 +833,16 @@ class DualSMACrossoverStrategy(bt.Strategy):
 
       <div class="footer-bottom-row">
         <div data-i18n="footer_rights">© 2026 AXIS QUANT 瑞士量化编辑系统. 商业版保留所有权利.</div>
-        <div>LATENCY: 0.82μs · DPR: 2.0 · ENGINE: v3.8</div>
+        <div>LATENCY: 0.82μs · DPR: 2.0 · GOOGLE SUITE: CONNECTED · ENGINE: v3.9</div>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="js/i18n.js"></script>
-  <script src="js/dotfield.js"></script>
+  <script src="js/waves.js"></script>
   <script src="js/simulator.js"></script>
+  <script src="js/google-suite.js"></script>
   <script src="js/monetization.js"></script>
   <script src="js/app.js"></script>
 </body>

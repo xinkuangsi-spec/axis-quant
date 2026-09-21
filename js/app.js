@@ -11,19 +11,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentLang = localStorage.getItem('axis_quant_lang') || 'zh';
   initLanguage(currentLang);
 
-  // Initialize DotField Canvas (react-bits adaptation)
-  const dotfield = new DotField('hero-dotfield', {
-    dotRadius: 1.5,
-    dotSpacing: 26,
-    cursorRadius: 260,
-    bulgeStrength: 50,
-    gradientFrom: 'rgba(31, 68, 255, 0.7)',
-    gradientTo: 'rgba(255, 255, 255, 0.2)'
-  });
+  // Initialize Fluid Mathematical Waves Canvas (react-bits Waves adaptation)
+  if (document.getElementById('hero-waves-canvas')) {
+    window.wavesInstance = new WavesEffect('hero-waves-canvas', {
+      lineColor: 'rgba(31, 68, 255, 0.32)',
+      waveSpeedX: 0.012,
+      waveSpeedY: 0.005,
+      waveAmpX: 32,
+      waveAmpY: 16,
+      xGap: 20,
+      yGap: 30,
+      friction: 0.92,
+      tension: 0.006,
+      maxCursorMove: 90
+    });
+  }
 
   // Initialize Quant Backtest Simulator
   const simulator = new QuantSimulator('sim-canvas');
   window.quantSimInstance = simulator;
+
+  // Initialize Google Ecosystem Suite & react-bits SpotlightCard
+  const googleSuite = new GoogleSuiteManager();
+  window.googleSuiteInstance = googleSuite;
 
   // Initialize Monetization Manager
   const monetization = new MonetizationManager();
@@ -39,7 +49,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Mobile Navigation
   initMobileNav();
+
+  // Initialize Epoch Flow Tabs
+  initEpochTabs();
 });
+
+// Epoch Timeline Tab Navigation
+function initEpochTabs() {
+  const tabs = document.querySelectorAll('.epoch-nav-tab');
+  const items = document.querySelectorAll('.epoch-flow-item');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetEpoch = tab.getAttribute('data-epoch');
+
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      items.forEach(item => {
+        if (targetEpoch === 'all' || item.getAttribute('data-epoch') === targetEpoch) {
+          item.style.display = 'grid';
+          item.classList.add('is-visible');
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+}
 
 // Real-time Global Financial Market Clock
 function initGlobalClock() {
